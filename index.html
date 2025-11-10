@@ -118,7 +118,6 @@
                     alt="저가 DB 구조 → 허수/부재/거부로 이어지는 흐름" 
                     class="w-full h-full object-cover" />
               </picture>
-
             </figure>
 
             <!-- ② 우: 텍스트 묶음 (article + aside) -->
@@ -146,7 +145,6 @@
                   유일한 해결책이라 여기며 제자리 걸음을 반복하게 됩니다.
                 </p>
               </article>
-
               <aside
                 class="rounded-xl border border-[var(--neutral-200)] bg-[var(--neutral-50)] p-5 text-[var(--neutral-800)]"
               >
@@ -179,10 +177,11 @@
             <p class="text-[var(--neutral-600)] text-xl">
               전략과 수정 방향만 함께 논의하고 편히 결과만 받아보세요.
             </p>
-            <p class="text-sm text-[var(--neutral-700)] text-lg">
-              광고를 할 줄 몰라도 괜찮습니다. 심지어 랜딩페이지가 없어도
-              좋습니다. 복잡한 세팅, 운영, 수정, 개선 — 이 모두를 저희가
-              맡습니다. 단지, 갈수록 좋아지는 DB로 매출만 극대화하세요.
+            <p class="text-lg text-[var(--neutral-700)]">
+              광고를 할 줄 몰라도 괜찮습니다. <br class="hidden md:block"/>
+              심지어 랜딩페이지가 없어도 좋습니다. <br><br>
+              복잡한 세팅, 운영, 수정, 개선 — 이 모두를 저희가 맡습니다.<br class="hidden md:block"/>
+              단지, 갈수록 좋아지는 DB로 매출만 극대화하세요.
             </p>
           </header>
 
@@ -245,17 +244,47 @@
             </article>
           </div>
 
+          <!--💡 4단 서비스 상세, 헤더 -->
+          <header class="space-y-4 text-center max-w-3xl mx-auto">
+            <!-- ① 헤드라인 -->
+            <h3 class="text-2xl font-bold md:text-4xl leading-snug">
+              체계적인 프로세스로<br class="hidden md:block"/> 광고를 지속적으로 개선합니다.
+               </h3>
+
+            <!-- ② 서브헤드 -->
+            <p class="text-xl text-[var(--neutral-700)] font-medium">
+              기획 → 제작 → 운영 → 개선,<br
+                class="hidden md:block"
+              />
+              모든 절차를 일관된 시스템으로 연결해  
+              효율과 결과를 동시에 높입니다.
+            </p>
+
+            <!-- ③ 본문 -->
+            <p class="text-lg text-[var(--neutral-600)] leading-relaxed">
+              단순히 예산을 집행하는 것이 아니라  
+              데이터 기반으로 랜딩·카피·매체·DB 품질을 끊임없이 분석·개선하며  
+              광고의 성과를 장기적으로 성장시킵니다.
+            </p>
+          </header>
           <!-- 4단 서비스 상세 -->
           <div class="grid gap-6 md:grid-cols-2">
-            <article class="card">
-              <h4 class="mb-2 text-lg font-semibold">1. 설득 내러티브 기획</h4>
+            <article class="card premium-rail">
+              <!-- 아이콘 -->
+              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--neutral-100)] text-[var(--brand)]">
+                <i data-lucide="lightbulb" class="w-10 h-10"></i>
+              </div>
+              <h4 class="mt-3 text-lg font-semibold premium-heading">1. 설득 내러티브 기획</h4>
               <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
                 핵심 타겟, 주력 상품, 타겟 매체를 분석·파악하여 DB 생산과
                 계약율을 높이는 설득 내러비티브를 기획합니다.
               </p>
             </article>
-            <article class="card">
-              <h4 class="mb-2 text-lg font-semibold">
+            <article class="card premium-rail">
+              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--neutral-100)] text-[var(--brand)]">
+                <i data-lucide="layers" class="w-10 h-10"></i>
+              </div>
+              <h4 class="mt-3 text-lg font-semibold premium-heading">
                 2. 랜딩페이지 DB품질 최적화
               </h4>
               <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
@@ -263,15 +292,21 @@
                 발맞춰 수정·개선해 DB품질과 수량을 높입니다.
               </p>
             </article>
-            <article class="card">
-              <h4 class="mb-2 text-lg font-semibold">3. 광고매체 최적화</h4>
+            <article class="card premium-rail">
+              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--neutral-100)] text-[var(--brand)]">
+                <i data-lucide="bar-chart-3" class="w-10 h-10"></i>
+              </div>
+              <h4 class="mt-3 text-lg font-semibold premium-heading">3. 광고매체 최적화</h4>
               <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
                 적합한 매체를 분류·선별·측정해 전환율이 높은 주력매체를 찾고
                 예산을 집중해 비용효율을 높입니다.
               </p>
             </article>
-            <article class="card">
-              <h4 class="mb-2 text-lg font-semibold">
+            <article class="card premium-rail">
+    <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--neutral-100)] text-[var(--brand)]">
+      <i data-lucide="send" class="w-10 h-10"></i>
+    </div>
+              <h4 class="mt-3 text-lg font-semibold premium-heading">
                 4. 목적과 타이밍에 맞게 DB전달
               </h4>
               <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
@@ -336,14 +371,14 @@
           class="container mx-auto grid max-w-5xl items-start gap-10 px-4 lg:grid-cols-2"
         >
           <!-- CTA 텍스트 -->
-          <div class="space-y-5">
+          <div class="space-y-5 text-center md:text-left flex flex-col items-center md:items-start">   <!--★★ing★★-->
             <p class="text-lg text-[var(--neutral-700)]">
               랜딩? 없어도 됩니다.<br />
               광고? 몰라도 됩니다.
             </p>
-            <h3 class="text-2xl leading-snug font-semibold md:text-4xl">
+            <h3 class="text-2xl leading-snug font-semibold md:text-3xl">
               우리 회사에 필요한 좋은 DB를<br />
-              저렴하게, 꾸준히 확보하고 싶다면 ?
+              저렴하고 꾸준하게 확보하고 싶다면 ?
             </h3>
 
             <div class="space-y-3">
@@ -459,5 +494,11 @@
         e.preventDefault();
       });
     </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+
   </body>
 </html>

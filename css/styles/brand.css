@@ -10,6 +10,10 @@
   --neutral-100: #f3f4f6;
   --neutral-50: #f8fafc;
 
+    /* === GRADIENT TOKENS (추가) === */
+  --gradient-primary: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+  --gradient-vertical: linear-gradient(180deg, var(--brand) 0%, var(--accent) 100%);
+
   /* === RADIUS / SHADOW / RING === */
   --radius: 16px;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
@@ -29,14 +33,52 @@ body {
   font-family: var(--font-body);
 }
 
-/* 카드 */
-.card {
+/* 공통 카드 기본 */
+.card{
+  position: relative;
   background: #fff;
   border: 1px solid var(--neutral-200);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  padding: 1.25rem; /* 20px */
+  padding: 1.25rem;
+  background-clip: padding-box;                 /* ✅ 추가 */
+  transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
 }
+
+/* 공통 카드 hover: 주황빛 글로우 */
+.card:hover{
+  border-color: transparent;          /* 테두리를 그라데이션으로 대체 */
+  box-shadow:
+    0 14px 32px color-mix(in srgb, var(--accent) 20%, transparent),
+    0 4px 12px  color-mix(in srgb, var(--brand) 18%, transparent);
+  transform: translateY(-2px);
+}
+
+/* 그라데이션 테두리(hover 때만 보이게)(굵기 2px + 하얀 실선 방지) */
+.card::after{
+  content:"";
+  position:absolute;
+  inset:-1px;                                  /* ✅ 살짝 확장해 모서리 실선 제거 */
+  border-radius: var(--radius);
+  padding:2px;                                   /* ✅ 테두리 두께 (1px→2px) */
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  /* 안쪽은 투명, 테두리만 보이게 */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+          mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events:none;
+  opacity:0;
+  transition: opacity .25s ease;
+}
+.card:hover::after{ opacity:1; }
+
+/* (선택) 이미지 살짝 밝게 */
+.card:hover img{ filter: brightness(1.05); transition: filter .25s ease; }
 
 /* 라벨/인풋 */
 .label {
@@ -80,4 +122,70 @@ body {
 }
 .btn-primary:active {
   transform: translateY(0);
+}
+
+/* 카드 hover 효과 */
+.card:hover i {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* =============================== */
+/* 섹션4-하단용 premium-rail 카드 확장 */
+/* =============================== */
+
+/* 기본 */
+.card.premium-rail {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem;
+  background-clip: padding-box;
+  transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+}
+
+/* 왼쪽 그라데이션 띠 */
+.card.premium-rail::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 8px;                                  /* 띠 두께 */
+  background: linear-gradient(180deg, var(--brand), var(--accent));
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+/* hover 시 주황빛 글로우 + 그라데이션 테두리 */
+.card.premium-rail:hover {
+  border-color: transparent;
+  box-shadow:
+    0 14px 32px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 4px 12px color-mix(in srgb, var(--brand) 18%, transparent);
+  transform: translateY(-2px);
+}
+
+/* hover 시 외곽 그라데이션 테두리 (섹션3과 동일) */
+.card.premium-rail::after {
+  content: "";
+  position: absolute;
+  inset: -0.5px;
+  border-radius: var(--radius);
+  padding: 2px;                                 /* 테두리 두께 */
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+          mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.card.premium-rail:hover::after {
+  opacity: 1;
 }
