@@ -2,186 +2,285 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>광고형 랜딩페이지 운영 대행 서비스</title>
-    <!-- Tailwind CDN -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>랜딩임대 서비스 | 광고형 랜딩페이지 운영 시스템</title>
+    <!-- Tailwind CDN (초기 제작용) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 기본 색상 토큰(선택) -->
-    <style>
-      :root {
-        --brand: #1f5fae;
-      }
-    </style>
+
+    <!-- 브랜드 토큰(20%) -->
+    <link rel="stylesheet" href="./css/styles/brand.css" />
+    <!-- 프리미엄 효과(10%) -->
+    <link rel="stylesheet" href="./css/styles/premium.css" />
+
+    <!-- 기본 폰트(원하면 brand.css에서 교체) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body class="text-gray-900 antialiased">
-    <main>
-      <!-- ========== 섹션 1. 기존 문제 + 해결책 + 이득 + CTA (Hero Split) ========== -->
-      <section id="hero" class="w-full py-16 sm:py-20">
-        <div class="mx-auto max-w-7xl px-4">
-          <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
-            <!-- 비주얼 -->
-            <div class="lg:col-span-6">
-              <figure
-                class="flex aspect-[4/3] w-full items-center justify-center rounded-2xl bg-gray-50 ring-1 ring-gray-200"
+  <body class="bg-[var(--neutral-50)] text-[var(--neutral-900)] antialiased">
+    <!-- 글로벌 래퍼 -->
+    <main id="page" class="flex min-h-screen flex-col">
+      <!-- =============== 섹션 1. Hero =============== -->
+      <section id="hero" class="py-16 md:py-24">
+        <div
+          class="container mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 md:grid-cols-2">
+          <!-- max-w-7xl =콘테이너, 가로 1280x로 고정 /  grid-cols-2: 2개의 열로, 콘테이너 전체 가로 1280인데, 2개열이니, 최대 자식인 텍스트 이미지는 반반씩밖에-->
+          
+          <!-- 텍스트 영역 -->
+          <div class="order-2 space-y-4 text-center md:order-1 md:text-left">
+            <!-- 테일윈드는 모바일 기준! text-center(모바일일때 텍스트 가운데 정렬) md:text-left(중간 태블릿 이상 크기일때는 텍스트 왼쪽정렬)  -->
+            <h1 class="text-3xl leading-tight font-bold md:text-4xl">
+              <span class="block text-4xl md:text-5xl">
+                <!--테일윈드 css에서, 동일한 박스안의 텍스트 크기를 달리하려면 <spna class="block">태그를 쓰면 된다. ㅇㅋ.-->
+                지긋지긋한<br class="hidden md:block" />
+                부재·상담거부·허수DB가 <br class="hidden md:block" />지치신다면
+                <br /><br />
+              </span>
+              이제 광고형 랜딩페이지 운영 시스템으로 DB비용을 줄이고, 품질은
+              높이세요.
+            </h1>
+
+            <p class="text-xl text-[var(--neutral-600)] md:text-2xl">
+              유통마진 없는 원가로 DB를 개발하고,<br class="hidden md:block" />
+              시장 반응에 맞춰 랜딩페이지를 반복 개선합니다.<br
+                class="hidden md:block"
+              />
+              그 결과, 광고비는 절감되고 계약률은 꾸준히 오릅니다.
+            </p>
+
+            <p class="text-lg text-[var(--neutral-700)] md:text-xl">
+              AS도 안 되는 헛DB에 더 이상 돈 낭비하지 마세요.<br
+                class="hidden md:block"
+              />
+              랜딩페이지 운영 시스템으로 DB를 직접 생산하면,<br
+                class="hidden md:block"
+              />
+              광고비는 획기적으로 줄고 계약 기회는 두 배 이상 늘어납니다.
+            </p>
+
+            <div class="pt-2">
+              <a
+                href="#cta"
+                class="btn-primary premium-cta-shadow"
+                data-evt="cta_click_hero"
+                >1:1 무료상담 신청하기</a
               >
-                <div class="text-sm text-gray-400">메인 비주얼 자리</div>
-              </figure>
-            </div>
-            <!-- 카피 -->
-            <div class="space-y-5 lg:col-span-6">
-              <!-- [space-y-5] 자식들 간의 세로간격을 5px만큼 뛰어둔다.-->
-              <h1 class="text-3xl leading-tight font-extrabold sm:text-3xl lg:text-4xl">
-                지긋지긋한<br />
-                부재·상담거부·허수DB에 지친다면<br class="hidden sm:block" />
-                광고형 랜딩페이지 운영 시스템으로 <br class="hidden sm:block" />
-                DB 비용을 줄이고, 품질은 높이세요.
-              </h1>
-              <p class="text-base leading-relaxed text-gray-700 sm:text-lg">
-                유통마진 없는 원가로 DB를 개발하고, 시장 반응에 맞춰 랜딩페이지를 반복 개선합니다.
-                그 결과, 광고비는 절감되고 계약률은 꾸준히 오릅니다.
-              </p>
-              <p class="text-sm text-gray-600 sm:text-base">
-                AS도 안 되는 헛DB에 더 이상 돈 낭비하지 마세요. 랜딩페이지 운영 시스템으로 DB를 직접
-                생산하면, 광고비는 획기적으로 줄고 계약 기회는 두 배 이상 늘어납니다.
-              </p>
-              <div class="flex items-center gap-3 pt-2">
-                <a
-                  href="#contact"
-                  class="inline-flex items-center justify-center rounded-xl px-5 py-3 font-semibold text-white"
-                  style="background: var(--brand)"
-                >
-                  1:1 무료상담 신청하기
-                </a>
-                <a
-                  href="#proof"
-                  class="inline-flex items-center justify-center rounded-xl bg-gray-100 px-5 py-3 font-semibold text-gray-900"
-                >
-                  성과 보기
-                </a>
-              </div>
             </div>
           </div>
+          <!-- 이미지 / 비주얼 -->
+          <figure
+            class="order-1 justify-self-center md:order-2 md:justify-self-end"
+          >
+            <img
+              src="./img/hero001.png"
+              alt="운영형 랜딩 시스템 비주얼"
+              class="w-full max-w-md rounded-2xl shadow-lg"
+            />
+            <!-- w-full:최대 부모너비 만큼  max-w-md: 가로 448px픽셀 제한  -->
+          </figure>
         </div>
       </section>
+      <!-- 섹션간 구분선 <hr>의 뜻. HTML의 수평선(horizontal rule) -->
+      <hr class="border-[var(--neutral-200)]" />
 
-      <!-- ========== 섹션 2. 핵심결핍/원인 폭로 + 기존 한계 (Stack) ========== -->
-      <section id="problem-cause" class="w-full py-16">
-        <div class="mx-auto max-w-3xl px-4">
-          <header class="mb-8">
-            <h2 class="text-2xl font-extrabold sm:text-3xl">
-              매번 다른 대행사를 알아봐도 결국 결과는 비슷하지 않으셨나요?
+      <!-- =============== 섹션 2. 문제심화 =============== -->
+      <section id="problem-deepen" class="py-16 md:py-20">
+        <div class="container mx-auto max-w-5xl space-y-8 px-4">
+          <!--콘테이너 가로너비 max-w-5xl 1,024px -->
+          <header class="space-y-3">
+            <h2 class="text-2xl font-semibold md:text-4xl">
+              매번 다른 대행사를 알아봐도<br class="hidden md:block" />
+              결국 결과는 비슷하지 않으셨나요?
             </h2>
+            <p class="leading-relaxed text-[var(--neutral-600)]">
+              이제 더 이상 아까운 돈과 시간을 낭비하지 마세요.
+            </p>
           </header>
 
-          <div class="space-y-5 leading-relaxed text-gray-700">
-            <p>
-              많은 광고주들이 지금도 CPA대행사를 통해 DB를 구매하고 있습니다. 대부분의 대행사는 직접
-              광고비를 써서 DB를 개발하고, 마진을 붙여 판매합니다.
-            </p>
-            <p>
-              하지만 부재·상담거부·허수DB가 반복되는 이유는 간단합니다. DB를 최대한 저렴하게
-              뽑을수록 대행사 이윤이 커지기에, 랜딩제작과 테스트에 쏟는 리소스를 최소화하기
-              때문입니다.
-            </p>
-            <p>
-              결국 ‘달랑 이미지 몇 장 이어붙인 랜딩’에서 뽑은 DB와
-              ‘카피·디자인·동적기능·후속프로세스까지 설계된 랜딩’에서 뽑은 DB는 질적으로 다를 수밖에
-              없습니다.
-            </p>
-            <p>
-              광고주는 DB를 비싸게 구매했음에도 불구하고 품질이 낮은 DB에 비용과 시간을 낭비하게
-              되고, 또 다시 다른 대행사를 찾는 것만이 유일한 해결책이라 여기며 제자리 걸음을
-              반복하게 됩니다.
-            </p>
-            <p class="text-gray-600">
-              여러분 잘못이 아닙니다. 애초에 ‘CPA, 제휴마케팅’이라는 시스템의 한계가 만든
-              결과입니다. 누구나 겪는 이 악순환을 끊으려면, 이젠 ‘남이 만든 DB를 구매’할 게 아니라
-              ‘자체 개발하는 광고 시스템’을 운영할 때입니다.
-            </p>
+          <!-- 🔽 grid를 2열로 -->
+          <div class="grid gap-6 md:grid-cols-2">
+            <!-- ① 좌: 인포그래픽 -->
+            <figure
+              class="overflow-hidden rounded-2xl bg-[var(--neutral-100)] shadow-sm
+               mx-auto md:mx-0
+               w-[84vw] max-w-[360px] aspect-square
+               md:w-auto md:max-w-none md:aspect-[4/5]">
+              <picture>
+                <!-- 💻 PC(768px 이상)에서는 4:5 이미지 -->
+                <source 
+                  media="(min-width:768px)" 
+                  srcset="./img/problem001-PC-4x5.png" />
+              
+                <!-- 📱 모바일(768px 미만)에서는 1:1 이미지 -->
+                <img src="./img/problem001-MO-1x1.png" 
+                    alt="저가 DB 구조 → 허수/부재/거부로 이어지는 흐름" 
+                    class="w-full h-full object-cover" />
+              </picture>
+
+            </figure>
+
+            <!-- ② 우: 텍스트 묶음 (article + aside) -->
+            <div class="grid gap-6">
+              <article
+                class="space-y-4 rounded-2xl border border-[var(--neutral-200)] bg-white p-6 shadow-sm"
+              >
+                <p class="leading-relaxed">
+                  많은 광고주들이 지금도 CPA대행사를 통해 DB를 구매하고
+                  있습니다.
+                  <br /><br />대부분의 대행사는 직접 광고비를 써서 DB를
+                  개발하고, 마진을 붙여 판매합니다. 하지만
+                  부재·상담거부·허수DB가 반복되는 이유는 간단합니다. DB를 최대한
+                  저렴하게 뽑을수록 대행사 이윤이 커지기에, 랜딩제작과 테스트에
+                  쏟는 리소스를 최소화하기 때문입니다.
+                </p>
+                <p class="leading-relaxed">
+                  결국 ‘달랑 이미지 몇 장 이어붙인 랜딩’에서 뽑은 DB와
+                  ‘카피·디자인·동적기능·후속프로세스까지 설계된 랜딩’에서 뽑은
+                  DB는 질적으로 다를 수밖에 없습니다.
+                </p>
+                <p class="leading-relaxed">
+                  광고주는 DB를 비싸게 구매했음에도 불구하고 품질이 낮은 DB에
+                  비용과 시간을 낭비하게 되고, 또 다시 다른 대행사를 찾는 것만이
+                  유일한 해결책이라 여기며 제자리 걸음을 반복하게 됩니다.
+                </p>
+              </article>
+
+              <aside
+                class="rounded-xl border border-[var(--neutral-200)] bg-[var(--neutral-50)] p-5 text-[var(--neutral-800)]"
+              >
+                <strong class="mb-2 block">여러분 잘못이 아닙니다.</strong>
+                <p class="leading-relaxed">
+                  애초에 ‘CPA, 제휴마케팅'이라는 시스템의 한계가 만든
+                  결과입니다. 누구나 겪는 이 악순환을 끊으려면, 이젠 '남이 만든
+                  DB를 구매할게' 아니라 '자체 개발하는 광고 시스템’을 운영할
+                  때입니다.
+                </p>
+              </aside>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ========== 섹션 3. 해결책 제시 + 절차 + 서비스 상세 (Grid) ========== -->
-      <section id="solution" class="w-full py-16">
-        <div class="mx-auto max-w-7xl px-4">
-          <!-- 헤드 -->
-          <div class="max-w-3xl">
-            <h2 class="text-2xl font-extrabold sm:text-3xl">광고? 몰라도 됩니다.</h2>
-            <p class="mt-2 text-gray-700">
-              랜딩페이지 기획·제작·광고운영·DB품질개선까지 광고의 모든 과정을 한 번에
-              해결해드립니다.
-            </p>
-            <p class="mt-1 text-sm text-gray-600">
+      <hr class="border-[var(--neutral-200)]" />
+
+      <!-- =============== 섹션 3. Solution =============== -->
+      <section id="solution" class="py-16 md:py-24">
+        <div class="container mx-auto max-w-6xl space-y-12 px-4">
+          <header class="space-y-4 text-center">
+            <h2 class="text-2xl font-semibold md:text-4xl">
+              광고? 몰라도 됩니다.<br class="hidden md:block" />
+              랜딩페이지 기획·제작·광고운영·DB품질개선까지<br
+                class="hidden md:block"
+              />
+              광고의 모든 과정을 한 번에 해결해드립니다.
+            </h2>
+            <p class="text-[var(--neutral-600)]">
               전략과 수정 방향만 함께 논의하고 편히 결과만 받아보세요.
             </p>
-          </div>
+            <p class="text-sm text-[var(--neutral-700)]">
+              광고를 할 줄 몰라도 괜찮습니다. 심지어 랜딩페이지가 없어도
+              좋습니다. 복잡한 세팅, 운영, 수정, 개선 — 이 모두를 저희가
+              맡습니다. 단지, 갈수록 좋아지는 DB로 매출만 극대화하세요.
+            </p>
+          </header>
 
-          <!-- 3단 절차 -->
-          <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <!-- 카드 1 -->
-            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
-              <div
-                class="h-10 w-10 rounded-xl"
-                style="background: var(--brand, #1f5fae); opacity: 0.1"
-              ></div>
-              <h3 class="mt-3 text-base font-semibold">1) 1:1 무료 진단상담</h3>
-              <p class="mt-1 text-sm text-gray-600">
-                업종, 현재 상황, 광고 경험, 목표 등을 심도 있게 듣고 진행 가능 여부를 확인합니다.
-                <br /><span class="text-gray-500"
-                  >*불법·특정 업종 및 비윤리적 광고는 진행하지 않습니다.</span
+          <!-- 3단 절차 (아이콘/이미지 매칭 영역) -->
+          <div class="grid gap-6 md:grid-cols-3">
+            <!-- step 1 -->
+            <article class="card">
+              <figure
+                class="mb-4 grid aspect-video place-items-center rounded-xl bg-[var(--neutral-100)]"
+              >
+                <img
+                  src="./img/step1_placeholder.webp"
+                  alt="1:1 무료 진단상담"
+                  class="h-14 opacity-70"
+                />
+              </figure>
+              <h3 class="mb-2 text-xl font-semibold">1 ) 1:1 무료 진단상담</h3>
+              <p class="leading-relaxed text-[var(--neutral-700)]">
+                업종, 현재 상황, 광고 경험, 목표 등을 심도 있게 듣고 진행 가능
+                여부를 확인합니다.
+                <br /><em class="text-sm text-[var(--neutral-600)]"
+                  >*불법·특정 업종 및 비윤리적 광고는 진행하지 않습니다.</em
                 >
               </p>
             </article>
-            <!-- 카드 2 -->
-            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
-              <div
-                class="h-10 w-10 rounded-xl"
-                style="background: var(--brand, #1f5fae); opacity: 0.1"
-              ></div>
-              <h3 class="mt-3 text-base font-semibold">2) 계약</h3>
-              <p class="mt-1 text-sm text-gray-600">
-                진행이 확정되면 계약서를 작성하고, 비용 효율과 DB 품질을 최대화할 수 있는 방향을
-                제안드립니다.
+
+            <!-- step 2 -->
+            <article class="card">
+              <figure
+                class="mb-4 grid aspect-video place-items-center rounded-xl bg-[var(--neutral-100)]"
+              >
+                <img
+                  src="./img/step2_placeholder.webp"
+                  alt="계약"
+                  class="h-14 opacity-70"
+                />
+              </figure>
+              <h3 class="mb-2 text-xl font-semibold">2 ) 계약</h3>
+              <p class="leading-relaxed text-[var(--neutral-700)]">
+                진행이 확정되면 계약서를 작성하고, 비용 효율과 DB 품질을
+                최대화할 수 있는 방향을 제안드립니다.
               </p>
             </article>
-            <!-- 카드 3 -->
-            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
-              <div
-                class="h-10 w-10 rounded-xl"
-                style="background: var(--brand, #1f5fae); opacity: 0.1"
-              ></div>
-              <h3 class="mt-3 text-base font-semibold">3) 일정 & 집행</h3>
-              <p class="mt-1 text-sm text-gray-600">
-                랜딩페이지 운영 및 광고 집행 일정을 조율하고 온보딩을 마칩니다.
+
+            <!-- step 3 -->
+            <article class="card">
+              <figure
+                class="mb-4 grid aspect-video place-items-center rounded-xl bg-[var(--neutral-100)]"
+              >
+                <img
+                  src="./img/step3_placeholder.webp"
+                  alt="일정&집행"
+                  class="h-14 opacity-70"
+                />
+              </figure>
+              <h3 class="mb-2 text-xl font-semibold">3 ) 일정&집행</h3>
+              <p class="leading-relaxed text-[var(--neutral-700)]">
+                랜딩페이지 운영 및 광고집행 일정을 조율하고 온보딩을 마칩니다.
               </p>
             </article>
           </div>
 
           <!-- 4단 서비스 상세 -->
-          <div class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
-              <h3 class="text-base font-semibold">1. 설득 내러티브 기획</h3>
-              <p class="mt-1 text-sm text-gray-600">
-                핵심 타겟·주력 상품·매체를 분석해 DB 생산과 계약율을 높이는 내러티브를 기획합니다.
+          <div class="grid gap-6 md:grid-cols-2">
+            <article class="card">
+              <h4 class="mb-2 text-lg font-semibold">1. 설득 내러티브 기획</h4>
+              <p class="leading-relaxed text-[var(--neutral-700)]">
+                핵심 타겟, 주력 상품, 타겟 매체를 분석·파악하여 DB 생산과
+                계약율을 높이는 설득 내러비티브를 기획합니다.
               </p>
             </article>
-            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
-              <h3 class="text-base font-semibold">2. 랜딩페이지 DB품질 최적화</h3>
-              <p class="mt-1 text-sm text-gray-600">
-                구성·카피·디자인·동적기능을 시장 반응에 맞춰 개선해 DB의 품질과 수량을 높입니다.
+            <article class="card">
+              <h4 class="mb-2 text-lg font-semibold">
+                2. 랜딩페이지 DB품질 최적화
+              </h4>
+              <p class="leading-relaxed text-[var(--neutral-700)]">
+                랜딩페이지의 구성·카피라이팅·디자인·동적기능 등 시장 반응에
+                발맞춰 수정·개선해 DB품질과 수량을 높입니다.
               </p>
             </article>
-            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
-              <h3 class="text-base font-semibold">3. 광고매체 최적화</h3>
-              <p class="mt-1 text-sm text-gray-600">
-                적합 매체를 선별·측정해 전환이 높은 주력 매체에 예산을 집중합니다.
+            <article class="card">
+              <h4 class="mb-2 text-lg font-semibold">3. 광고매체 최적화</h4>
+              <p class="leading-relaxed text-[var(--neutral-700)]">
+                적합한 매체를 분류·선별·측정해 전환율이 높은 주력매체를 찾고
+                예산을 집중해 비용효율을 높입니다.
               </p>
             </article>
-            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200">
-              <h3 class="text-base font-semibold">4. 목적/타이밍 맞춘 DB전달</h3>
-              <p class="mt-1 text-sm text-gray-600">
-                관여도·시장특성·접근성 분석을 바탕으로 세일즈에 유리한 최적 타이밍에 DB를
+            <article class="card">
+              <h4 class="mb-2 text-lg font-semibold">
+                4. 목적과 타이밍에 맞게 DB전달
+              </h4>
+              <p class="leading-relaxed text-[var(--neutral-700)]">
+                부재 예방과 높은 계약율을 위해 상품 관여도, 시장특성, 타겟
+                접근성 분석을 기반으로 세일즈에 용이한 최적의 시점에 DB를
                 전달합니다.
               </p>
             </article>
@@ -189,117 +288,180 @@
         </div>
       </section>
 
-      <!-- ========== 섹션 4. 신뢰·성과·후기 (Proof) ========== -->
-      <section id="proof" class="w-full py-16">
-        <div class="mx-auto max-w-7xl px-4">
-          <header class="max-w-2xl">
-            <h2 class="text-2xl font-extrabold sm:text-3xl">
-              “광고형 랜딩페이지 운영 서비스로 비용은 줄이고, DB 품질은 높이세요!”
+      <hr class="border-[var(--neutral-200)]" />
+
+      <!-- =============== 섹션 4. Proof(후기/성과) =============== -->
+      <section id="proof" class="py-16 md:py-20">
+        <div class="container mx-auto max-w-6xl space-y-8 px-4">
+          <header class="space-y-3 text-center">
+            <h2 class="text-2xl font-semibold md:text-4xl">
+              “광고형 랜딩페이지 운영 서비스로 비용은 줄이고, DB 품질은
+              높이세요!”
             </h2>
-            <p class="mt-2 text-gray-700">
-              랜딩페이지를 반복 개선하며 자체 운영하면, 같은 비용으로 더 많은 DB를 확보하고 상담
-              품질까지 향상됩니다.
+            <p class="text-[var(--neutral-600)]">
+              “랜딩페이지를 반복 개선하며 자체 운영하면<br
+                class="hidden md:block"
+              />
+              같은 비용으로 더 많은 DB를 확보하고 상담 품질까지 향상됩니다.”
             </p>
           </header>
 
-          <!-- 상단: KPI 썸네일 자리 -->
-          <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div class="grid gap-6 md:grid-cols-2">
+            <!-- 그래프/지표 -->
             <figure
-              class="flex aspect-video w-full items-center justify-center rounded-2xl bg-gray-50 ring-1 ring-gray-200"
+              class="card grid aspect-video place-items-center bg-[var(--neutral-50)]"
             >
-              <span class="text-sm text-gray-400">이미지: DB 단가/DB 수</span>
+              <img
+                src="./img/placeholder_metric.webp"
+                alt="지표: DB 단가/DB 수"
+                class="h-24 opacity-70"
+              />
             </figure>
+            <!-- 카톡/후기 -->
             <figure
-              class="flex aspect-video w-full items-center justify-center rounded-2xl bg-gray-50 ring-1 ring-gray-200"
+              class="card grid aspect-video place-items-center bg-[var(--neutral-50)]"
             >
-              <span class="text-sm text-gray-400">이미지: 관리자 화면(성과 그래프)</span>
-            </figure>
-          </div>
-
-          <!-- 하단: 카톡 대화/품질 증거 자리 -->
-          <div class="mt-6">
-            <figure
-              class="flex h-40 w-full items-center justify-center rounded-2xl bg-gray-50 ring-1 ring-gray-200 sm:h-56"
-            >
-              <span class="text-sm text-gray-400">이미지: 상담 품질(카톡 대화 캡쳐)</span>
+              <img
+                src="./img/placeholder_chat.webp"
+                alt="DB 품질(카톡 대화 캡처)"
+                class="h-24 opacity-70"
+              />
             </figure>
           </div>
         </div>
       </section>
 
-      <!-- ========== 섹션 5. CTA + 입력폼 (네 코드로 교체) ========== -->
-      <section id="contact" class="w-full py-16 sm:py-20">
-        <div class="mx-auto max-w-2xl px-4">
-          <header class="mb-8 text-center">
-            <p class="text-sm text-gray-600">랜딩? 없어도 됩니다. 광고? 몰라도 됩니다.</p>
-            <h2 class="mt-1 text-2xl font-extrabold sm:text-3xl">
-              지금 바로<br class="sm:hidden" />
-              광고형 랜딩페이지 운영 서비스 무료상담 신청하기
-            </h2>
-            <p class="mt-3 text-xs leading-relaxed text-gray-500">
-              상담은 무료입니다. 하지만 ‘지금 당장 몇 건’만 기대하신다면 함께하기 어렵습니다. 저희는
-              랜딩·카피·광고 운영을 꾸준히 개선하며, DB의 품질과 수량을 함께 높이는 구조적 성장에
-              집중합니다. 지속적인 개선과 테스트가 가능한 광고주분들과 장기적인 파트너십을
-              지향합니다.
-              <br />*불법·특정 업종 및 비윤리적 광고는 진행하지 않습니다.
+      <!-- =============== 섹션 5. CTA + Form =============== -->
+      <section
+        id="cta"
+        class="border-t border-[var(--neutral-200)] bg-white py-16 md:py-24"
+      >
+        <div
+          class="container mx-auto grid max-w-5xl items-start gap-10 px-4 lg:grid-cols-2"
+        >
+          <!-- CTA 텍스트 -->
+          <div class="space-y-5">
+            <p class="text-lg text-[var(--neutral-700)]">
+              랜딩? 없어도 됩니다.<br />
+              광고? 몰라도 됩니다.
             </p>
-          </header>
+            <h3 class="text-2xl leading-snug font-semibold md:text-4xl">
+              우리 회사에 필요한 좋은 DB를<br />
+              저렴하게, 꾸준히 확보하고 싶다면 ?
+            </h3>
 
-          <!-- ✅ 여기 폼을 네 구글폼/자체 코드로 교체 -->
-          <form class="grid grid-cols-1 gap-4">
-            <div>
-              <label class="block text-sm font-medium">이름</label>
-              <input class="mt-1 w-full rounded-xl px-4 py-2 ring-1 ring-gray-200" />
+            <div class="space-y-3">
+              <p class="text-[var(--neutral-700)]">
+                상담은 무료입니다. 하지만 ‘지금 당장 몇 건 나오는지’만
+                기대하신다면 함께하기 어렵습니다. 저희는 랜딩·카피·광고 운영을
+                꾸준히 개선하며, DB의 품질과 수량을 함께 높이는 구조적 성장에
+                집중합니다.
+              </p>
+              <p class="text-[var(--neutral-700)]">
+                지속적인 개선과 테스트가 가능한 광고주분들과 장기적인 파트너십을
+                지향합니다.
+                <em class="text-[var(--neutral-600)]"
+                  >*불법·특정 업종 및 비윤리적 광고는 진행하지 않습니다.</em
+                >
+              </p>
+              <p class="text-[var(--neutral-800)]">
+                위 사항에 해당되고, 함께 해보고 싶은 생각이 드신다면 아래
+                연락처를 남겨주세요. 진행 여부를 떠나 현재의 어려움을 듣고, 함께
+                올바른 방향을 찾아보겠습니다.
+              </p>
             </div>
+
+            <a
+              href="#form"
+              class="btn-primary premium-cta-shadow"
+              data-evt="cta_click_middle"
+              >무료상담 신청하기</a
+            >
+          </div>
+
+          <!-- 입력 폼 -->
+          <form
+            id="form"
+            class="card space-y-4"
+            action="#"
+            method="post"
+            data-evt="form_submit"
+          >
             <div>
-              <label class="block text-sm font-medium">연락처</label>
-              <input type="tel" class="mt-1 w-full rounded-xl px-4 py-2 ring-1 ring-gray-200" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium">업종</label>
-              <input class="mt-1 w-full rounded-xl px-4 py-2 ring-1 ring-gray-200" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium">사용하는 DB갯수</label>
+              <label class="label" for="name">이름</label>
               <input
-                type="number"
-                min="0"
-                class="mt-1 w-full rounded-xl px-4 py-2 ring-1 ring-gray-200"
+                id="name"
+                name="name"
+                type="text"
+                class="input"
+                placeholder="홍길동"
+                required
               />
             </div>
             <div>
-              <label class="block text-sm font-medium">문의사항</label>
+              <label class="label" for="phone">연락처</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                class="input"
+                placeholder="010-0000-0000"
+                required
+              />
+            </div>
+            <div>
+              <label class="label" for="industry">업종</label>
+              <input
+                id="industry"
+                name="industry"
+                type="text"
+                class="input"
+                placeholder="예: 법률/금융/교육 등"
+              />
+            </div>
+            <div>
+              <label class="label" for="dbcount">사용하는 DB갯수</label>
+              <input
+                id="dbcount"
+                name="dbcount"
+                type="number"
+                class="input"
+                placeholder="예: 월 100건"
+              />
+            </div>
+            <div>
+              <label class="label" for="message">문의사항</label>
               <textarea
+                id="message"
+                name="message"
                 rows="4"
-                class="mt-1 w-full rounded-xl px-4 py-2 ring-1 ring-gray-200"
+                class="input resize-y"
+                placeholder="자유롭게 적어주세요"
               ></textarea>
             </div>
-            <label class="flex w-full items-start gap-3 text-sm text-gray-600">
-              <input type="checkbox" class="mt-1 h-5 w-5 rounded border-gray-300" />
-              (필수) 개인정보 수집·이용에 동의합니다.
-            </label>
-            <button
-              type="button"
-              class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-white"
-              style="background: var(--brand)"
-            >
-              상담신청(임시 버튼)
+            <button type="submit" class="btn-primary w-full">
+              무료상담 신청하기
             </button>
+            <p class="text-xs text-[var(--neutral-600)]">
+              제출 시 개인정보 처리에 동의하신 것으로 간주됩니다.
+            </p>
           </form>
-          <!-- /교체 끝 -->
         </div>
       </section>
+
+      <footer class="py-10 text-center text-sm text-[var(--neutral-600)]">
+        © 랜딩임대 서비스
+      </footer>
     </main>
 
-    <!-- ========== Global Footer (선택) ========== -->
-    <footer class="w-full py-10">
-      <div class="mx-auto max-w-7xl px-4 text-xs text-gray-500">
-        © <span id="y"></span> 광고형 랜딩페이지 운영
-      </div>
-    </footer>
-
+    <!-- (선택) 간단한 기본 유효성 예시: 추후 js 프리셋으로 교체 가능 -->
     <script>
-      document.getElementById('y').textContent = new Date().getFullYear()
+      document.getElementById("form")?.addEventListener("submit", (e) => {
+        // TODO: 실제 전송 로직(서버/스프레드시트/API) 연결
+        console.log("form_submit", Object.fromEntries(new FormData(e.target)));
+        alert("제출이 완료되었습니다. 곧 연락드리겠습니다.");
+        e.preventDefault();
+      });
     </script>
   </body>
 </html>

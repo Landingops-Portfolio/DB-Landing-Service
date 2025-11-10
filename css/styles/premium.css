@@ -1,0 +1,26 @@
+/* CTA 그라데이션 + 은은한 글로우 */
+.premium-cta-shadow {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--brand) 92%, #ffffff 8%),
+    var(--accent)
+  );
+  box-shadow:
+    0 4px 24px color-mix(in srgb, var(--brand) 30%, transparent),
+    0 2px 8px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* 섹션 페이드업(원하면 data-animate와 함께 JS로 트리거) */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: fadeUp 0.5s ease forwards;
+}

@@ -1,0 +1,83 @@
+:root {
+  /* === COLOR TOKENS (브랜드 교체 포인트) === */
+  --brand: #1f5fae; /* 기본 포인트 */
+  --accent: #f97316; /* 보조 포인트 */
+  --neutral-900: #0f172a; /* 본문 진한색 */
+  --neutral-800: #1f2937;
+  --neutral-700: #374151;
+  --neutral-600: #475569;
+  --neutral-200: #e5e7eb;
+  --neutral-100: #f3f4f6;
+  --neutral-50: #f8fafc;
+
+  /* === RADIUS / SHADOW / RING === */
+  --radius: 16px;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow: 0 6px 20px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.1);
+
+  /* === TYPOGRAPHY === */
+  --font-heading:
+    'Pretendard', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans KR',
+    'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', Helvetica, Arial, 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  --font-body: 'Pretendard', ui-sans-serif, system-ui, -apple-system, 'Noto Sans KR', Arial;
+}
+
+/* 공통 컴포넌트 유틸 */
+body {
+  font-family: var(--font-body);
+}
+
+/* 카드 */
+.card {
+  background: #fff;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.25rem; /* 20px */
+}
+
+/* 라벨/인풋 */
+.label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 600;
+  color: var(--neutral-800);
+}
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--neutral-200);
+  border-radius: 12px;
+  background: #fff;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent);
+}
+
+/* 버튼 */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--brand);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.06s ease,
+    opacity 0.2s ease;
+}
+.btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
