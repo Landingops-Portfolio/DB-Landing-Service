@@ -8,9 +8,9 @@ HTML 문서내에 디자인을 적용하고 싶은곳에 변수를 부여할 수
 */
 
 :root {
-  /* === 브랜드 색상 토큰(:변수) 정의 === */
-  --brand: #1f5fae; /* 기본 컬러 변수 포인트 */
-  --accent: #f97316; /* 보조 컬러 변수 포인트 */
+  /* === 1. 브랜드 색상 토큰(:변수) 정의 === */
+  --brand: #1f5fae; /* 기본컬러 변수 포인트 */
+  --accent: #f97316; /* 보조컬러 변수 포인트 */
   --neutral-900: #0f172a; /* 본문 진한색 변수 */
   --neutral-800: #1f2937;
   --neutral-700: #374151;
@@ -19,25 +19,23 @@ HTML 문서내에 디자인을 적용하고 싶은곳에 변수를 부여할 수
   --neutral-100: #f3f4f6;
   --neutral-50: #f8fafc;
 
-  /* === 그라디언트 토큰 정의 (효과는 premium.css에서) === */
-  --gradient-primary: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
-  --gradient-vertical: linear-gradient(180deg, var(--brand) 0%, var(--accent) 100%);
+  /* === 2. 그라디언트 토큰 정의 (효과는 premium.css에서) === */
+  --gradient-primary: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);  /*좌상->우하*/
+  --gradient-vertical: linear-gradient(180deg, var(--brand) 0%, var(--accent) 100%); /*수직(상->하)*/
 
-  /* === RADIUS(테두리 모서리) / SHADOW(그림자) 토큰(변수) 정의 === */
+  /* === 3. RADIUS(모서리 둥글기) / SHADOW(그림자) 토큰(변수) 정의 === */
   --radius: 16px;
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06);
   --shadow:    0 6px 20px rgb(0 0 0 / 0.06);
   --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.1);
 
-  /* (선택) 포커스 링 토큰 */
+  /* === 4. 폰트종류 === */
+  --font-heading: 'Pretendard', 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', 'Pretendard', ui-sans-serif, system-ui, sans-serif;
+
+    /* (선택) 포커스 링 토큰 <<?? 이새끼 뭐지 */
   --focus-ring: 0 0 0 3px color-mix(in srgb, var(--brand) 25%, transparent);
 
-  /* === 타이포그래피 === */
-  --font-heading:
-    'Pretendard', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans KR',
-    'Apple SD Gothic Neo', 'Malgun Gothic', 'Segoe UI', Helvetica, Arial, 'Apple Color Emoji',
-    'Segoe UI Emoji';
-  --font-body: 'Pretendard', ui-sans-serif, system-ui, -apple-system, 'Noto Sans KR', Arial;
 }
 
 /* (선택) 다크 테마 스켈레톤 */
@@ -52,12 +50,234 @@ HTML 문서내에 디자인을 적용하고 싶은곳에 변수를 부여할 수
   /* --brand: #8ab4ff; --accent: #ffb277; */ /* 필요 시 대비 강화 */
 }
 /*=================================== [1번] 디자인 토큰 영역(Design Tokens) (끝) ===================================*/
+
+
+
 /*=================================== [2번] 전역 베이스 영역(Global Base) (시작) ===================================*/
-html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-body { font-family: var(--font-body); }
+html { 
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale; 
+}
+
+body { 
+  font-family: var(--font-body);
+  color: var(--neutral-900);
+  background: var(--neutral-50);
+}
 
 /* 접근성: 모션 감소 사용자의 설정 존중 */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
 /*=================================== [2번] 전역 베이스 영역(Global Base) (끝) ===================================*/
+
+
+
+/* ===========================================================================================================
+   [3번] 업종별 폰트 프리셋 (data-industry 기반 토큰 교체)
+   -----------------------------------------------------------------------------------------------------------
+   디자인 10년 실무: 업종별 폰트가 정해져있다. 업종마다 사람들의 "기대 폰트"가 있다.
+   폰트는 디자인(레이아웃, 색상, 이미지)을 기준으로 고르는게 아니라, "업종"에 따라 "폰트"를 고른다.
+   폰트 패밀리는 "폰트 이름"만 지정.
+   -----------------------------------------------------------------------------------------------------------
+   사용법:
+   <body data-industry="finance"> ... 
+   <body data-industry="education"> ...
+   =========================================================================================================== */
+
+/* 1) 금융·투자·법률·보험·정책자금·컨설팅 B2B (신뢰·안정)
+
+타겟업종 )
+:정책자금, 대출, 금융컨설팅, 법률사무소, 개인회생, 노무·세무, B2B 솔루션, 기업 교육, 보험, 컨설팅
+폰트무드 )
+:딱딱하지만 너무 올드하지 않은 모던 고딕 */
+body[data-industry="finance"],
+body[data-industry="insurance"],
+body[data-industry="policy funds"],
+body[data-industry="stock investment"],
+body[data-industry="legal"],
+body[data-industry="b2b-consulting"] {
+  --font-heading: 'Pretendard', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 2) 교육·자격증·국비지원 (체계·신뢰·친근)
+
+타겟업종 )
+:자격증 학원, 국비지원 교육원, 온라인 클래스, 스터디, 고시/공무원
+폰트무드 )
+:읽기 편한 고딕 + 약간 부드러운 느낌 */
+body[data-industry="education"],
+body[data-industry="license"],
+body[data-industry="academy"] {
+  --font-heading: 'Spoqa Han Sans Neo', 'Pretendard', system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 3-1) 뷰티·클리닉·의료미용 (고급·세련)
+
+타겟 업종 ) 
+:피부과, 성형외과, 치과 / 에스테틱, 스파, 헤어샵, 반영구
+폰트 무드 ) 
+:얇고 세련된 고딕 + 약간 명조 느낌 섞기 가능 */
+body[data-industry="beauty"],
+body[data-industry="clinic"],
+body[data-industry="aesthetic"] {
+  --font-heading: 'SUIT', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 3-2) 병원·의원 (내과·정형·소아과 등) — 의료(순수 의료) */
+
+body[data-industry="medical"],
+body[data-industry="hospital"],
+body[data-industry="healthcare"] {
+  --font-heading: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 4) 헬스·PT·필라테스·다이어트 (에너지·활력)
+
+타겟 업종 ) 
+:헬스장, PT 스튜디오, 필라테스, 다이어트 프로그램, 바디프로필, 체형교정
+폰트 무드 ) 
+:굵기가 조금 살아있는 힘 있는 고딕 */
+body[data-industry="fitness"],
+body[data-industry="gym"],
+body[data-industry="pilates"],
+body[data-industry="diet"] {
+  --font-heading: 'SUIT','Gmarket Sans Bold', system-ui, sans-serif;
+  --font-body: 'Spoqa Han Sans Neo','Gmarket Sans Medium', system-ui, sans-serif;
+}
+
+/* 5) 키즈·육아·아동 프로그램 (귀여움·둥글둥글·친근함)
+
+타겟 업종 )
+:키즈모델, 아동 교육, 놀이학교,육아용품, 키즈카페, 어린이 프로그램
+폰트 무드 )
+:살짝 둥글고 귀여운 고딕/디스플레이 폰트 */
+body[data-industry="kids"],
+body[data-industry="kids-model"],
+body[data-industry="child-edu"] {
+  --font-heading: 'Gowun Dodum','CookieRun Bold', system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 6) 인테리어·리빙·라이프스타일 (감성·여백·미니멀·세련됨)
+
+타겟 업종 )
+:인테리어, 리모델링, 가구, 홈스타일링,라이프스타일 브랜드, 카페, 소규모 샵
+폰트 무드 )
+:정갈한 여백 + 고급스러운 미니멀리즘 */
+body[data-industry="interior"],
+body[data-industry="living"],
+body[data-industry="lifestyle"] {
+  --font-heading: 'Pretendard', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Pretendard', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 7) 요식업·프랜차이즈·카페 (맛·활기)
+
+타겟 업종 ) 
+:음식점, 프랜차이즈, 카페, 배달전문점
+폰트 무드 ) 
+:맛있어 보이는, 굵직하고 눈에 띄는 디스플레이형 + 읽기 쉬운 본문 */
+body[data-industry="food"],
+body[data-industry="franchise"],
+body[data-industry="cafe"] {
+  --font-heading: 'Do Hyeon', system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 8) IT·SaaS·스타트업 (모던·미니멀)
+
+타겟 업종 )
+:SaaS, 스타트업, IT 서비스, 앱/웹
+폰트 무드 )
+:심플하고 각진 모던 고딕 */
+body[data-industry="it"],
+body[data-industry="saas"],
+body[data-industry="startup"] {
+  --font-heading: 'SUIT', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'SUIT', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 9) 공공·기관·협회 (중립·공신력) 
+
+타겟 업종 )
+:협회, 재단, 공공기관 느낌의 브랜드,교육 진흥원, 문화원, 직능 협회
+폰트 무드 )
+:튀지 않고 공공기관스럽게 정돈된 고딕 */
+body[data-industry="public"],
+body[data-industry="association"],
+body[data-industry="ngo"] {
+  --font-heading: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 10) 제조·산업·장비·B2B
+
+타겟 업종 )
+:제조업, 공장, 산업 솔루션, 설비
+폰트 무드 )
+:너무 얇지 않은 단단한 고딕 */
+body[data-industry="manufacturing"],
+body[data-industry="industrial"],
+body[data-industry="b2b"] {
+  --font-heading: 'IBM Plex Sans KR', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* 11) 엔터테인먼트·공연·예술·스튜디오 (감성·크리에이티브) */
+body[data-industry="entertainment"],
+body[data-industry="music"],
+body[data-industry="performance"],
+body[data-industry="studio"],
+body[data-industry="artist"] {
+  --font-heading: 'LINE Seed KR', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'LINE Seed KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+/*12) 여행·레저·관광 (부드러움·감성) */
+body[data-industry="travel"],
+body[data-industry="leisure"],
+body[data-industry="tour"] {
+  --font-heading: 'LINE Seed KR', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+}
+
+
+
+/* ===========================================================================
+🔥 <head>에 붙이는 완성본 — 12업종 전체 통합 CDN세트
+
+✔ 한글 지원
+✔ 무료
+✔ 상업용 가능
+✔ Google Fonts / CDNJS 기반
+✔ 중복 로딩 없음
+✔ brand.css 토큰과 자동 연동됨
+아래 <link> 블록을 그대로 HTML <head> 안에 넣기만 하면 끝.
+=================================================================================
+====================== 📦 한글 무료 웹폰트 풀세트(업종 12종 대응) ==================
+<!-- Pretendard (금융·인테리어·공공 등 다수 업종에서 사용) -->
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<!-- Noto Sans KR (본문 기본) -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Spoqa Han Sans Neo (교육/자격증) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/spoqa-han-sans/3.2.0/css/SpoqaHanSansNeo.min.css" rel="stylesheet">
+<!-- SUIT (뷰티/IT/SaaS/클리닉) -->
+<link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/variable/woff2/SUIT-Variable.css" rel="stylesheet">
+<!-- Gmarket Sans (헬스/PT/에너지) -->
+<link href="https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSans.css" rel="stylesheet">
+<!-- Gowun Dodum (키즈/감성) -->
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+<!-- CookieRun (키즈 디스플레이) -->
+<link href="https://cdn.jsdelivr.net/gh/webfontworld/cookierun/CookieRun.css" rel="stylesheet">
+<!-- Do Hyeon (요식업/프랜차이즈) -->
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<!-- IBM Plex Sans KR (제조/산업/B2B) -->
+<link href="https://cdn.jsdelivr.net/gh/webfontworld/ibm-plex-sans-korean/IBMPlexSansKR.css" rel="stylesheet">
+<!-- LINE Seed KR (엔터/예술/여행) -->
+<link href="https://cdn.jsdelivr.net/gh/fontworks-fonts/LINESeedKR/Web/LINESeedKR.css" rel="stylesheet">
+

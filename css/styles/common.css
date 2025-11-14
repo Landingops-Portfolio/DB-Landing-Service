@@ -1,14 +1,14 @@
-/* ============================================================
-   common.css  (디자인 2단계_1. 공통 베이스 70%)
-   목적: 레이아웃(간격/배치/크기/반응형) 제외, 
-   랜딩 섹션내의 컴포넌트(카드/버튼/폼) '정적 기본형'만 통일             ★★버튼/폼은 바뀔수도 있음★★
+/* ===========================================================================================
+   common.css  (디자인 2단계_1. 공통 베이스 70%)     (신용카드 기본 판때기)
+   목적: 랜딩 섹션의 컴포넌트(카드/버튼/폼)등 기본 판때기의 기본 셋팅만(배경,테두리,모서리,그림자)       ★★버튼/폼은 바뀔수도 있음★★
+   레이아웃(간격/배치/크기/반응형) 제외
    규칙: margin/padding/width/height/position/display/gap/grid/flex/미디어쿼리 금지
          효과/애니메이션은 premium.css에서만 처리
    ============================================================ */
 
-/* ===== [1] 컴포넌트 기본형 (정적 스킨만) =================== */
+/* ===== [1] 컴포넌트(판떄기) 기본셋팅만 (배경,테두리,모서리,그림자) =================== */
 
-/* 카드: 스킨만(여백/배치 없음) */
+/* 카드 */
 .card {
   background: #fff;
   border: 1px solid var(--neutral-200);
@@ -17,7 +17,7 @@
   background-clip: padding-box;
 }
 
-/* 폼 라벨/인풋: 스킨만 */
+/* 폼 라벨/인풋 */
 .label {
   font-weight: 600;
   color: var(--neutral-800);
@@ -33,7 +33,7 @@
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent);
 }
 
-/* 버튼: 스킨만(레이아웃/여백 없음) */
+/* 버튼 */
 .btn-primary {
   font-weight: 700;
   color: #fff;
@@ -42,7 +42,20 @@
   box-shadow: var(--shadow);
 }
 
-/* ===== [2] 섹션 타이포 리듬 (여백 없음, 타이포만) ======== */
+/* ===== [2] 섹션 공통헤더 4단구조 - 아이브로우(꼬리표),헤드,서브,리드 ====== 
+주의할점 ) 모든 섹션이 네 줄 다 필요하진 않음
+어떤 섹션은 eyebrow + head만 있어도 충분
+어떤 섹션은 head + sub까지만 쓸 수도 있음
+→ 그래서 “4종 세트는 풀옵션, 섹션마다 필요없는건 생략” 구조로 생각하면 편함.
+*/
+
+.eyebrow {
+  color: var(--brand);
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
 .section-head {
   color: var(--neutral-900);
@@ -59,19 +72,33 @@
   font-weight: 500;
 }
 
-.eyebrow {
-  color: var(--brand);
-  font-size: 0.8125rem; /* 13px */
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.section-lead {
+  color: var(--neutral-700);
+  font-size: 1rem;      /* 16px 정도 */
+  line-height: 1.7;
+  font-weight: 400;
 }
 
-/* ===== [3] 카피 유틸(강조/하이라이트) — 여백 없음 ========= */
 
-.highlight { color: var(--accent); font-weight: 700; }
 
-.emphasis  { color: var(--brand); font-style: italic; font-weight: 500; }
+/* ===== [3] 카피라이팅 강조 도구(유틸) (하이라이트/밑줄/강조) =========
+HTML내의 텍스트 안에다 다음 예시처럼 <span class="abcd">로 감싸서 원하는 카피를 직접 강조한다.
+[적용 예시]
+<p>
+  <span class="emphasis">지금 필요한 건 '자체 운영 시스템'</span>입니다.
+</p>
+*/
+
+.highlight { 
+  color: var(--accent); 
+  font-weight: 700; 
+}
+
+.emphasis  {
+  color: var(--brand); 
+  font-style: italic; 
+  font-weight: 500;
+}
 
 .bg-highlight {
   background: color-mix(in srgb, var(--accent) 15%, white);
@@ -82,6 +109,7 @@
 .underline-accent {
   position: relative;
 }
+
 .underline-accent::after {
   content: "";
   position: absolute;
