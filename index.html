@@ -36,22 +36,20 @@
     <link href="https://cdn.jsdelivr.net/gh/fontworks-fonts/LINESeedKR/Web/LINESeedKR.css" rel="stylesheet">
 
   </head>
-  <body data-industry="child-edu">
+  <body data-industry="ngo">
     <!-- 글로벌 래퍼 -->
     <main id="page" class="flex min-h-screen flex-col">
       <!-- =============== 섹션 1. Hero =============== -->
       <section id="hero" class="py-16 md:py-24">
         <div
-          class="container mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 md:grid-cols-2">
+          class="container mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-10 md:grid-cols-2">
           <!-- 텍스트 영역 -->
-          <div class="order-2 space-y-4 md:order-1 md:text-left fade-up text-center">
+          <div class="order-2 space-y-4 md:order-1 md:text-left  text-center">
 
             <h1 class="section-head md:text-4xl">
-              <span class="block text-4xl md:text-5xl">
                 지긋지긋한<br class="hidden md:block" />
                 부재·상담거부·허수DB가 <br class="hidden md:block" />지치신다면
                 <br /><br />
-              </span>
               이제 광고형 랜딩페이지 운영 시스템으로 DB비용은 줄이고, 품질은
               높이세요.
             </h1>
@@ -72,10 +70,10 @@
               광고비는 획기적으로 줄고 계약 기회는 두 배 이상 늘어납니다.
             </p>
 
-            <div class="pt-2 fade-up">
+            <div class="pt-2 ">
               <a
                 href="#cta"
-                class="btn-primary inline-flex items-center gap-2 px-5 py-3 premium-cta-shadow text-xl shine"
+                class="btn-primary inline-flex items-center gap-2 px-5 py-3 premium-cta-shadow shine"
                 data-evt="cta_click_hero"
                 >1:1 무료상담 신청하기</a
               >
@@ -83,30 +81,30 @@
           </div>
           <!-- 이미지 / 비주얼 -->
           <figure
-            class="order-1 justify-self-center md:order-2 md:justify-self-end fade-up"
+            class="order-1 justify-self-center md:order-2 md:justify-self-end "
           >
             <img
               src="./img/hero001.png"
               alt="운영형 랜딩 시스템 비주얼"
-              class="w-full max-w-md rounded-2xl shadow-lg"
+              class="img-base w-full max-w-md"
             />
             <!-- w-full:최대 부모너비 만큼  max-w-md: 가로 448px픽셀 제한  -->
           </figure>
         </div>
       </section>
-      <!-- 섹션간 구분선 <hr>의 뜻. HTML의 수평선(horizontal rule) -->
-      <hr class="border-[var(--neutral-200)]" />
+
+      <hr class="section-divider" /> <!-- 섹션간 구분선 <hr>의 뜻. HTML의 수평선(horizontal rule) -->
 
       <!-- =============== 섹션 2. 문제원인 =============== -->
       <section id="problem-deepen" class="py-16 md:py-20">
         <div class="container mx-auto max-w-5xl space-y-8 px-4">
           <!--콘테이너 가로너비 max-w-5xl 1,024px -->
-          <header class="space-y-3">
-            <h2 class="section-head md:text-4xl fade-up">
+          <header class="space-y-3 text-center">
+            <h2 class="section-head md:text-4xl">
               매번 다른 대행사를 알아봐도<br class="hidden md:block" />
-              결국 결과는 비슷하지 않으셨나요?
+              <span class="underline-accent">결국 결과는 비슷하지 않으셨나요?</span>
             </h2>
-            <p class="section-sub fade-up">
+            <p class="section-sub">
               이제 더 이상 아까운 돈과 시간을 낭비하지 마세요.
             </p>
           </header>
@@ -115,10 +113,9 @@
           <div class="grid gap-6 md:grid-cols-2">
             <!-- ① 좌: 인포그래픽 -->
             <figure
-              class="overflow-hidden rounded-2xl bg-[var(--neutral-100)] shadow-sm
-               mx-auto md:mx-0
+              class="text-box-media mx-auto md:mx-0
                w-[84vw] max-w-[360px] aspect-square
-               md:w-auto md:max-w-none md:aspect-[4/5] fade-up">
+               md:w-auto md:max-w-none md:aspect-[4/5]">
               <picture>
                 <!-- 💻 PC(768px 이상)에서는 4:5 이미지 -->
                 <source 
@@ -128,16 +125,16 @@
                 <!-- 📱 모바일(768px 미만)에서는 1:1 이미지 -->
                 <img src="./img/problem001-MO-1x1.png" 
                     alt="저가 DB 구조 → 허수/부재/거부로 이어지는 흐름" 
-                    class="w-full h-full object-cover" />
+                    class="img-base w-full h-full object-cover" />
               </picture>
             </figure>
 
             <!-- ② 우: 텍스트 묶음 (article + aside) -->
             <div class="grid gap-6">
               <article
-                class="space-y-4 rounded-2xl border border-[var(--neutral-200)] bg-white p-6 shadow-sm fade-up"
+                class="text-box space-y-4 p-6"
               >
-                <p class="leading-relaxed text-lg">
+                <p class="section-lead">
                   많은 광고주들이 지금도 CPA대행사를 통해 DB를 구매하고
                   있습니다.
                   <br /><br />대부분의 대행사는 직접 광고비를 써서 DB를
@@ -146,22 +143,22 @@
                   저렴하게 뽑을수록 대행사 이윤이 커지기에, 랜딩제작과 테스트에
                   쏟는 리소스를 최소화하기 때문입니다.
                 </p>
-                <p class="leading-relaxed text-lg">
+                <p class="section-lead">
                   결국 ‘달랑 이미지 몇 장 이어붙인 랜딩’에서 뽑은 DB와
                   ‘카피·디자인·동적기능·후속프로세스까지 설계된 랜딩’에서 뽑은
                   DB는 질적으로 다를 수밖에 없습니다.
                 </p>
-                <p class="leading-relaxed text-lg">
+                <p class="section-lead">
                   광고주는 DB를 비싸게 구매했음에도 불구하고 품질이 낮은 DB에
                   비용과 시간을 낭비하게 되고, 또 다시 다른 대행사를 찾는 것만이
                   유일한 해결책이라 여기며 제자리 걸음을 반복하게 됩니다.
                 </p>
               </article>
               <aside
-                class="rounded-xl border border-[var(--neutral-200)] bg-[var(--neutral-50)] p-5 text-[var(--neutral-800)] fade-up"
+                class="info-box p-5"
               >
-                <strong class="mb-2 block text-xl">여러분 잘못이 아닙니다.</strong>
-                <p class="leading-relaxed text-lg">
+                <strong class="section-sub bg-highlight">여러분 잘못이 아닙니다.</strong>
+                <p class="section-lead">
                   애초에 ‘CPA, 제휴마케팅'이라는 시스템의 한계가 만든
                   결과입니다. 누구나 겪는 이 악순환을 끊으려면, 이젠 '남이 만든
                   DB를 구매할게' 아니라 '자체 개발하는 광고 시스템’을 운영할
@@ -173,24 +170,23 @@
         </div>
       </section>
 
-      <hr class="border-[var(--neutral-200)]" />
+      <hr class="section-divider" />
 
       <!-- =============== 섹션 3. Solution =============== -->
       <section id="solution" class="py-16 md:py-24">
         <div class="container mx-auto max-w-6xl space-y-12 px-4">
           <header class="space-y-4 text-center">
 
-            <h2 class="section-head md:text-4xl fade-up">
+            <h2 class="section-head md:text-4xl ">
               광고? 몰라도 됩니다.<br class="hidden md:block" />
-              랜딩페이지 기획·제작·광고운영·DB품질개선까지<br
-                class="hidden md:block"
-              />
+              랜딩페이지 기획·제작·광고운영·DB품질개선까지
+              <br class="hidden md:block"/>
               광고의 모든 과정을 한 번에 해결해드립니다.
             </h2>
-            <p class="section-sub fade-up">
+            <p class="section-sub">
               전략과 수정 방향만 함께 논의하고 편히 결과만 받아보세요.
             </p>
-            <p class="section-lead fade-up">
+            <p class="section-lead">
               광고를 할 줄 몰라도 괜찮습니다. <br class="hidden md:block"/>
               심지어 랜딩페이지가 없어도 좋습니다. <br><br>
               복잡한 세팅, 운영, 수정, 개선 — 이 모두를 저희가 맡습니다.<br class="hidden md:block"/>
@@ -201,128 +197,123 @@
           <!-- 3단 절차 (아이콘/이미지 매칭 영역) -->
           <div class="grid gap-6 md:grid-cols-3">
             <!-- step 1 -->
-            <article class="card fx-glow p-6 fade-up">
+            <article class="card fx-glow p-6">
               <figure
-                class="mb-4 grid aspect-video place-items-center rounded-xl bg-[var(--neutral-100)]"
-              >
+                class="card-media mb-4 grid aspect-video place-items-center">
                 <img
                   src="./img/solution-up-001.png"
                   alt=""
-                  class="h-14 opacity-90 w-full h-full rounded-xl"
-                />
+                  class="img-base w-full h-full" />
               </figure>
-              <h3 class="mb-2 text-xl font-semibold premium-heading">1 ) 1:1 무료 진단상담</h3>
-              <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
+              <h3 class="section-sub mb-2 premium-heading">1 ) 1:1 무료 진단상담</h3>
+              <p class="section-lead">
                 업종, 현재 상황, 광고 경험, 목표 등을 심도 있게 듣고 진행 가능
                 여부를 확인합니다.
-                <br /><em class="text-base text-[var(--neutral-600)]"
-                  >*불법·특정 업종 및 비윤리적 광고는 진행하지 않습니다.</em
-                >
+                <br /><em class="emphasis"
+                  >*불법·특정 업종 및 비윤리적 광고는 진행하지 않습니다.</em>
               </p>
             </article>
 
             <!-- step 2 -->
-            <article class="card p-6 fx-glow fade-up">
+            <article class="card p-6 fx-glow ">
               <figure
-                class="mb-4 grid aspect-video place-items-center rounded-xl bg-[var(--neutral-100)]"
-              >
+                class="card-media mb-4 grid aspect-video place-items-center">
                 <img
                   src="./img/solution-up-002.png"
                   alt=""
-                  class="h-14 opacity-90 w-full h-full rounded-xl"
-                />
+                  class="img-base w-full h-full" />
               </figure>
-              <h3 class="mb-2 text-xl font-semibold premium-heading">2 ) 계약</h3>
-              <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
+              <h3 class="section-sub mb-2 premium-heading">2 ) 계약</h3>
+              <p class="section-lead">
                 진행이 확정되면 계약서를 작성하고, 비용 효율과 DB 품질을
                 최대화할 수 있는 방향을 제안드립니다.
               </p>
             </article>
 
             <!-- step 3 -->
-            <article class="card p-6 fx-glow fade-up">
+            <article class="card p-6 fx-glow ">
               <figure
-                class="mb-4 grid aspect-video place-items-center rounded-xl bg-[var(--neutral-100)]"
-              >
+                class="card-media mb-4 grid aspect-video place-items-center">
                 <img
                   src="./img/solution-up-003.png"
                   alt="일정&집행"
-                  class="h-14 opacity-90 w-full h-full rounded-xl"
-                />
+                  class="img-base w-full h-full" />
               </figure>
-              <h3 class="mb-2 text-xl font-semibold premium-heading">3 ) 일정&집행</h3>
-              <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
+              <h3 class="section-sub mb-2 premium-heading">3 ) 일정&집행</h3>
+              <p class="section-lead">
                 랜딩페이지 운영 및 광고집행 일정을 조율하고 온보딩을 마칩니다.
               </p>
             </article>
           </div>
 
-          <!--💡 섹션3-하단: 4단 서비스 상세, 헤더 -->
-          <header class="space-y-4 text-center max-w-3xl mx-auto fade-up">
-            <!-- ① 헤드라인 -->
-            <h3 class="text-2xl font-bold md:text-4xl leading-snug">
+          <!-- 섹션3-하단: header -->
+          <header class="space-y-4 text-center max-w-3xl mx-auto ">
+            <!--헤드라인 -->
+            <h2 class="section-head">
               체계적인 프로세스로<br class="hidden md:block"/> 광고를 지속적으로 개선합니다.
-               </h3>
-
-            <!-- ② 서브헤드 -->
-            <p class="text-xl text-[var(--neutral-700)] font-medium">
-              기획 → 제작 → 운영 → 개선,<br
-                class="hidden md:block"
-              />
+               </h2>
+            <!-- 서브헤드 -->
+            <p class="section-sub">
+              기획 → 제작 → 운영 → 개선,
+              <br class="hidden md:block" />
               모든 절차를 일관된 시스템으로 연결해  
               효율과 결과를 동시에 높입니다.
             </p>
-
-            <!-- ③ 본문 -->
-            <p class="text-lg text-[var(--neutral-600)] leading-relaxed">
+            <!--리드-->
+            <p class="section-lead">
               단순히 예산을 집행하는 것이 아니라  
               데이터 기반으로 랜딩·카피·매체·DB 품질을 끊임없이 분석·개선하며  
               광고의 성과를 장기적으로 성장시킵니다.
             </p>
           </header>
-          <!-- 4단 서비스 상세 -->
+          <!-- 섹션3 하단 - 4단 서비스 제공절차 -->
           <div class="grid gap-6 md:grid-cols-2">
-            <article class="card fx-rail fx-glow fade-up">
-              <!-- 아이콘 -->
-              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--neutral-100)] text-[var(--brand)]">
-                <i data-lucide="lightbulb" class="w-10 h-10"></i>
+            <article class="card fx-rail fx-glow p-4">
+              <!-- 아이콘 시작-->
+              <div class="icon-box w-12 h-12 flex items-center justify-center">
+                <i data-lucide="lightbulb" class="icon w-10 h-10"></i>
               </div>
-              <h4 class="mt-3 text-lg font-semibold premium-heading">1. 설득 내러티브 기획</h4>
-              <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
+              <!-- 아이콘 끝-->
+              <h4 class="section-sub mt-3 premium-heading">
+                1. 설득 내러티브 기획
+              </h4>
+              <p class="section-lead">
                 핵심 타겟, 주력 상품, 타겟 매체를 분석·파악하여 DB 생산과
                 계약율을 높이는 설득 내러비티브를 기획합니다.
               </p>
             </article>
-            <article class="card fx-rail fx-glow fade-up">
-              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--neutral-100)] text-[var(--brand)]">
-                <i data-lucide="layers" class="w-10 h-10"></i>
+            <article class="card fx-rail fx-glow p-4">
+              <div class="icon-box w-12 h-12 flex items-center justify-center">
+                <i data-lucide="layers" class="icon w-10 h-10"></i>
               </div>
-              <h4 class="mt-3 text-lg font-semibold premium-heading">
+              <h4 class="section-sub mt-3 premium-heading">
                 2. 랜딩페이지 DB품질 최적화
               </h4>
-              <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
+              <p class="section-lead">
                 랜딩페이지의 구성·카피라이팅·디자인·동적기능 등 시장 반응에
                 발맞춰 수정·개선해 DB품질과 수량을 높입니다.
               </p>
             </article>
-            <article class="card fx-rail fx-glow fade-up">
-              <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--neutral-100)] text-[var(--brand)]">
-                <i data-lucide="bar-chart-3" class="w-10 h-10"></i>
+            <article class="card fx-rail fx-glow p-4">
+              <div class="icon-box w-12 h-12 flex items-center justify-center">
+                <i data-lucide="bar-chart-3" class="icon w-10 h-10"></i>
               </div>
-              <h4 class="mt-3 text-lg font-semibold premium-heading">3. 광고매체 최적화</h4>
-              <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
+              <h4 class="section-sub mt-3 premium-heading">
+                3. 광고매체 최적화
+              </h4>
+              <p class="section-lead">
                 적합한 매체를 분류·선별·측정해 전환율이 높은 주력매체를 찾고
                 예산을 집중해 비용효율을 높입니다.
               </p>
             </article>
-            <article class="card fx-rail fx-glow fade-up">
-    <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-[var(--neutral-100)] text-[var(--brand)]">
-      <i data-lucide="send" class="w-10 h-10"></i>
-    </div>
-              <h4 class="mt-3 text-lg font-semibold premium-heading">
+            <article class="card fx-rail fx-glow p-4">
+              <div class="icon-box w-12 h-12 flex items-center justify-center">
+                <i data-lucide="send" class="icon w-10 h-10"></i>
+              </div>
+              <h4 class="section-sub mt-3 premium-heading">
                 4. 목적과 타이밍에 맞게 DB전달
               </h4>
-              <p class="leading-relaxed text-[var(--neutral-700)] text-lg">
+              <p class="section-lead">
                 부재 예방과 높은 계약율을 위해 상품 관여도, 시장특성, 타겟
                 접근성 분석을 기반으로 세일즈에 용이한 최적의 시점에 DB를
                 전달합니다.
@@ -331,23 +322,20 @@
           </div>
         </div>
       </section>
-
-      <hr class="border-[var(--neutral-200)]" />
+      <hr class="section-divider" />
 
       <!-- =============== 섹션 4. Proof(후기/성과) =============== -->
       <section id="proof" class="py-16 md:py-20">
         <div class="container mx-auto max-w-6xl space-y-8 px-4">
-          <header class="space-y-3 text-center fade-up">
-            <h2 class="text-2xl font-semibold md:text-4xl">
-              “광고형 랜딩페이지 운영 서비스로<br
-                class="hidden md:block"
-              />DB비용은 줄이고, 품질은
-              높이세요!”
+          <header class="space-y-3 text-center ">
+            <h2 class="section-head md:text-4xl">
+              “광고형 랜딩페이지 운영 서비스로
+                <br class="hidden md:block"/>
+              DB비용은 줄이고, 품질은 높이세요!”
             </h2>
-            <p class="text-[var(--neutral-600)] text-lg">
-              랜딩페이지를 반복 개선하며 자체 운영하면<br
-                class="hidden md:block"
-              />
+            <p class="section-sub">
+              랜딩페이지를 반복 개선하며 자체 운영하면
+                <br class="hidden md:block" />
               같은 비용으로 더 많은 DB를 확보하고 상담 품질까지 향상됩니다.”
             </p>
           </header>
@@ -355,22 +343,22 @@
           <div class="grid gap-6 md:grid-cols-2">
             <!-- 좌(그래프/지표) -->
             <figure
-              class="card grid aspect-video place-items-center bg-[var(--neutral-50)] fx-glow fade-up"
+              class="card grid aspect-video place-items-center bg-[var(--neutral-50)] fx-glow "
             >
               <img
                 src="./img/placeholder_metric.webp"
                 alt=""
-                class="h-24 opacity-70"
+                class="img-base h-24"
               />
             </figure>
             <!-- 우(카톡/후기) -->
             <figure
-              class="card grid aspect-video place-items-center bg-[var(--neutral-50)] fx-glow fade-up"
+              class="card grid aspect-video place-items-center bg-[var(--neutral-50)] fx-glow "
             >
               <img
                 src="./img/placeholder_chat.webp"
                 alt=""
-                class="h-24 opacity-70"
+                class="img-base h-24"
               />
             </figure>
           </div>
@@ -378,57 +366,46 @@
       </section>
 
       <!-- =============== 섹션 5. CTA + Form =============== -->
-      <section
-        id="cta"
-        class="border-t border-[var(--neutral-200)] bg-white py-16 md:py-24"
-      >
-        <div
-          class="container mx-auto grid max-w-5xl items-start gap-10 px-4 lg:grid-cols-2"
-        >
-          <!-- CTA 텍스트 -->
-          <div class="space-y-5 text-center md:text-left flex flex-col items-center md:items-start fade-up">
-            <p class="text-lg text-[var(--neutral-700)]">
+      <section id="cta" class="section-cta py-16 md:py-24">
+        <div class="container mx-auto grid max-w-5xl items-start gap-10 px-4 lg:grid-cols-2">
+
+          <!-- (좌) CTA 텍스트 영역[ 아이브로우/헤드/바디/노트] -->
+          <div class="space-y-5 text-center md:text-left flex flex-col items-center md:items-start ">
+            <p class="cta-eyebrow">
               랜딩? 없어도 됩니다.<br />
               광고? 몰라도 됩니다.
             </p>
-            <h3 class="text-2xl leading-snug font-semibold md:text-3xl">
+            <h3 class="cta-head md:text-3xl">
               우리 회사에 필요한 좋은 DB를<br />
               저렴하고 꾸준하게 확보하고 싶다면 ?
             </h3>
 
             <div class="space-y-3">
-              <p class="text-[var(--neutral-700)] text-lg">
+              <p class="cta-body">
                 상담은 무료입니다. 하지만 ‘지금 당장 몇 건 나오는지’만
                 기대하신다면 함께하기 어렵습니다. 저희는 랜딩·카피·광고 운영을
                 꾸준히 개선하며, DB의 품질과 수량을 함께 높이는 구조적 성장에
                 집중합니다.
               </p>
-              <p class="text-[var(--neutral-700)] text-lg">
+              <p class="cta-body">
                 지속적인 개선과 테스트가 가능한 광고주분들과 장기적인 파트너십을
                 지향합니다.
-                <em class="text-[var(--neutral-600)] text-base"
+                <em class="cta-note"
                   >*불법·특정 업종 및 비윤리적 광고는 진행하지 않습니다.</em
                 >
               </p>
-              <p class="text-[var(--neutral-800)] text-lg">
+              <p class="cta-body">
                 위 사항에 해당되고, 함께 해보고 싶은 생각이 드신다면 아래
                 연락처를 남겨주세요. 진행 여부를 떠나 현재의 어려움을 듣고, 함께
                 올바른 방향을 찾아보겠습니다.
               </p>
             </div>
-
-            <a
-              href="#form"
-              class="btn-primary inline-flex items-center gap-2 px-5 py-3 premium-cta-shadow text-xl shine"
-              data-evt="cta_click_middle"
-              >무료상담 신청하기</a
-            >
           </div>
 
-          <!-- 입력 폼 -->
+          <!-- 입력폼 -->
           <form
             id="form"
-            class="card space-y-4 fx-glow fade-up"
+            class="card card-form space-y-4 fx-glow p-4"
             action="#"
             method="post"
             data-evt="form_submit"
@@ -439,7 +416,7 @@
                 id="name"
                 name="name"
                 type="text"
-                class="input w-full"
+                class="input w-full px-4 py-3"
                 placeholder="홍길동"
                 required
               />
@@ -450,7 +427,7 @@
                 id="phone"
                 name="phone"
                 type="tel"
-                class="input w-full"
+                class="input w-full px-4 py-3"
                 placeholder="010-0000-0000"
                 required
               />
@@ -461,7 +438,7 @@
                 id="industry"
                 name="industry"
                 type="text"
-                class="input w-full"
+                class="input w-full px-4 py-3"
                 placeholder="예: 법률/금융/교육 등"
               />
             </div>
@@ -471,7 +448,7 @@
                 id="dbcount"
                 name="dbcount"
                 type="number"
-                class="input w-full"
+                class="input w-full px-4 py-3"
                 placeholder="예: 월 100건"
               />
             </div>
@@ -481,12 +458,12 @@
                 id="message"
                 name="message"
                 rows="4"
-                class="input resize-y"
+                class="input w-full px-4 py-3"
                 placeholder="자유롭게 적어주세요"
               ></textarea>
             </div>
-            <button type="submit" class="btn-primary w-full shine">
-              무료상담 신청하기
+            <button type="submit" class="btn-primary premium-cta-shadow w-full py-4 shine">
+              1:1 무료상담 신청하기
             </button>
             <p class="text-xs text-[var(--neutral-600)]">
               제출 시 개인정보 처리에 동의하신 것으로 간주됩니다.
@@ -495,7 +472,7 @@
         </div>
       </section>
 
-      <footer class="py-10 text-center text-sm text-[var(--neutral-600)]">
+      <footer class="py-10 text-center">
         © 랜딩임대 서비스
       </footer>
     </main>

@@ -8,7 +8,16 @@
 
 /* ===== [1] 컴포넌트(판떄기) 기본셋팅만 (배경,테두리,모서리,그림자) =================== */
 
-/* 카드 */
+/* 모든섹션 이미지(사진) 기본스킨 - (테두리,모서리,그림자)
+예외: 기업 로고, 인증마크(KSCI), UI 아이콘 이미지, 버튼 안의 화살표 이미지, SNS 아이콘 이미지 */
+
+.img-base {
+  border: 0; /* 또는 필요 시 var(--something) */
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 카드형 콘텐츠(이미지/아이콘/짧은 문장)-섹션3 상단·하단 - article박스 */
 .card {
   background: #fff;
   border: 1px solid var(--neutral-200);
@@ -17,39 +26,161 @@
   background-clip: padding-box;
 }
 
-/* 폼 라벨/인풋 */
+/* Card 안에서만 쓰는 미디어 영역(섹션3) - figure박스 */
+.card-media {
+  overflow: hidden;
+  border-radius: 16px;              /* 사진 모서리 */
+  background: var(--neutral-100);
+  box-shadow: var(--shadow-sm);     /* 살짝 뜨는 느낌 */
+}
+
+/* 텍스트 박스(설명/서술/정보/장문 텍스트) - article박스 */
+.text-box {
+  background: #fff;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 안내용 박스(보조설명/주의/강조 안내) - aside박스 */
+.info-box {
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  color: var(--neutral-800);
+}
+
+/* 텍스트 박스 옆에 쓰는 미디어 영역 (섹션2) - figure박스 */
+.text-box-media {
+  overflow: hidden;
+  background: var(--neutral-100);
+  border-radius: var(--radius-xl);  /*raius 모서리 둥글기 brand.css에서 설정해야함 */
+  box-shadow: var(--shadow-sm);
+}
+
+/* 아이콘 박스 (서비스 제공절차/Step)(섹션4) - <div>박스+<i>박스 */
+.icon-box {
+  background: var(--neutral-100);
+  border-radius: var(--radius-lg);    /*raius 모서리 둥글기 brand.css에서 설정해야함 */
+  color: var(--brand);
+}
+
+.icon-box .icon {
+  opacity: 0.9;
+}
+
+/* 폼 라벨 */
 .label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--neutral-800);
 }
+
+/* 공통 인풋/텍스트에리어 스킨 */
 .input {
-  border: 1px solid var(--neutral-200);
-  border-radius: 12px;
+  display: block;                      /* ★ textarea도 폭을 제대로 먹게 */
+  border: 1px solid var(--neutral-600); /* 200 -> 600*/
+  border-radius: var(--radius-xl);
   background: #fff;
+  color: var(--neutral-900);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
   outline: none;
+  box-shadow: 0 0 0 0 transparent;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
 }
+
 .input:focus {
   border-color: var(--brand);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent);
 }
 
+.input::placeholder {
+  color: var(--neutral-400);
+}
+
+/* textarea 전용 */
+textarea.input {
+  border-radius: var(--radius-lg);     /* 조금 덜 둥글게 */
+  resize: vertical;
+  min-height: 140px;                   /* ★ 높이 여유 주기 */
+}
+
+/* 폼 전용 카드 스킨 (경계 더 또렷하게) */
+.card-form {
+  border-color: var(--neutral-300);   /* 기존보다 경계 더 진하게 */
+  box-shadow: var(--shadow-lg);      /* 살짝 더 띄워서 왼쪽 CTA와 구분 */
+}
+
+/* =====================================*/
 /* 버튼 */
 .btn-primary {
+  font-size:1.4rem; 
   font-weight: 700;
   color: #fff;
   background: var(--brand);
-  border-radius: 14px;
+  border-radius: var(--radius-md);   /* ★ 둥근끼 살짝 줄이기 */
   box-shadow: var(--shadow);
 }
 
-/* ===== [2] 섹션 공통헤더 4단구조 - 아이브로우(꼬리표),헤드,서브,리드 ====== 
+/* 구분선 */
+.section-divider {
+  border: 0;
+  border-top: 1px solid var(--neutral-200);
+}
+
+/* 푸터 */
+.footer {
+  font-size: 0.875rem;     /* text-sm */
+  color: var(--neutral-600);
+}
+
+/* CTA 섹션 */
+.section-cta {
+  border-top: 1px solid var(--neutral-200);
+  background: #fff;
+}
+
+/* CTA header 4단구조(태그/헤드/바디/노트) */
+
+.cta-eyebrow {
+  font-size: 1.125rem; /* text-lg */
+  color: var(--neutral-700);
+  line-height: 1.7;
+}
+
+.cta-head {
+  font-family: var(--font-heading);
+  font-weight: 600;           /* font-semibold */
+  font-size: 1.5rem;          /* ~ text-2xl */
+  line-height: 1.35;          /* leading-snug */
+}
+
+.cta-body {
+  font-size: 1.0625rem;       /* 약간 큰 본문 */
+  color: var(--neutral-700);
+  line-height: 1.75;
+}
+
+.cta-note {
+  font-size: 0.9375rem;       /* text-base보다 약간 작은 느낌 */
+  color: var(--neutral-600);
+}
+
+/* ===== [2] 섹션 공통헤더 5단구조 - 아이브로우(꼬리표),헤드,서브,리드,바디 ====== 
 주의할점 ) 모든 섹션이 네 줄 다 필요하진 않음
 어떤 섹션은 eyebrow + head만 있어도 충분
 어떤 섹션은 head + sub까지만 쓸 수도 있음
 → 그래서 “4종 세트는 풀옵션, 섹션마다 필요없는건 생략” 구조로 생각하면 편함.
 */
 
-.eyebrow {
+.section-eyebrow {
   color: var(--brand);
   font-size: 0.8125rem; /* 13px */
   font-weight: 700;
@@ -68,7 +199,7 @@
 
 .section-sub {
   font-family: var(--font-heading);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.125rem; /* ≈18px */
   color: var(--neutral-600);
   line-height: 1.75;
@@ -76,10 +207,18 @@
 
 .section-lead {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1rem;      /* 16px 정도 */
   color: var(--neutral-700);
   line-height: 1.7;
+}
+
+.section-body {
+  font-family: var(--font-body);
+  font-weight: 350;
+  font-size: 0.875;      /* 14px 정도 */
+  color: var(--neutral-700);
+  line-height: 1.6;
 }
 
 
@@ -115,10 +254,10 @@ HTML내의 텍스트 안에다 다음 예시처럼 <span class="abcd">로 감싸
 .underline-accent::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 3px;
+  left: 0; right: 0; bottom: 0; 
+  height: 5px;
   background: var(--accent);
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
 /* 밝은 배경 대비 강화(선택) */

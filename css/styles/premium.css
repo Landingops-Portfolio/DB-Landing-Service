@@ -115,8 +115,13 @@
     transform: translateY(0);
   }
 }
-.fade-up {
+
+.fx-fade-up {
   animation: fadeUp 0.5s ease forwards;
+}
+
+.no-effects .fx-fade-up {
+  all: unset !important;
 }
 
 /* --------------------------------------------
@@ -137,6 +142,7 @@
 /* --------------------------------------------
    6️⃣ 섹션 강조용 헤딩 컬러 (선택)
    -------------------------------------------- */
+   
 .premium-heading {
   color: color-mix(in srgb, var(--brand) 80%, black);
   font-weight: 700;
@@ -171,7 +177,6 @@
 .no-effects .fx-glow,
 .no-effects .fx-rail,
 .no-effects .btn-primary.shine,
-.no-effects .fade-up { all: unset !important; }
 
 .no-effects .card {
   position: relative;
