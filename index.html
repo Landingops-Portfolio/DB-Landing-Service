@@ -324,46 +324,307 @@
       </section>
       <hr class="section-divider" />
 
-      <!-- =============== 섹션 4. Proof(후기/성과) =============== -->
-      <section id="proof" class="py-16 md:py-20">
-        <div class="container mx-auto max-w-6xl space-y-8 px-4">
-          <header class="space-y-3 text-center ">
-            <h2 class="section-head md:text-4xl">
-              “광고형 랜딩페이지 운영 서비스로
-                <br class="hidden md:block"/>
-              DB비용은 줄이고, 품질은 높이세요!”
+      <!-- =============== 섹션 4. 성과 / 증거(Proof) =============== -->
+      <section id="proof" class="section-proof py-20 md:py-28">
+        <div class="container mx-auto max-w-6xl px-4">
+          <!-- 섹션 헤더 -->
+          <div class="text-center max-w-3xl mx-auto">
+            <p class="section-eyebrow mb-3">성과/증거(Proof)</p>
+            <h2 class="section-head">
+              광고형 랜딩페이지 운영 서비스로<br class="hidden md:inline" />
+              DB비용은 줄이고, 품질은 높이세요
             </h2>
-            <p class="section-sub">
-              랜딩페이지를 반복 개선하며 자체 운영하면
-                <br class="hidden md:block" />
-              같은 비용으로 더 많은 DB를 확보하고 상담 품질까지 향상됩니다.”
+            <p class="section-sub mt-4">
+              랜딩페이지를 자체 운영하며 반복 개선하면
+              <br class="hidden md:block" />동일한 비용으로 더 많은 DB를 확보하고 상담의 품질까지 향상됩니다.
             </p>
-          </header>
-
-          <div class="grid gap-6 md:grid-cols-2">
-            <!-- 좌(그래프/지표) -->
-            <figure
-              class="card grid aspect-video place-items-center bg-[var(--neutral-50)] fx-glow "
-            >
-              <img
-                src="./img/placeholder_metric.webp"
-                alt=""
-                class="img-base h-24"
-              />
-            </figure>
-            <!-- 우(카톡/후기) -->
-            <figure
-              class="card grid aspect-video place-items-center bg-[var(--neutral-50)] fx-glow "
-            >
-              <img
-                src="./img/placeholder_chat.webp"
-                alt=""
-                class="img-base h-24"
-              />
-            </figure>
+          </div>
+          <!-- 업종별 Proof 카드 그리드 -->
+          <div class="mt-12 grid gap-8 md:grid-cols-2">
+            <!--  1번 카드 -->
+            <article class="card p-6 md:p-7 flex flex-col gap-5">
+              <!-- 상단: 업종 라벨 + 한 줄 헤드라인 -->
+              <header class="space-y-2">
+                <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
+                  개인회생·개인파산
+                </span>
+                <h3 class="text-lg md:text-xl font-semibold leading-snug">
+                  ~~~~개인회생,개인파산 카피라이팅 삽입~~~~
+                </h3>
+                <p class="text-sm text-[var(--neutral-700)]">
+                  랜딩 교체 후 동일 예산에서 DB접수율이 오르고, 실제 방문체험 고객까지 늘어난 케이스입니다.
+                </p>
+              </header>
+              <!-- 중간: 비포 / 애프터 핵심 수치 -->
+              <div class="grid gap-3 sm:grid-cols-3 text-sm md:text-[0.95rem]">
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">DB단가</p>
+                  <p class="font-semibold">
+                    8만원→<span class="text-[var(--brand)]">2~3만원 </span>
+                  </p>
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">하루 DB</p>
+                  <p class="font-semibold">
+                    일평균 <span class="text-[var(--brand)]">15~25건</span>
+                  </p>
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">부재 / 허수</p>
+                  <p class="font-semibold">
+                    점진적 개선 +<span class="text-[var(--brand)]"> 품질향상</span>
+                  </p>
+                </div>
+              </div>
+              <!-- 하단: 카톡 묶음 + 성과 데이터 캡쳐 (1열 구조) -->
+              <div class="mt-4 pt-4 border-t border-[var(--neutral-200)] space-y-4">
+                <!-- 광고 관리자 성과 캡쳐: 한 줄 전체 사용 -->
+                <figure class="space-y-2">
+                  <img
+                    src="./img/rehabilitation-data001.png"
+                    alt=""
+                    class="img-base w-full h-full object-cover"
+                  />
+                </figure>
+                <!-- 카톡 캡처 묶음 (2~3장까지 확장 가능) -->
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <figure class="space-y-2">
+                    <img
+                      src="./img/rehabilitation-kakao001.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                  <figure class="space-y-2">
+                    <img
+                      src="./img/rehabilitation-kakao002.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                  <!-- 카톡이 3장이라면 이렇게 한 줄 전체 쓰게 -->
+                  <!--
+                  <figure class="space-y-2 sm:col-span-2">
+                    <img
+                      src="./img/proof-scalp-kakao-3.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                  -->
+                </div>
+              </div>
+            </article>
+            <!-- 2번 카드: 대출 / 대부중개 -->
+            <article class="card p-6 md:p-7 flex flex-col gap-5">
+              <!-- 상단: 업종 라벨 + 한 줄 헤드라인 -->
+              <header class="space-y-2">
+                <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
+                  대출·대부중개
+                </span>
+                <h3 class="text-lg md:text-xl font-semibold leading-snug">
+                  ~~~~대출·대부중개 카피라이팅 삽입~~~~
+                </h3>
+                <p class="text-sm text-[var(--neutral-700)]">
+                  랜딩 교체 후 동일 예산에서 DB접수율이 오르고, 실제 방문체험 고객까지 늘어난 케이스입니다.
+                </p>
+              </header>
+              <!-- 중간: 비포 / 애프터 핵심 수치 -->
+              <div class="grid gap-3 sm:grid-cols-3 text-sm md:text-[0.95rem]">
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">DB단가</p>
+                  <p class="font-semibold">
+                    4만원→<span class="text-[var(--brand)]">0.7~1.5만원 </span>
+                  </p>
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">하루 DB</p>
+                  <p class="font-semibold">
+                    일평균 <span class="text-[var(--brand)]">20~30건</span>
+                  </p>
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">부재 / 허수</p>
+                  <p class="font-semibold">
+                    점진적 개선 +<span class="text-[var(--brand)]"> 품질향상</span>
+                  </p>
+                </div>
+              </div>
+              <!-- 하단: 카톡 묶음 + 성과 데이터 캡쳐 (1열 구조) -->
+              <div class="mt-4 pt-4 border-t border-[var(--neutral-200)] space-y-4">
+                <!-- 광고 관리자 성과 캡쳐: 한 줄 전체 사용 -->
+                <figure class="space-y-2">
+                  <img
+                    src="./img/loan-data001.png"
+                    alt=""
+                    class="img-base w-full h-full object-cover"
+                  />
+                </figure>
+                <!-- 카톡 캡처 묶음 (2~3장까지 확장 가능) -->
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <figure class="space-y-2">
+                    <img
+                      src="./img/loan-kakao001.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                  <figure class="space-y-2">
+                    <img
+                      src="./img/loan-kakao002.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                  <!-- 카톡이 3장이라면 이렇게 한 줄 전체 쓰게 -->
+                  <!--
+                  <figure class="space-y-2 sm:col-span-2">
+                    <img
+                      src="./img/proof-scalp-kakao-3.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                  -->
+                </div>
+              </div>
+            </article>
+            <!-- 3번 카드: 보험 GA -->
+             <article class="card p-6 md:p-7 flex flex-col gap-5">
+              <!-- 상단: 업종 라벨 + 한줄 헤드라인 -->
+              <header class="space-y-2">
+                <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
+                  보험·리모델링
+                </span>
+                <h3 class="text-lg md:text-xl font-semibold leading-snug">
+                  ~~~~보험·리모델링 카피라이팅 삽입~~~~
+                </h3>
+                <p class="text-sm text-[var(--neutral-700)]">
+                  랜딩 교체 후 동일 예산에서 DB접수율이 오르고, 실제 방문체험 고객까지 늘어난 케이스입니다.
+                </p>
+              </header>
+              <!-- 중간: 비포 / 애프터 핵심 수치 -->
+              <div class="grid gap-3 sm:grid-cols-3 text-sm md:text-[0.95rem]">
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">DB단가</p>
+                  <p class="font-semibold">
+                    4만원→<span class="text-[var(--brand)]">1.6~1.9만원 </span>
+                  </p>
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">하루 DB</p>
+                  <p class="font-semibold">
+                    일평균 <span class="text-[var(--brand)]">15~32건</span>
+                  </p>
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">부재 / 허수</p>
+                  <p class="font-semibold">
+                    점진적 개선 +<span class="text-[var(--brand)]"> 품질향상</span>
+                  </p>
+                </div>
+              </div>
+              <!-- 하단: 성과 + 카톡 -->
+              <div class="mt-4 pt-4 border-t border-[var(--neutral-200)] space-y-4">
+                <!-- 광고 관리자 성과캡처 -->
+                <figure class="space-y-2">
+                  <img
+                    src="./img/insurance-data001.png"
+                    alt=""
+                    class="img-base w-full h-full object-cover"
+                  />
+                </figure>
+                <!-- 카톡 캡처 묶음 (2~3장까지 확장 가능) -->
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <figure class="space-y-2">
+                    <img
+                      src="./img/insurance-kakao002.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                  <figure class="space-y-2">
+                    <img
+                      src="./img/insurance-kakao003.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                </div>
+              </div>
+            </article>
+            <!-- 4번 카드: 정책자금 -->
+            <article class="card p-6 md:p-7 flex flex-col gap-5">
+              <!-- 상단: 업종 라벨 + 한줄 헤드라인 -->
+              <header class="space-y-2">
+                <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
+                  정책자금
+                </span>
+                <h3 class="text-lg md:text-xl font-semibold leading-snug">
+                  ~~~~정책자금 카피라이팅 삽입~~~~
+                </h3>
+                <p class="text-sm text-[var(--neutral-700)]">
+                  랜딩 교체 후 동일 예산에서 DB접수율이 오르고, 실제 방문체험 고객까지 늘어난 케이스입니다.
+                </p>
+              </header>
+              <!-- 중간: 비포 애프터 핵심수치 -->
+              <div class="grid gap-3 sm:grid-cols-3 text-sm md:text-[0.95rem]">
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">DB단가</p>
+                  <p class="font-semibold">
+                    6만원→<span class="text-[var(--brand)]">1.3~2만원 </span>
+                  </p>
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">하루 DB</p>
+                  <p class="font-semibold">
+                    일평균 <span class="text-[var(--brand)]">10~24건</span>
+                  </p>
+                </div>
+                <div>
+                  <p class="font-medium text-[var(--neutral-600)] mb-1">부재 / 허수</p>
+                  <p class="font-semibold">
+                    점진적 개선 +<span class="text-[var(--brand)]"> 품질향상</span>
+                  </p>
+                </div>
+              </div>
+              <!-- 하단: 성과 + 카톡 -->
+              <div class="mt-4 pt-4 border-t border-[var(--neutral-200)] space-y-4">
+                <!-- 광고 관리자 성과캡처 -->
+                <figure class="space-y-2">
+                  <img
+                    src="./img/policyfunds-data001.png"
+                    alt=""
+                    class="img-base w-full h-full object-cover"
+                  />
+                </figure>
+                <!-- 카톡 캡처 묶음 (2~3장까지 확장 가능) -->
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <figure class="space-y-2">
+                    <img
+                      src="./img/policyfunds-kakao001.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                  <figure class="space-y-2">
+                    <img
+                      src="./img/policyfunds-kakao003.jpg"
+                      alt=""
+                      class="img-base w-full h-full object-cover"
+                    />
+                  </figure>
+                </div>
+              </div>
+            </article>
+            <!-- 5번 카드: ○○ 업종 -->
+            <!-- 6번 카드: ○○ 업종 -->
+            <!-- 필요하면 7번째는 텍스트 카드로 “그 외 업종 다수 운영중” 등 넣기 -->
           </div>
         </div>
       </section>
+
+      
 
       <!-- =============== 섹션 5. CTA + Form =============== -->
       <section id="cta" class="section-cta py-16 md:py-24">
