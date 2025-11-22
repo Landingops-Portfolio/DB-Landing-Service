@@ -1,0 +1,126 @@
+{
+  "meta_version": "1.0",
+
+  "U1-1": {
+    "section_id": "U1-1",
+    "section_name": "히어로",
+    "stage": "무인지",
+    "patterns": {
+      "primary": [
+        "U1-1_image_18",
+        "U1-1_cta_08",
+        "U1-1_overlay_05",
+        "U1-1_2col_04",
+        "U1-1_2col_09",
+        "U1-1_2col_18",
+        "U1-1_mobile_02"
+      ],
+      "secondary": [
+        "U1-1_image_03",
+        "U1-1_cta_01",
+        "U1-1_overlay_01",
+        "U1-1_overlay_17",
+        "U1-1_overlay_19",
+        "U1-1_1col_08",
+        "U1-1_1col_19",
+        "U1-1_2col_05",
+        "U1-1_2col_06",
+        "U1-1_2col_11",
+        "U1-1_mobile_12",
+        "U1-1_mobile_16"
+      ]
+    }
+  },
+
+  "U1-2": {
+    "section_id": "U1-2",
+    "section_name": "이벤트 이유 & 라이트 소셜프루프",
+    "stage": "무인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U1-3": {
+    "section_id": "U1-3",
+    "section_name": "주변 사례 문제자극",
+    "stage": "무인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U1-4": {
+    "section_id": "U1-4",
+    "section_name": "오퍼 요약",
+    "stage": "무인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U1-5": {
+    "section_id": "U1-5",
+    "section_name": "오퍼 상세",
+    "stage": "무인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U1-6": {
+    "section_id": "U1-6",
+    "section_name": "결심유도",
+    "stage": "무인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U1-7": {
+    "section_id": "U1-7",
+    "section_name": "입력폼",
+    "stage": "무인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U2-1": {
+    "section_id": "U2-1",
+    "section_name": "표면문제 히어로",
+    "stage": "문제인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U2-2": {
+    "section_id": "U2-2",
+    "section_name": "표면문제 심화(SP)",
+    "stage": "문제인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U2-3": {
+    "section_id": "U2-3",
+    "section_name": "표면문제 원인폭로(CP)",
+    "stage": "문제인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U2-4": {
+    "section_id": "U2-4",
+    "section_name": "해결책 소개",
+    "stage": "문제인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U2-5": {
+    "section_id": "U2-5",
+    "section_name": "신뢰(성과/후기)",
+    "stage": "문제인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U2-6": {
+    "section_id": "U2-6",
+    "section_name": "결심유도(CTA)",
+    "stage": "문제인지",
+    "patterns": { "primary": [], "secondary": [] }
+  },
+
+  "U2-7": {
+    "section_id": "U2-7",
+    "section_name": "입력폼",
+    "stage": "문제인지",
+    "patterns": { "primary": [], "secondary": [] }
+  }
+
+}

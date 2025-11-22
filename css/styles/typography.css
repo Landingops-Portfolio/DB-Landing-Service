@@ -1,0 +1,263 @@
+
+/* =========  [1] 섹션 공통헤더 5단구조 - 타이포값 =========
+→ "라벨,헤드,서브,리드,노트" 각각 폰트값(종류,크기,굵기,색상,자간,행간) 정의
+→ 5단구조 모두가 모든 섹션에서 전부다 필요하진 않음. 섹션마다 다름
+→ 계층별 폰트크기 4pt차이, 굵기차이 200
+Note뜻: 참고사항/주의문/추가설명
+*/
+
+
+/* ㅎㅎ라벨 참고용
+
+.cta-eyebrow {
+  font-size: 1.125rem;
+  color: var(--neutral-700);
+  line-height: 1.7;
+} */
+
+.section-eyebrow {
+  color: var(--primary);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 700;
+  letter-spacing: 0.06em; 
+  text-transform: uppercase;  /* 텍스트 모든 문자 대문자 전환 */
+}
+
+.section-head {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.85rem; /* 26px - pt 나누기 16 rem값 */
+  color: var(--neutral-900);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.section-sub {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.375rem; /* 22px */
+  color: var(--neutral-600);
+  line-height: 1.5;
+}
+
+.section-lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.125rem;      /* 18px 정도 */
+  color: var(--neutral-700);
+  line-height: 1.5;
+}
+
+.section-note {
+  font-family: var(--font-body);
+  font-weight: 200;
+  font-size: 0.875rem;      /* 14px 정도 */
+  color: var(--neutral-700);
+  line-height: 1.5;
+}
+
+/* ===== [3] 모든섹션 공통 콘텐츠 5계층 (타이포값) =====
+콘텐츠의 폰트 크기 반응형은, common.css에서 관리한다.
+*/
+
+/* 강조된 본문 (키워드 중심 짧은 문장에 사용) */
+.content-text-strong {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.125rem;          /* 18px */
+  color: var(--neutral-900);
+  line-height: 1.7;
+}
+
+/* 살짝 큰 본문 (중요 설명, 인용, 리드 문단) */
+.content-text-lg {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.0625rem;     /* 17px */
+  color: var(--neutral-800);
+  line-height: 1.5;
+}
+
+/* 기본 본문(가장 자주 쓰는 사이즈) */
+.content-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;          /* 16px */
+  color: var(--neutral-800);
+  line-height: 1.5;
+}
+
+/* 작은 본문 (보조 설명, 카드 안 한 줄 설명 등) */
+.content-text-sm {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.9375rem;     /* 15px */
+  color: var(--neutral-700);
+  line-height: 1.5;
+}
+
+/* 캡션/주석 (figcaption, 아주 작은 참고글) */
+.content-caption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8125rem;     /* 13px */
+  color: var(--neutral-600);
+  line-height: 1.5;
+}
+
+
+
+/* ===== [4] 카피라이팅 강조 도구(유틸) - (하이라이트/밑줄/강조) =======
+
+값을 미리 지정해놓고, 내가 원하는 곳에서 "카피 강조"
+<span class="abcd">로 감싸서 원하는 카피를 직접 강조한다. 
+<span>태그 적극 활용
+
+[적용 예시]
+<p>
+  <span class="emphasis">자체 운영 시스템</span>입니다.
+</p>
+*/
+
+/* =================================================================== 
+[ 폰트 굵기 (font-weight) 값 참조표 ]
+--------------------------------------------------------
+100: Thin (Hairline)
+200: Extra Light (Ultra Light)
+300: Light
+400: Normal (Regular, Book) - 키워드 'normal'과 동일
+500: Mediu(약간굵음)
+600: Semi Bold (Demi Bold)
+700: Bold - 키워드 'bold'와 동일
+800: Extra Bold (Ultra Bold)
+900: Black (Heavy) 
+=========================================================================*/
+
+/* 하이라이트 - (브랜드/세컨/악센트) */
+
+.highlight-p { 
+  color: var(--primary); 
+  font-weight: 700;     /*볼드체*/
+}
+
+.highlight-s { 
+  color: var(--secondary);
+  font-weight: 700;     /*볼드체*/
+}
+.highlight-a { 
+  color: var(--accent);
+  font-weight: 700;     /*볼드체*/
+}
+
+/* 기울임 - (브랜드/세컨/악센트) */
+.emphasis-p  {
+  color: var(--primary); 
+  font-style: italic; 
+  font-weight: 500;    /*미디움(약간굵음)*/
+}
+
+.emphasis-s  {
+  color: var(--secondary); 
+  font-style: italic; 
+  font-weight: 500;    /*미디움(약간굵음)*/
+}
+
+.emphasis-a  {
+  color: var(--accent); 
+  font-style: italic; 
+  font-weight: 500;    /*미디움(약간굵음)*/
+}
+
+
+/* 형광펜 - 파스텔
+background 설정 의미: 대표색 15% + 흰색 85% 섞은, 연한 파스텔톤 하이라이트 배경 */
+
+.bg-highlight-p {
+  background: color-mix(in srgb, var(--primary) 15%, white); 
+  border-radius: 6px;
+  padding: 1px 3px;  /*위아래, 좌우*/
+  display: inline-block; /* 줄 침범 방지 핵심 */
+  line-height: 1.1;      /* 형광펜 줄 높이를 줄여 균형 맞춤 */
+}
+
+.bg-highlight-s {
+  background: color-mix(in srgb, var(--secondary) 15%, white); 
+  border-radius: 6px;
+  padding: 1px 3px;  /*위아래, 좌우*/
+  display: inline-block; /* 줄 침범 방지 핵심 */
+  line-height: 1.1;      /* 형광펜 줄 높이를 줄여 균형 맞춤 */
+
+}
+.bg-highlight-a {
+  background: color-mix(in srgb, var(--accent) 15%, white); 
+  border-radius: 6px;
+  padding: 1px 3px;  /*위아래, 좌우*/
+  display: inline-block; /* 줄 침범 방지 핵심 */
+  line-height: 1.1;      /* 형광펜 줄 높이를 줄여 균형 맞춤 */
+}
+
+
+/* 밑줄 - (브랜드/세컨/악센트) */
+
+.underline-p {
+  text-decoration: underline;            /* 기본 밑줄을 켬 */
+  text-decoration-color: var(--primary);  /* 밑줄 색상을 우리의 브랜드 강조색으로 지정 */
+  text-decoration-thickness: 13px;          /* 밑줄 두께를 4px로 굵게 설정 */
+  text-underline-offset: 4px;                /* 글자와 밑줄 사이에 6px 간격(여백) 추가 */
+}
+
+.underline-s {
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+  text-decoration-thickness: 13px;
+  text-underline-offset: 4px;
+}
+
+.underline-a {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 13px;
+  text-underline-offset: 4px;
+}
+
+/*
+======================================================================================================================
+■CSS 가상박스 설명 ::after 가상요소
+======================================================================================================================
+예를 들어 텍스트 밑에 네모난 하이라이트 박스를 넣고 싶은데,
+<div>를 추가하면 HTML이 지저분해지잖아?
+
+그래서 CSS가 대신 가상의 박스를 만들어 주는것:
+👉 <span> 뒤에 투명한 가짜 <div> 가상 박스를 하나 추가해주는것
+그게바로 ::after
+----------------------------------------------------------------------------------------------------------------------
+[ ::after 꼭 기억해야 할 3줄 요약 ]
+→ HTML 태그 뒤에 보이지 않는 요소를 자동 추가하는 기능
+→ 밑줄/하이라이트/라벨 같은 UI를 깨끗하게 만들 때 필수
+→ .underline-accent에만 class 넣으면 ::after는 자동 생성
+----------------------------------------------------------------------------------------------------------------------
+[ display: inline-block ]
+display: inline-block = 텍스트 길이만큼 가상박스(::after)도 같이 늘었다 줄었다 하게 만드는 설정
+가상요소(::after)로 밑줄 깔 때 필수 속성
+밑줄·형광펜·하이라이트 같은 텍스트 기반 UI 만들 때 필수설정
+======================================================================================================================
+● ::after 적용 실제 CSS코드 예시 [밑줄]
+
+.underline-accent {
+  position: relative;     가상박스 (::after)가 기준으로 삼을 좌표계 제공하는 역할
+  display: inline-block;   inline-block = 텍스트 길이만큼 가상박스(::after)도 같이 늘었다 줄었다 하게 만드는 설정. 
+  padding-bottom: 2px;     글자와 밑줄 간격
+}
+
+.underline-accent::after { 
+  content: "";                가상 박스 생성 
+  position: absolute;         부모 좌표계 기준 [left/ right / top / bottom] 값으로 원하는 위치에 놓는것
+  left: 0;                    부모 좌표계 기준으로 [left] 값 지정 
+  right: 0;                  부모 좌표계 기준으로 [right] 값 지정 
+  bottom: -2px;             부모 좌표계 기준으로 [bottom] 값 지정 
+  height: 4px;              밑줄 두께 
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+  opacity: 0.9;
+}
+*/

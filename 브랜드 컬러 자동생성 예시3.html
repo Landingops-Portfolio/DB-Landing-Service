@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>Brand Palette Preview (#fff500)</title>
+
+<style>
+
+/* ====================================================================
+   BRAND COLOR SYSTEM (auto-generated from #fff500)
+   ==================================================================== */
+
+:root {
+  /* PRIMARY */
+  --primary: hsl(58 100% 50%);
+
+  /* SECONDARY */
+  --secondary: hsl(73 90% 58%);
+
+  /* ACCENT */
+  --accent: hsl(238 95% 60%);
+
+  /* NEUTRAL SCALE */
+  --neutral-900: hsl(58 10% 10%);
+  --neutral-800: hsl(58 8% 20%);
+  --neutral-700: hsl(58 7% 30%);
+  --neutral-600: hsl(58 6% 40%);
+  --neutral-200: hsl(58 5% 80%);
+  --neutral-100: hsl(58 4% 92%);
+  --neutral-50:  hsl(58 3% 96%);
+
+  /* SURFACES / OVERLAYS */
+  --surface: hsl(58 75% 85%);
+  --surface-alt: hsl(58 65% 75%);
+  --overlay-soft: hsla(57.64705882352941 100% 50% / 0.06);
+  --overlay-medium: hsla(57.64705882352941 100% 50% / 0.12);
+  --overlay-strong: hsla(57.64705882352941 100% 50% / 0.2);
+
+  /* CTA */
+  --cta: hsl(238 95% 60%);
+  --cta-hover: hsl(238 105% 55%);
+  --cta-active: hsl(238 107% 52%);
+
+  /* GRADIENT */
+  --gradient-primary: linear-gradient(135deg, hsl(58 100% 50%) 0%, hsl(238 95% 60%) 100%);
+}
+
+/* ===== 기본 레이아웃 ===== */
+body {
+  font-family: Inter, Pretendard, sans-serif;
+  background: var(--neutral-50);
+  color: var(--neutral-900);
+  padding: 40px;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.box {
+  padding: 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+}
+
+.section-title {
+  margin-top: 40px;
+  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* CTA 버튼 */
+.btn {
+  background: var(--cta);
+  padding: 14px 22px;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-block;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.btn:hover { background: var(--cta-hover); }
+.btn:active { background: var(--cta-active); }
+
+/* Gradient Hero Block */
+.hero {
+  padding: 50px;
+  border-radius: 16px;
+  background: var(--gradient-primary);
+  color: white;
+  font-size: 28px;
+  margin-top: 40px;
+  font-weight: 700;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🎨 Brand Palette Preview (#fff500)</h1>
+
+
+<!-- Primary / Secondary / Accent -->
+<div class="section-title">Primary / Secondary / Accent</div>
+<div class="grid">
+  <div class="box" style="background: var(--primary); color:black;">Primary</div>
+  <div class="box" style="background: var(--secondary); color:black;">Secondary</div>
+  <div class="box" style="background: var(--accent);">Accent</div>
+</div>
+
+
+<!-- Neutral Scale -->
+<div class="section-title">Neutral Scale</div>
+<div class="grid">
+  <div class="box" style="background: var(--neutral-900);">Neutral 900</div>
+  <div class="box" style="background: var(--neutral-800);">Neutral 800</div>
+  <div class="box" style="background: var(--neutral-700);">Neutral 700</div>
+  <div class="box" style="background: var(--neutral-600);">Neutral 600</div>
+  <div class="box" style="background: var(--neutral-200); color:black;">Neutral 200</div>
+  <div class="box" style="background: var(--neutral-100); color:black;">Neutral 100</div>
+  <div class="box" style="background: var(--neutral-50); color:black;">Neutral 50</div>
+</div>
+
+
+<!-- Surfaces -->
+<div class="section-title">Surface / Overlay</div>
+<div class="grid">
+  <div class="box" style="background: var(--surface); color:black;">Surface</div>
+  <div class="box" style="background: var(--surface-alt); color:black;">Surface Alt</div>
+  <div class="box" style="background: var(--overlay-soft); color:black;">Overlay Soft</div>
+  <div class="box" style="background: var(--overlay-medium); color:black;">Overlay Medium</div>
+  <div class="box" style="background: var(--overlay-strong);">Overlay Strong</div>
+</div>
+
+
+<!-- CTA -->
+<div class="section-title">CTA Buttons</div>
+<div class="btn">CTA Button</div>
+
+
+<!-- Gradient -->
+<div class="hero">
+  Gradient Preview (Primary → Accent)
+</div>
+
+</body>
+</html>

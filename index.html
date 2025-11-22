@@ -9,11 +9,9 @@
     <title>랜딩임대 서비스 | 광고형 랜딩페이지 운영 시스템</title>
     <!-- Tailwind CDN (초기 제작용) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 공용 스타일 (70%) -->
-    <link rel="stylesheet" href="./css/styles/common.css" />
-    <!-- 브랜드 토큰(20%) -->
     <link rel="stylesheet" href="./css/styles/brand.css" />
-    <!-- 프리미엄 효과(10%) -->
+    <link rel="stylesheet" href="./css/styles/common.css" />
+    <link rel="stylesheet" href="./css/styles/typography.css" />
     <link rel="stylesheet" href="./css/styles/premium.css" />
 
     <!-- 기본 폰트(원하면 brand.css에서 교체) -->
@@ -40,7 +38,7 @@
     <!-- 글로벌 래퍼 -->
     <main id="page" class="flex min-h-screen flex-col">
       <!-- =============== 섹션 1. Hero =============== -->
-      <section id="hero" class="py-16 md:py-24">
+      <section id="hero" class="section py-16 md:py-24">
         <div
           class="container mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-10 md:grid-cols-2">
           <!-- 텍스트 영역 -->
@@ -87,15 +85,15 @@
         </div>
       </section>
 
-      <hr class="section-divider" /> <!-- 섹션간 구분선 <hr>의 뜻. HTML의 수평선(horizontal rule) -->
+      <hr class="divider" /> <!-- 섹션간 구분선 <hr>의 뜻. HTML의 수평선(horizontal rule) //  -->
 
       <!-- =============== 섹션 2. 문제원인 =============== -->
-      <section id="problem-deepen" class="py-16 md:py-20">
+      <section id="problem-deepen" class="section-alt py-16 md:py-20">
         <div class="container mx-auto max-w-5xl space-y-8 px-4">
           <header class="space-y-3 text-center">
             <h2 class="section-head md:text-3xl">
-              매번 다른 대행사를 알아봐도<br class="hidden md:block" />
-              <span class="underline-accent">결국 결과는 비슷하지 않으셨나요?</span>
+              <span>매번 다른 대행사를 알아봐도</span><br class="hidden md:block"/>
+              <span class="bg-highlight-a">결국 결과는 비슷하지 않으셨나요?</span>
             </h2>
             <p class="section-sub">
               이제 더 이상 아까운 돈과 시간을 낭비하지 마세요.
@@ -106,7 +104,7 @@
           <div class="grid gap-6 md:grid-cols-2">
             <!-- ① 좌: 인포그래픽 -->
             <figure
-              class="text-box-media mx-auto md:mx-0
+              class="media-frame mx-auto md:mx-0
                w-[84vw] max-w-[360px] aspect-square
                md:w-auto md:max-w-none md:aspect-[4/5]">
               <picture>
@@ -125,7 +123,7 @@
             <!-- ② 우: 텍스트 묶음 (article + aside) -->
             <div class="grid gap-6">
               <article
-                class="text-box space-y-4 p-6">
+                class="problem-box space-y-4 p-6">
                 <p class="section-lead">
                   많은 광고주들이 지금도 CPA대행사를 통해 DB를 구매하고
                   있습니다.
@@ -146,8 +144,8 @@
                   유일한 해결책이라 여기며 제자리 걸음을 반복하게 됩니다.
                 </p>
               </article>
-              <aside class="info-box p-5">
-                <strong class="section-sub bg-highlight">여러분 잘못이 아닙니다.</strong>
+              <aside class="pain-point-box p-5">
+                <strong class="section-sub">여러분 잘못이 아닙니다.</strong>
                 <p class="section-lead">
                   애초에 ‘CPA, 제휴마케팅'이라는 시스템의 한계가 만든
                   결과입니다. 누구나 겪는 이 악순환을 끊으려면, 이젠 '남이 만든
@@ -160,10 +158,10 @@
         </div>
       </section>
 
-      <hr class="section-divider" />
+      <hr class="divider" />
 
       <!-- =============== 섹션 3. Solution =============== -->
-      <section id="solution" class="py-16 md:py-24">
+      <section id="solution" class="section py-16 md:py-24">
         <div class="container mx-auto max-w-6xl space-y-12 px-4">
           <header class="space-y-4 text-center">
 
@@ -187,9 +185,9 @@
           <!-- 3단 절차 (아이콘/이미지 매칭 영역) -->
           <div class="grid gap-6 md:grid-cols-3">
             <!-- step 1 -->
-            <article class="card fx-glow p-6">
+            <article class="surface-card fx-glow p-6">
               <figure
-                class="card-media mb-4 grid aspect-video place-items-center">
+                class="media-frame mb-4 grid aspect-video place-items-center">
                 <img
                   src="./img/solution-up-001.png"
                   alt=""
@@ -205,9 +203,9 @@
             </article>
 
             <!-- step 2 -->
-            <article class="card p-6 fx-glow ">
+            <article class="surface-card p-6 fx-glow ">
               <figure
-                class="card-media mb-4 grid aspect-video place-items-center">
+                class="media-frame mb-4 grid aspect-video place-items-center">
                 <img
                   src="./img/solution-up-002.png"
                   alt=""
@@ -221,9 +219,9 @@
             </article>
 
             <!-- step 3 -->
-            <article class="card p-6 fx-glow">
+            <article class="surface-card p-6 fx-glow">
               <figure
-                class="card-media mb-4 grid aspect-video place-items-center">
+                class="media-frame mb-4 grid aspect-video place-items-center">
                 <img
                   src="./img/solution-up-003.png"
                   alt="일정&집행"
@@ -257,9 +255,9 @@
           </header>
           <!-- 섹션3 하단 - 4단 서비스 제공절차 -->
           <div class="grid gap-6 md:grid-cols-2">
-            <article class="card fx-rail fx-glow p-4">
+            <article class="surface-card fx-rail fx-glow p-4">
               <!-- 아이콘 시작-->
-              <div class="icon-box w-12 h-12 flex items-center justify-center">
+              <div class="icon-square w-12 h-12 flex items-center justify-center">
                 <i data-lucide="lightbulb" class="icon w-10 h-10"></i>
               </div>
               <!-- 아이콘 끝-->
@@ -271,8 +269,8 @@
                 계약율을 높이는 설득 내러비티브를 기획합니다.
               </p>
             </article>
-            <article class="card fx-rail fx-glow p-4">
-              <div class="icon-box w-12 h-12 flex items-center justify-center">
+            <article class="surface-card fx-rail fx-glow p-4">
+              <div class="icon-square w-12 h-12 flex items-center justify-center">
                 <i data-lucide="layers" class="icon w-10 h-10"></i>
               </div>
               <h4 class="section-sub mt-3 premium-heading">
@@ -283,8 +281,8 @@
                 발맞춰 수정·개선해 DB품질과 수량을 높입니다.
               </p>
             </article>
-            <article class="card fx-rail fx-glow p-4">
-              <div class="icon-box w-12 h-12 flex items-center justify-center">
+            <article class="surface-card fx-rail fx-glow p-4">
+              <div class="icon-square w-12 h-12 flex items-center justify-center">
                 <i data-lucide="bar-chart-3" class="icon w-10 h-10"></i>
               </div>
               <h4 class="section-sub mt-3 premium-heading">
@@ -295,8 +293,8 @@
                 예산을 집중해 비용효율을 높입니다.
               </p>
             </article>
-            <article class="card fx-rail fx-glow p-4">
-              <div class="icon-box w-12 h-12 flex items-center justify-center">
+            <article class="surface-card fx-rail fx-glow p-4">
+              <div class="icon-square w-12 h-12 flex items-center justify-center">
                 <i data-lucide="send" class="icon w-10 h-10"></i>
               </div>
               <h4 class="section-sub mt-3 premium-heading">
@@ -312,10 +310,10 @@
         </div>
       </section>
 
-      <hr class="section-divider" />
+      <hr class="divider" />
 
       <!-- =============== 섹션 4. 성과 / 증거(Proof) =============== -->
-      <section id="proof" class="section-proof py-20 md:py-28">
+      <section id="proof" class="section-alt py-20 md:py-28">
         <div class="container mx-auto max-w-6xl px-4">
           <!-- 섹션4 헤더 시작-->
           <div class="text-center max-w-3xl mx-auto">
@@ -334,7 +332,7 @@
           <div class="mt-12 grid gap-8 md:grid-cols-2 text-center sm:text-left">
             
             <!--  1번 카드 -->
-            <article class="card fx-glow p-6 md:p-7 flex flex-col gap-5">
+            <article class="surface-card fx-glow p-6 md:p-7 flex flex-col gap-5">
               <!-- 상단: 업종라벨+헤드+서브-->
               <header class="space-y-2">
                 <span class="대기(배찌) inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
@@ -398,7 +396,7 @@
               </div>
             </article>
             <!-- 2번 카드: 대출 -->
-            <article class="card fx-glow p-6 md:p-7 flex flex-col gap-5">
+            <article class="surface-card fx-glow p-6 md:p-7 flex flex-col gap-5">
               <!-- 상단: 업종라벨+헤드+서브-->
               <header class="space-y-2">
                 <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
@@ -462,7 +460,7 @@
               </div>
             </article>
             <!-- 3번 카드: 보험 GA -->
-             <article class="card fx-glow p-6 md:p-7 flex flex-col gap-5">
+             <article class="surface-card fx-glow p-6 md:p-7 flex flex-col gap-5">
               <!-- 상단: 업종 라벨+헤드+서브-->
               <header class="space-y-2">
                 <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
@@ -526,7 +524,7 @@
               </div>
             </article>
             <!-- 4번 카드: 정책자금 -->
-            <article class="card fx-glow p-6 md:p-7 flex flex-col gap-5">
+            <article class="surface-card fx-glow p-6 md:p-7 flex flex-col gap-5">
               <!-- 상단: 업종 라벨+헤드+서브-->
               <header class="space-y-2">
                 <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
@@ -590,7 +588,7 @@
               </div>
             </article>
             <!-- 5번 카드: 인터넷 -->
-            <article class="card fx-glow p-6 md:p-7 flex flex-col gap-5">
+            <article class="surface-card fx-glow p-6 md:p-7 flex flex-col gap-5">
               <!-- 상단: 업종 라벨+헤드+서브-->
               <header class="space-y-2">
                 <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
@@ -654,7 +652,7 @@
               </div>
             </article>
             <!-- 6번 카드: 두피관리 -->
-            <article class="card fx-glow p-6 md:p-7 flex flex-col gap-5">
+            <article class="surface-card fx-glow p-6 md:p-7 flex flex-col gap-5">
               <!-- 상단: 업종 라벨+헤드+서브-->
               <header class="space-y-2">
                 <span class="inline-block rounded-full px-3 py-1 text-xs font-semibold bg-[rgba(31,95,174,0.06)] text-[var(--brand)]">
@@ -721,7 +719,7 @@
         </div>
       </section>
       <!-- =============== 섹션 5. CTA + Form =============== -->
-      <section id="cta" class="section-cta py-16 md:py-24">
+      <section id="cta" class="section py-16 md:py-24">
         <div class="container mx-auto grid max-w-5xl items-start gap-10 px-4 lg:grid-cols-2">
           <!-- (좌) CTA 텍스트 영역[ 아이브로우/헤드/바디/노트] -->
           <div class="space-y-5 text-center md:text-left flex flex-col items-center md:items-start ">
@@ -737,17 +735,17 @@
               광고를 몰라도? OK!<br> 심지어 랜딩페이지가 없어도? OK! 
             </p>
             <div class="space-y-3">
-              <p class="cta-body">
+              <p class="대기">
                 랜딩·카피·디자인·광고 운영을 꾸준히 개선하며,
                 DB의 수량과 품질을 함께 높이는 구조적 성장에
                 집중합니다.
               </p>
-              <p class="cta-body">
+              <p class="대기">
                 상담은 무료입니다. 그러나 단순히 지금 당장 몇 건의 DB 확보만을 목표로 하신다면,
                 저희가 추구하는 방식과는 맞지 않을 수 있습니다.
                 저희는 지속적인 개선을 통해 함께 성장할 수 있는 광고주분들과의 장기적인 동반자 관계를 지향합니다.
               </p>
-              <p class="cta-body">
+              <p class="대기">
                 여기까지 읽어보시고 저희의 철학에 공감하신다면, 연락처를 남겨주세요.
                 단순히 진행 여부를 떠나, 대표님의 근본적인 고민을 깊이 듣고 함께 올바른 성장 방향을 찾아가 보겠습니다.
                 <br><br>
@@ -759,7 +757,7 @@
           <!-- 입력폼 -->
           <form
             id="form"
-            class="card card-form space-y-4 fx-glow p-4"
+            class="form-card space-y-4 fx-glow p-4"
             action="#"
             method="post"
             data-evt="form_submit"
@@ -812,7 +810,7 @@
                 id="message"
                 name="message"
                 rows="4"
-                class="input w-full px-4 py-3"
+                class="textarea w-full px-4 py-3"
                 placeholder="자유롭게 적어주세요"
               ></textarea>
             </div>
@@ -826,7 +824,7 @@
         </div>
       </section>
 
-      <footer class="py-10 text-center">
+      <footer class="footer py-10 text-center">
         © 랜딩임대 서비스
       </footer>
     </main>
