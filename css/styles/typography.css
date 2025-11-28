@@ -1,29 +1,28 @@
 
+/* =========  [0] CTA 버튼 - 타이포값 ========= */
+
+
+.btn-text {
+font-size: 1.25rem; /* 22px - pt 나누기 16 rem값 */
+font-weight: 700;
+}
+
 /* =========  [1] 섹션 공통헤더 5단구조 - 타이포값 =========
-→ "라벨,헤드,서브,리드,노트" 각각 폰트값(종류,크기,굵기,색상,자간,행간) 정의
+→ "라벨(뱃지),헤드,서브,리드,노트" 각각 폰트값(종류,크기,굵기,색상,자간,행간) 정의
 → 5단구조 모두가 모든 섹션에서 전부다 필요하진 않음. 섹션마다 다름
 → 계층별 폰트크기 4pt차이, 굵기차이 200
 Note뜻: 참고사항/주의문/추가설명
 */
 
-
-/* ㅎㅎ라벨 참고용
-
-.cta-eyebrow {
-  font-size: 1.125rem;
-  color: var(--neutral-700);
-  line-height: 1.7;
-} */
-
-.section-eyebrow {
-  color: var(--primary);
+.section-badge-text {
   font-size: 0.875rem; /* 14px */
   font-weight: 700;
-  letter-spacing: 0.06em; 
+  letter-spacing: 0.06em;
+  line-height: 1.5;
   text-transform: uppercase;  /* 텍스트 모든 문자 대문자 전환 */
 }
 
-.section-head {
+.section-head-text {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.85rem; /* 26px - pt 나누기 16 rem값 */
@@ -32,7 +31,7 @@ Note뜻: 참고사항/주의문/추가설명
   letter-spacing: -0.01em;
 }
 
-.section-sub {
+.section-sub-text {
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 1.375rem; /* 22px */
@@ -40,7 +39,7 @@ Note뜻: 참고사항/주의문/추가설명
   line-height: 1.5;
 }
 
-.section-lead {
+.section-lead-text {
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 1.125rem;      /* 18px 정도 */
@@ -48,7 +47,7 @@ Note뜻: 참고사항/주의문/추가설명
   line-height: 1.5;
 }
 
-.section-note {
+.section-note-text {
   font-family: var(--font-body);
   font-weight: 200;
   font-size: 0.875rem;      /* 14px 정도 */
@@ -64,7 +63,7 @@ Note뜻: 참고사항/주의문/추가설명
 .content-text-strong {
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 1.125rem;          /* 18px */
+  font-size: 1.25rem;          /* 20px */
   color: var(--neutral-900);
   line-height: 1.7;
 }
@@ -107,19 +106,9 @@ Note뜻: 참고사항/주의문/추가설명
 
 
 
-
-/* ===== [4] 카피라이팅 강조 도구 4종(유틸) - (하이라이트/밑줄/강조) =======
+/* ===== [4] 카피라이팅 강조 도구 4종(유틸) - 역할토큰 맵핑 =======
 
 값을 미리 지정해놓고, 내가 원하는 곳에서 "카피 강조"
-<span class="abcd">로 감싸서 원하는 카피를 직접 강조한다. 
-<span>태그 적극 활용
-
-[적용 예시]
-<p>
-  <span class="emphasis">자체 운영 시스템</span>입니다.
-</p>
-*/
-
 /* =================================================================== 
 [ 폰트 굵기 (font-weight) 값 참조표 ]
 --------------------------------------------------------

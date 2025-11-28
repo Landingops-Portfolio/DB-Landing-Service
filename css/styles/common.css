@@ -1990,12 +1990,13 @@ body {
   border: var(--border-1) solid var(--border-default);
   border-radius: var(--radius-full);
   box-shadow: none;
+  display: inline-block;  /* 배경이 글씨까지만 보이기*/
 
   /* 1% 예외: 내부 패딩 + 텍스트 스타일 포함 */
-  padding: 2px 8px;
+  padding: 3px 14px;
   font-size: 12px;
   line-height: 1.2;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* 강조 배지 - main */
@@ -2005,11 +2006,12 @@ body {
   border: var(--border-1) solid var(--border-default);
   border-radius: var(--radius-full);
   box-shadow: none;
+  display: inline-block;  /* 배경이 글씨까지만 보이기*/
 
-  padding: 2px 8px;
+  padding: 3px 14px;
   font-size: 12px;
   line-height: 1.2;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* 약한 강조 배지 — 혜택/감성 */
@@ -2019,11 +2021,12 @@ body {
   border: var(--border-1) solid var(--border-default);
   border-radius: var(--radius-full);
   box-shadow: none;
+  display: inline-block;  /* 배경이 글씨까지만 보이기*/
 
-  padding: 2px 8px;
+  padding: 2px 14px;
   font-size: 12px;
   line-height: 1.2;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* Outline 배지 — 강조 보더만 존재감 */
@@ -2032,11 +2035,12 @@ body {
   border: var(--border-1) solid var(--border-strong);
   border-radius: var(--radius-full);
   box-shadow: none;
+  display: inline-block;  /* 배경이 글씨까지만 보이기*/
 
-  padding: 2px 8px;
+  padding: 2px 14px;
   font-size: 12px;
   line-height: 1.2;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* Tag — 칩보다 덜 둥글고, 더 '레이블(라벨)' 느낌 */
@@ -2045,11 +2049,12 @@ body {
   border: var(--border-1) solid var(--border-subtle);
   border-radius: var(--radius-lg);
   box-shadow: none;
+  display: inline-block;  /* 배경이 글씨까지만 보이기*/
 
   padding: 3px 10px;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.25;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 /* Chip — 클릭가능한 작은 카드 느낌 (아이콘 포함 가능) */
@@ -2062,7 +2067,7 @@ body {
   padding: 4px 12px;
   font-size: 13px;
   line-height: 1.25;
-  font-weight: 500;
+  font-weight: 700;
 
   display: inline-flex;
   align-items: center;
