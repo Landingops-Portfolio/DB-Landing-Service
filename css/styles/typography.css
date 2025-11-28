@@ -71,7 +71,7 @@ Note뜻: 참고사항/주의문/추가설명
 .content-text-lg {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 1.0625rem;     /* 17px */
+  font-size: 1.125rem;     /* 18px */
   color: var(--neutral-800);
   line-height: 1.5;
 }
