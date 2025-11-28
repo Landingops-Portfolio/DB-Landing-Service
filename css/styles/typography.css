@@ -40,7 +40,7 @@ Note뜻: 참고사항/주의문/추가설명
 
 .section-lead-text {
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.125rem;      /* 18px 정도 */
   color: var(--neutral-700);
   line-height: 1.5;
