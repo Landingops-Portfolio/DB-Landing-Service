@@ -196,6 +196,19 @@ hsl(210, 5%, 26%) → #3f4246
 
 ========================================================================================================= */
 
+/* ====================================================================
+   BRAND COLOR PALETTE GENERATOR (Refactored)
+   - Input: Primary HEX (e.g. "#1f5fae")
+   - Output: CSS string for brand.css
+   - 구조:
+     1) PRIMARY / SECONDARY / ACCENT 3색 * 5토큰
+     2) NEUTRAL SCALE
+     3) SURFACE / OVERLAY
+     4) GRADIENT
+     5) SEMANTIC SURFACES / BORDERS
+   ==================================================================== */
+
+/* HEX → HSL 변환 */
 function hexToHSL(hex) {
   hex = hex.replace("#", "");
   let r = parseInt(hex.substring(0, 2), 16) / 255;
@@ -233,55 +246,63 @@ function hexToHSL(hex) {
   };
 }
 
+/* 값 범위 고정 */
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
+/* HSL 객체 → CSS용 hsl() 문자열 */
 function hslToCSS(h, s, l) {
   return `hsl(${Math.round(h)} ${Math.round(s)}% ${Math.round(l)}%)`;
 }
 
-/* =========================================================================
-   SECONDARY 생성 규칙 (인접조화 + 톤 보정)
-   ========================================================================= */
-function makeSecondary(base) {
-  let h = base.h;
-  let s = base.s;
-  let l = base.l;
-
-  // 대략적인 Warm/Cool 구분
-  const isWarm = h < 60 || h > 200;
-  let hueShift = isWarm ? 15 : 25;
-
-  const next = {
-    h: (h + hueShift) % 360,
-    s: clamp(s - 5, 20, 90),
-    l: clamp(l + 8, 20, 85),
-  };
-
-  return next;
+/* HSL 객체 → CSS용 hsla() 문자열 (opacity 포함) */
+function hslaToCSS(h, s, l, a) {
+  return `hsla(${Math.round(h)} ${Math.round(s)}% ${Math.round(l)}% / ${a})`;
 }
 
-/* =========================================================================
-   ACCENT 생성 규칙 (보색 + 고급 톤 조절)
-   ========================================================================= */
-function makeAccent(base) {
-  let h = (base.h + 180) % 360;
-  let s = clamp(base.s + 20, 20, 95);
-  let l =
-    base.l > 50
-      ? clamp(base.l - 10, 15, 75)
-      : clamp(base.l + 10, 25, 85);
+/* =====================================================================
+   SECONDARY 색 생성 규칙
+   - Primary와 친한 형제색 (인접색조)
+   - 구조/리듬/서브 CTA에 어울리는 안정적인 색
+   ===================================================================== */
+function makeSecondary(base) {
+  const isWarm = base.h < 60 || base.h > 200;
+
+  let hueShift = isWarm ? 18 : 24;
+  let h = (base.h + hueShift + 360) % 360;
+  let s = clamp(base.s - 5, 25, 85);
+  let l = clamp(base.l + 6, 25, 78);
 
   return { h, s, l };
 }
 
-/* =========================================================================
+/* =====================================================================
+   ACCENT 색 생성 규칙
+   - Primary와 충분히 다른 대비 (보색에 가까운 쪽)
+   - CTA / 혜택 / 하이라이트에서 확실히 튀도록
+   ===================================================================== */
+function makeAccent(base) {
+  let h = (base.h + 190) % 360; // 보색보다 약간 더 이동해서 과한 충돌 방지
+  let s = clamp(base.s + 12, 30, 95);
+  let l;
+
+  if (base.l >= 50) {
+    // Primary가 밝으면 Accent는 살짝 어둡게
+    l = clamp(base.l - 8, 30, 65);
+  } else {
+    // Primary가 어두우면 Accent는 살짝 밝게
+    l = clamp(base.l + 10, 35, 70);
+  }
+
+  return { h, s, l };
+}
+
+/* =====================================================================
    Neutral / Gray Scale 생성기
-   → 상위 0.1% 시스템처럼 "항상 cool gray"로 고정
-   ========================================================================= */
+   → 항상 cool gray 고정 (브랜드색과 독립)
+   ===================================================================== */
 function makeNeutralSet() {
-  // Tailwind gray/neutral 느낌 참고한 고정 팔레트
   const h = 220;
 
   return {
@@ -297,114 +318,112 @@ function makeNeutralSet() {
   };
 }
 
-/* =========================================================================
-   Overlay / Surface / CTA / Gradient
-   → Surface는 neutral 기반, Overlay는 어두운 중립색 기반
-   ========================================================================= */
-function makeSurfaces(primary, accent, neutral) {
-  // SURFACE는 브랜드색 X, 무조건 neutral 계열에서만 뽑기
-  const surface = neutral[50];      // 카드/폼 바탕
-  const surfaceAlt = neutral[100];  // 살짝 띄워진 카드
+/* =====================================================================
+   3색 각각을 5개의 토큰 세트로 확장
+   - main: 본체 컬러
+   - soft: same HSL + opacity 0.12 (overlay / highlight)
+   - bg: 카드/섹션 배경용 밝은 톤
+   - border: 테두리/구분선용 중간 톤
+   - text: 링크/강조 텍스트용 살짝 어두운 톤
+   ===================================================================== */
+function makeColorSystem(color) {
+  const main = hslToCSS(color.h, color.s, color.l);
+  const soft = hslaToCSS(color.h, color.s, color.l, 0.12);
 
-  // Overlay는 기본적으로 검정 투명 레이어
-  const overlaySoft   = `hsla(0 0% 0% / 0.03)`;
-  const overlayMedium = `hsla(0 0% 0% / 0.06)`;
-  const overlayStrong = `hsla(0 0% 0% / 0.12)`;
+  const bgL = clamp(color.l + 42, 88, 98);
+  const bgS = clamp(color.s * 0.25, 10, 35);
+  const bg = hslToCSS(color.h, bgS, bgL);
 
-  // CTA는 accent 기반 (브랜드 하이라이트 포인트)
-  const cta = hslToCSS(accent.h, accent.s, accent.l);
-  const ctaHover = hslToCSS(
-    accent.h,
-    clamp(accent.s + 10, 0, 100),
-    clamp(accent.l - 5, 0, 100)
-  );
-  const ctaActive = hslToCSS(
-    accent.h,
-    clamp(accent.s + 12, 0, 100),
-    clamp(accent.l - 8, 0, 100)
-  );
+  const borderL = clamp(color.l + 18, 45, 82);
+  const borderS = clamp(color.s * 0.5, 15, 55);
+  const border = hslToCSS(color.h, borderS, borderL);
 
-  const gradientDiagonal = `linear-gradient(135deg, ${hslToCSS(
-    primary.h,
-    primary.s,
-    primary.l
-  )} 0%, ${hslToCSS(accent.h, accent.s, accent.l)} 100%)`;
+  const textL = clamp(color.l - 10, 28, 55);
+  const textS = clamp(color.s * 0.9, 30, 90);
+  const text = hslToCSS(color.h, textS, textL);
 
-  const gradientHorizontal = `linear-gradient(90deg, ${hslToCSS(
-    primary.h,
-    primary.s,
-    primary.l
-  )} 0%, ${hslToCSS(accent.h, accent.s, accent.l)} 100%)`;
-
-  return {
-    surface,
-    surfaceAlt,
-    overlaySoft,
-    overlayMedium,
-    overlayStrong,
-    cta,
-    ctaHover,
-    ctaActive,
-    gradientDiagonal,
-    gradientHorizontal,
-  };
+  return { main, soft, bg, border, text };
 }
 
-/* =========================================================================
-   SOFT TONE 생성기
-   → 원본 색(H/S/L) 그대로 + 투명도 0.12만 입힘
-   ========================================================================= */
-function makeSoftTone(color) {
-  return `hsla(${Math.round(color.h)} ${Math.round(color.s)}% ${Math.round(color.l)}% / 0.12)`;
-}
-
-/* =========================================================================
-   MAIN FUNCTION — Primary HEX 하나만 넣으면 brand.css 전체 생성
-   ========================================================================= */
+/* =====================================================================
+   MAIN FUNCTION — Primary HEX 하나만 넣으면 전체 brand.css 텍스트 생성
+   ===================================================================== */
 function makePalette(primaryHex) {
   const baseRaw = hexToHSL(primaryHex);
 
-  // 안전 범위 안에 조정 (너무 밝거나, 너무 채도 낮은 케이스 방어)
+  // 안전 범위 보정 (너무 채도 낮거나 / 너무 밝거나 한 색 방어)
   const base = {
     h: (baseRaw.h + 360) % 360,
-    s: clamp(baseRaw.s, 15, 85),
-    l: clamp(baseRaw.l, 18, 55),
+    s: clamp(baseRaw.s, 20, 85),
+    l: clamp(baseRaw.l, 22, 55),
   };
 
   const secondary = makeSecondary(base);
   const accent = makeAccent(base);
 
-  // neutral은 base와 완전 독립 (항상 cool gray)
   const neutral = makeNeutralSet();
 
-  // surface/overlay는 neutral/검정 기반
-  const surfaces = makeSurfaces(base, accent, neutral);
+  // 3색 → 5토큰 세트로 확장
+  const primarySet = makeColorSystem(base);
+  const secondarySet = makeColorSystem(secondary);
+  const accentSet = makeColorSystem(accent);
 
-  // ✅ soft tone: 원본 색 + opacity 0.12
-  const primarySoft   = makeSoftTone(base);
-  const secondarySoft = makeSoftTone(secondary);
-  const accentSoft    = makeSoftTone(accent);
+  // Gradient는 Primary ↔ Accent 기준
+  const gradientPrimary = `linear-gradient(60deg, ${primarySet.main} 0%, ${accentSet.main} 100%)`;
+  const gradientDiagonal = `linear-gradient(135deg, ${primarySet.main} 0%, ${accentSet.main} 100%)`;
+  const gradientHorizontal = `linear-gradient(90deg, ${primarySet.main} 0%, ${accentSet.main} 100%)`;
 
+  const surface = neutral[50];
+  const surfaceAlt = neutral[100];
+  const overlaySoft = `hsla(0 0% 0% / 0.03)`;
+  const overlayMedium = `hsla(0 0% 0% / 0.06)`;
+  const overlayStrong = `hsla(0 0% 0% / 0.12)`;
+
+  /* ==========================================================
+     최종 CSS 문자열
+     1) :root → 팔레트 + 뉴트럴 + 서피스 + 그라디언트
+     2) :root → 의미 토큰(Surfaces/Borders)
+     ========================================================== */
   const css = `/* ====================================================================
    BRAND COLOR SYSTEM (auto-generated from ${primaryHex})
    ==================================================================== */
 
+/* ------------------------------------------------
+   [1] PALETTE — 브랜드 기본 색상 (원재료)
+-------------------------------------------------*/
 :root {
-  /* ------------------------------------------------
-     [1] PALETTE — 브랜드 기본 색상 (원재료)
-  -------------------------------------------------*/
 
-  /* PRIMARY / SECONDARY / ACCENT */
-  --primary: ${hslToCSS(base.h, base.s, base.l)};
-  --primary-soft: ${primarySoft};
+/* =========================================================================
+   PRIMARY COLOR SYSTEM (5 tokens)
+   =========================================================================*/
+  --primary: ${primarySet.main};                /* 메인 포인트 컬러: 버튼 배경, 강한 아이콘, 핵심 강조 텍스트 */
+  --primary-soft: ${primarySet.soft};           /* 하이라이트, 모달 오버레이, 얇은 강조줄(형광펜 느낌) */
+  --primary-bg: ${primarySet.bg};               /* 카드/박스/섹션 라이트 배경용 */
+  --primary-border: ${primarySet.border};       /* 테두리, 구분선(라인 전용 컬러) */
+  --primary-text: ${primarySet.text};           /* 텍스트 전용 포인트 컬러: 링크, 상태 배지, 작은 강조 문장 */
 
-  --secondary: ${hslToCSS(secondary.h, secondary.s, secondary.l)};
-  --secondary-soft: ${secondarySoft};
+/* =========================================================================
+   SECONDARY COLOR SYSTEM (5 tokens)
+   =========================================================================*/
+  --secondary: ${secondarySet.main};              /* 메인 포인트 컬러: 버튼 배경, 강한 아이콘, 핵심 강조 텍스트 */
+  --secondary-soft: ${secondarySet.soft};         /* 하이라이트, 모달 오버레이, 얇은 강조줄(형광펜 느낌) */
+  --secondary-bg: ${secondarySet.bg};             /* 카드/박스/섹션 라이트 배경용 */
+  --secondary-border: ${secondarySet.border};     /* 테두리, 구분선(라인 전용 컬러) */
+  --secondary-text: ${secondarySet.text};         /* 텍스트 전용 포인트 컬러: 링크, 상태 배지, 작은 강조 문장 */
 
-  --accent: ${hslToCSS(accent.h, accent.s, accent.l)};
-  --accent-soft: ${accentSoft};
+/* =========================================================================
+   ACCENT COLOR SYSTEM (5 tokens)
+   =========================================================================*/
+  --accent: ${accentSet.main};                    /* 메인 포인트 컬러: 버튼 배경, 강한 아이콘, 핵심 강조 텍스트 */
+  --accent-soft: ${accentSet.soft};               /* 하이라이트, 모달 오버레이, 얇은 강조줄(형광펜 느낌) */
+  --accent-bg: ${accentSet.bg};                   /* 카드/박스/섹션 라이트 배경용 */
+  --accent-border: ${accentSet.border};           /* 테두리, 구분선(라인 전용 컬러) */
+  --accent-text: ${accentSet.text};               /* 텍스트 전용 포인트 컬러: 링크, 상태 배지, 작은 강조 문장 */
 
-  /* NEUTRAL SCALE (항상 cool gray, 브랜드색과 독립) */
+
+/* =========================================================================
+   NEUTRAL SCALE (항상 cool gray) - 무채색 계열
+   =========================================================================*/
   --neutral-900: ${neutral[900]};
   --neutral-800: ${neutral[800]};
   --neutral-700: ${neutral[700]};
@@ -415,28 +434,29 @@ function makePalette(primaryHex) {
   --neutral-100: ${neutral[100]};
   --neutral-50:  ${neutral[50]};
 
-  /* SURFACES / OVERLAYS */
-  --surface: ${surfaces.surface};
-  --surface-alt: ${surfaces.surfaceAlt};
-  --overlay-soft: ${surfaces.overlaySoft};
-  --overlay-medium: ${surfaces.overlayMedium};
-  --overlay-strong: ${surfaces.overlayStrong};
+/* =========================================================================
+   SURFACES / OVERLAYS - 무채색 계열
+   =========================================================================*/
+  --surface: ${surface};
+  --surface-alt: ${surfaceAlt};
+  --overlay-soft: ${overlaySoft};
+  --overlay-medium: ${overlayMedium};
+  --overlay-strong: ${overlayStrong};
 
-  /* CTA (버튼 등) */
-  --cta: ${surfaces.cta};
-  --cta-hover: ${surfaces.ctaHover};
-  --cta-active: ${surfaces.ctaActive};
+/* =========================================================================
+   GRADIENT 토큰 (3종)
+   =========================================================================*/
+  --gradient-primary: ${gradientPrimary};
+  --gradient-primary-diagonal: ${gradientDiagonal};
+  --gradient-primary-horizontal: ${gradientHorizontal};
 
-  /* GRADIENT (기존 + 2종 확장) */
-  --gradient-primary: ${surfaces.gradientDiagonal};
-  --gradient-primary-diagonal: ${surfaces.gradientDiagonal};
-  --gradient-primary-horizontal: ${surfaces.gradientHorizontal};
+}
 
-
-  /* ------------------------------------------------
-     [2] SEMANTIC SURFACES — 의미 토큰 (페이지/섹션/카드/모달)
-     → 브랜드색을 배경에 바로 쓰지 않고, 중립톤 위에만 얹는다
-  -------------------------------------------------*/
+/* ------------------------------------------------
+  [2-1] SEMANTIC SURFACES — 의미토큰 (페이지/섹션/카드/모달) 
+  → 무채색 계열, 브랜드 무관 기본 UI 구성요소.
+-------------------------------------------------*/
+:root {
 
   --page-bg: var(--neutral-50);          /* 전체 페이지 배경: 거의 흰색 */
   --section-bg: var(--neutral-50);       /* 기본 섹션 배경   */
@@ -446,43 +466,26 @@ function makePalette(primaryHex) {
   --card-elevated-bg: var(--surface-alt);/* 떠 있는 카드     */
   --modal-bg: var(--surface-alt);        /* 모달/패널 배경   */
 
-
-  /* ------------------------------------------------
-     [3] SEMANTIC BORDERS — 보더 계층
+  /* ------------------------------------------------ 
+  [2-2] SEMANTIC BORDERS — 보더 계층
+  → 무채색 계열
   -------------------------------------------------*/
 
   --border-subtle: var(--neutral-100);  /* 아주 연한 보더 (그리드, 구분선) */
-  --border-default: var(--neutral-200); /* 일반 보더 (폼, 카드)          */
-  --border-strong: var(--accent);       /* 강조 보더 (알림, 강조박스)     */
   --soft-border: var(--border-subtle);  /* 가장 부드러운 보더 의미 토큰 */
+  --border-default: var(--neutral-200); /* 일반 보더 (폼, 카드)          */
+  --border-strong: var(--neutral-300);  /* 강조 보더 (알림, 강조박스) */
 
-
-  /* ------------------------------------------------
-     [4] UI STATE COLORS — 상태색 (성공/경고/에러/정보)
-     → Primary와 독립적으로 유지 (가독성을 위해 고정 팔레트 사용)
-  -------------------------------------------------*/
-
-  --success: hsl(142 72% 35%);
-  --success-soft: hsl(142 76% 97%);
-
-  --warning: hsl(38 92% 50%);
-  --warning-soft: hsl(38 100% 96%);
-
-  --error: hsl(0 72% 50%);
-  --error-soft: hsl(0 100% 97%);
-
-  --info: hsl(210 90% 56%);
-  --info-soft: hsl(210 100% 97%);
 }
-
 `;
 
   return css;
 }
 
 /* ============================================================
-   실제 실행부 — 여기 HEX만 바꾸면 됨
-   예) "#1f5fae", "#d11111", "#1f2c3c" 등
+   실제 실행부 — 여기 Primary HEX만 바꾸면 된다.
+   예) "#1f5fae", "#0051ff", "#d11111" 등
 ============================================================ */
 
-console.log(makePalette("#0051ffff")); /* ◀◀ 선택한 색의 헥스값만 바꾸면 된다.*/
+// 예시
+console.log(makePalette("#1f5fae"));

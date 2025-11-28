@@ -164,7 +164,7 @@
 /*
 .fx-surface-dot-grid {}       도트 격자(dot-grid) 패턴 배경 효과
 .fx-surface-glass {}          글라스모피즘(반투명+블러+노이즈) 유리 표면 효과
-*/
+
 
 /*========================================================================================================================*/
 
@@ -2416,7 +2416,7 @@ JS 예시 (카운트 변경 시)
 ======================================================================================= */
 
 /* =========================================================================
-   12. 도트 격자 패턴 — fx-surface-dot-grid   [ 진짜 최소치로 봐줄만함 ] 
+   12-1. 도트 격자 패턴 — fx-surface-dot-grid   [ 진짜 최소치로 봐줄만함 ] 
    - 대시보드, 데이터 섹션, 기술/IT 분위기의 배경에 사용
 ========================================================================= */
 .fx-surface-dot-grid {
@@ -2427,7 +2427,7 @@ JS 예시 (카운트 변경 시)
 }
 
 /* =========================================================================
-   12. 글라스모피즘 유리 표면 — fx-surface-glass [ 최대한 양보해서 진짜 조금 봐줄만 ]
+   12-2. 글라스모피즘 유리 표면 — fx-surface-glass [ 최대한 양보해서 진짜 조금 봐줄만 ]
    - 반투명 유리 카드/패널/네비 등에 사용
    - 배경 blur와 투명한 테두리 + fill 모두 FX ROLE TOKENS 기반
 ========================================================================= */
@@ -2443,8 +2443,8 @@ JS 예시 (카운트 변경 시)
 }
 
 
-/* ==============================================================================================
-=========================== 12-A) Aurora Glow (오로라 글로우)- 섹션 배경전용 ====================
+/* =============================================================================================
+==== 12-3) Aurora Glow (오로라 글로우) ==========================================================
 ================================================================================================ */
 
 .fx-bg-aurora {
@@ -2469,8 +2469,7 @@ JS 예시 (카운트 변경 시)
 }
 
 /* =============================================================================================
-=========================== 12-B) 5Point Mesh Gradient =========================================
-==================== 섹션 너비 좁은곳이 어울림=CTA영역괜춘한듯 ==================================
+12-4) 5Point Mesh Gradient - 강한버전, 라이트버전 2개 // 둘다 존나 좋음 ===========================
 ================================================================================================ */
 
 /* 📌 역할
@@ -2555,71 +2554,7 @@ JS 예시 (카운트 변경 시)
 }
 
 /* =============================================================================================
-   12-C) Mesh Spotlight + Dot Grid Combo (고급 버전) — fx-bg-grid-dot-spotlight
-   - 고급 랜딩/데이터/설명 섹션에 최적화
-================================================================================================ */
-
-.fx-bg-grid-dot-spotlight {
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
-  background-color: var(--surface, #f9fafb);
-}
-
-/* 1) 그라데이션 스포트라이트: 뒤쪽 레이어 */
-.fx-bg-grid-dot-spotlight::before {
-  content: "";
-  position: absolute;
-  inset: -12%;
-  z-index: -2;
-  pointer-events: none;
-
-  background:
-    radial-gradient(circle at 15% 20%,
-      color-mix(in srgb, var(--primary) 36%, transparent) 0%,
-      transparent 60%
-    ),
-    radial-gradient(circle at 85% 40%,
-      color-mix(in srgb, var(--accent) 28%, transparent) 0%,
-      transparent 65%
-    ),
-    radial-gradient(circle at 52% 100%,
-      color-mix(in srgb, var(--primary) 22%, transparent) 0%,
-      transparent 70%
-    );
-
-  opacity: 0.78;   /* 너무 강하지 않게 */
-}
-
-/* 2) 도트 격자 패턴: 앞쪽 레이어 */
-.fx-bg-grid-dot-spotlight::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-
-  background-image:
-    radial-gradient(circle, 
-      color-mix(in srgb, var(--neutral-400) 80%, transparent) 1.2px,
-      transparent 1.2px
-    );
-
-  background-size: 20px 20px; 
-  opacity: 0.65;       /* 그라데이션을 덮지 않고 잘 조화되도록 */
-}
-
-/* 사용예시
-<section class="fx-bg-grid-spotlight py-28">
-  <div class="container text-center">
-    <h2 class="text-4xl font-bold text-neutral-900">고급 Dot Grid + Spotlight</h2>
-    <p class="mt-4 text-neutral-600">프리미엄 랜딩 디자인 Made by GPT & 대표님</p>
-  </div>
-</section>
-*/
-
-/* =============================================================================================
-   12-D) Soft Paper Surface (프리미엄 종이 질감) — fx-bg-soft-paper
+   12-5) Soft Paper Surface (프리미엄 종이 질감) — fx-bg-soft-paper
    - 긴 스토리, 숫자, 케이스 스터디, 긴 텍스트, 설명 들어가는 섹션에 어울림
 ================================================================================================ */
 
@@ -2676,9 +2611,8 @@ JS 예시 (카운트 변경 시)
   opacity: 0.9;
 }
 
-
 /* =============================================================================================
-   12-E) Glass Frost Field (글래스 프로스트 필드) — 섹션전용 fx-bg-glass-frost
+   12-6) Glass Frost Field (글래스 프로스트 필드) — 섹션전용 fx-bg-glass-frost
    ---------------------------------------------------------------------------------------------
    ✦ 언제 잘 어울리나?
      - Hero 바로 아래 “핵심 메시지 / 시스템 설명 / 가격·플랜 / 중요한 공지” 섹션
@@ -2773,39 +2707,3445 @@ JS 예시 (카운트 변경 시)
   transform: translateY(var(--fx-translate-soft-y, -3px));
 }
 
+/* =============================================================================================
+   12-7) Ultra Minimal Depth Field — fx-bg-depth-field
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - 긴 설명/프로세스/혜택 정리 섹션
+     - “내용은 많지만, 정신 없지 않고 정돈된 느낌”을 주고 싶을 때
+     - 애매한 그라데이션 대신, 단색+입체감만으로 고급스럽게 보이게 할 때
 
+   ✦ 디자인 특징
+     - 전체 섹션 안에 한 장의 큰 “깊이감 있는 판(plate)”을 얹은 구조
+     - 배경은 단색(surface 계열), 깊이감은 box-shadow / border로만 표현
+     - 그라데이션/도트 없이도, 섹션 들어가면 바로 보이는 명확한 패턴
 
-/* ============================================================================
-   ULTRA-LITE GRADIENT SECTION (극저사양 모드) — fx-bg-lite-gradient
-   - 큰 섹션에서도 렉 거의 없음
-============================================================================ */
+   ✦ 설계 포인트
+     - 색상: brand.css의 --surface / --surface-alt / --neutral-*만 사용
+     - 깊이: premium 역할토큰 shadow(--fx-shadow-soft / --fx-shadow-card)만 사용
+     - 퍼포먼스: blur·gradient 없음 → 큰 섹션에서도 렉 거의 없음
+============================================================================================= */
 
-.fx-bg-lite-gradient {
+.fx-bg-depth-field {
   position: relative;
   overflow: hidden;
   z-index: 0;
   background-color: var(--surface, #f9fafb);
 }
 
-.fx-bg-lite-gradient::before {
+/* 중앙에 큰 “깊이 판(plate)” 한 장을 얹어서 섹션 전체에 깊이감을 주는 레이어 */
+.fx-bg-depth-field::before {
   content: "";
   position: absolute;
-  inset: 0;             /* inset: -10% 등 제거 → 계산량↓ */
+
+  /* 섹션 안쪽으로 여백 두고 plate 배치 (뷰포트에 따라 유동) */
+  top: clamp(2.5rem, 7vh, 4.5rem);
+  bottom: clamp(2.5rem, 7vh, 4.5rem);
+  left: clamp(1.5rem, 5vw, 4rem);
+  right: clamp(1.5rem, 5vw, 4rem);
+
   z-index: -1;
+  pointer-events: none;
+
+  background-color: var(--surface-alt, #e5e7eb);
+  border-radius: var(--radius-2xl, 32px);
+
+  /* 살짝 밝은 테두리 + 소프트 그림자만으로 입체감 표현 */
+  border: 1px solid color-mix(
+    in srgb,
+    var(--neutral-200, #e5e7eb) 75%,
+    transparent 25%
+  );
+
+  box-shadow: var(--fx-shadow-soft, 0 12px 30px rgba(15, 23, 42, 0.12));
+}
+
+/* 선택 옵션: 안쪽 plate에 살짝 더 정제된 느낌을 주고 싶을 때 사용 */
+.fx-bg-depth-field-inner-soft {
+  background-color: color-mix(
+    in srgb,
+    var(--surface, #f9fafb) 85%,
+    var(--neutral-50, #f9fafb) 15%
+  );
+  border-radius: inherit;
+}
+
+
+/* =============================================================================================
+   12-8) Modular Soft Blocks Field — fx-bg-modular-soft
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - 2~4개의 카드/블럭이 가로로 배열되는 섹션 (혜택·프로세스·서비스 구성)
+     - “대시보드 / SaaS / IT / 시스템 소개” 느낌을 주고 싶을 때
+     - 너무 튀지 않으면서도, 섹션 구조가 한눈에 보이게 하고 싶을 때
+
+   ✦ 디자인 특징
+     - 섹션 배경 안에, 큰 “라운드 직사각형 블럭들”이 층층이 깔려 있는 느낌
+     - 그라데이션/도트 없이, 단색 + 라운드 + 그림자만으로 모듈 구조를 표현
+     - 대표님이 올려둔 카드/그리드 레이아웃과 자연스럽게 섞이는 타입
+
+   ✦ 설계 포인트
+     - 색상: brand.css의 --surface / --surface-alt / --neutral-*만 사용
+     - 깊이: box-shadow는 FX ROLE TOKENS의 --fx-shadow-soft / --fx-shadow-card 기반
+     - 퍼포먼스: blur, gradient, pattern 없음 → 큰 섹션에서도 렉 최소화
+============================================================================================= */
+
+.fx-bg-modular-soft {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--surface, #f9fafb);
+}
+
+/* 상단 쪽 넓은 모듈 블럭 */
+.fx-bg-modular-soft::before {
+  content: "";
+  position: absolute;
+
+  /* 섹션 상단 1/2 정도를 차지하는 넓은 블럭 */
+  top: clamp(1.5rem, 5vh, 3rem);
+  left: clamp(1.25rem, 4vw, 3rem);
+  right: clamp(1.25rem, 4vw, 3rem);
+  height: min(260px, 55%);
+
+  z-index: -1;
+  pointer-events: none;
+
+  background-color: color-mix(
+    in srgb,
+    var(--surface-alt, #e5e7eb) 85%,
+    white 15%
+  );
+  border-radius: var(--radius-2xl, 32px);
+
+  border: 1px solid color-mix(
+    in srgb,
+    var(--neutral-200, #e5e7eb) 80%,
+    transparent 20%
+  );
+
+  box-shadow: var(--fx-shadow-soft, 0 12px 30px rgba(15, 23, 42, 0.12));
+}
+
+/* 하단 쪽 좁은 모듈 블럭 (살짝 어긋난 레이어 느낌) */
+.fx-bg-modular-soft::after {
+  content: "";
+  position: absolute;
+
+  bottom: clamp(1.5rem, 5vh, 3rem);
+  left: clamp(3rem, 8vw, 6rem);
+  right: clamp(3rem, 8vw, 6rem);
+  height: min(180px, 38%);
+
+  z-index: -1;
+  pointer-events: none;
+
+  background-color: color-mix(
+    in srgb,
+    var(--surface, #f9fafb) 90%,
+    var(--neutral-100, #f3f4f6) 10%
+  );
+  border-radius: var(--radius-2xl, 32px);
+
+  border: 1px solid color-mix(
+    in srgb,
+    var(--neutral-200, #e5e7eb) 65%,
+    transparent 35%
+  );
+
+  box-shadow: var(--fx-shadow-card, 0 16px 36px rgba(15, 23, 42, 0.16));
+  transform: translateY(-4px);
+}
+
+/* (선택) 섹션 안 카드/블럭 정렬용 헬퍼 – 실제 콘텐츠 래퍼에 사용 */
+.fx-modular-block-row {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .fx-modular-block-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* 사용예시 모음
+-------------------------------------------------- */
+/*
+<section class="fx-bg-modular-soft py-20 md:py-28">
+  <div class="container mx-auto max-w-6xl px-4">
+    <header class="mb-10 text-center md:text-left">
+      <h2 class="text-2xl md:text-3xl font-bold text-neutral-900">
+        시스템 전체를 3개의 모듈로 나눠서 설명하는 섹션
+      </h2>
+      <p class="mt-3 text-neutral-700 max-w-2xl">
+        Modular Soft Blocks Field는, 그라데이션 없이도
+        섹션 안에 “보이지 않는 레이아웃 가이드”를 깔아주는 역할을 합니다.
+      </p>
+    </header>
+
+    <div class="fx-modular-block-row">
+      <article class="card p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Module 1 · 유입</h3>
+        <p class="text-neutral-700 text-sm">
+          어떤 광고 채널에서 어떤 고객을 데려오는지 구조를 보여줍니다.
+        </p>
+      </article>
+      <article class="card p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Module 2 · 랜딩</h3>
+        <p class="text-neutral-700 text-sm">
+          대표님의 랜딩 템플릿이 어떻게 DB 품질을 올리는지 설명합니다.
+        </p>
+      </article>
+      <article class="card p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">Module 3 · 후속 시스템</h3>
+        <p class="text-neutral-700 text-sm">
+          CRM·상담·후속 메시지까지 이어지는 전체 흐름을 정리합니다.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+*/
+
+/* =============================================================================================
+   12-9-1) Geometric Soft Clip — fx-bg-geo-clip [ 존나맘에듬 ]
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “프로세스·시스템 구조·플로우”를 설명하는 섹션
+     - B2B / SaaS / 정책자금 / 컨설팅 등, 살짝 하이엔드+논리적인 느낌 줄 때
+     - Hero 바로 아래 “우리 시스템 구조” / “3단계 플로우” / “서비스 구조도” 섹션
+
+   ✦ 디자인 특징
+     - 대각선으로 살짝 잘려나간 듯한 소프트 클리핑(clip) 도형 2~3개
+     - 그라데이션 / 도트 전혀 없이, 단색 + clip-path + 라운드 + 그림자만 사용
+     - 도형이 섹션 공간을 나누면서 “구조가 있다”는 느낌을 강하게 줌
+
+   ✦ 설계 포인트
+     - 색상: brand.css의 --surface / --surface-alt / --neutral-*만 사용 (단색)
+     - 깊이: box-shadow는 FX ROLE TOKENS (--fx-shadow-soft / --fx-shadow-card) 기반
+     - 퍼포먼스: blur / gradient / 패턴 없음 → 큰 섹션에도 렉 최소화
+============================================================================================= */
+
+.fx-bg-geo-clip {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--surface, #f9fafb);
+}
+
+/* 1) 상단 좌측 클리핑 도형 (대각선으로 잘린 큰 판) */
+.fx-bg-geo-clip::before {
+  content: "";
+  position: absolute;
+
+  /* 섹션 상단 왼쪽, 살짝 안쪽으로 들어와 있는 대형 도형 */
+  top: -20%;
+  left: -10%;
+  width: 55%;
+  height: 55%;
+
+  z-index: -1;
+  pointer-events: none;
+
+  background-color: color-mix(
+    in srgb,
+    var(--surface-alt, #e5e7eb) 85%,
+    white 15%
+  );
+
+  /* 부드러운 클리핑: 한쪽은 뾰족, 한쪽은 둥글게 */
+  border-radius: 32px;
+  clip-path: polygon(
+    0% 12%,
+    60% 0%,
+    100% 25%,
+    90% 80%,
+    10% 100%,
+    0% 70%
+  );
+
+  box-shadow: var(--fx-shadow-soft, 0 10px 28px rgba(15, 23, 42, 0.12));
+}
+
+/* 2) 하단 우측 캡슐형 도형 (Soft Clip Capsule) */
+.fx-bg-geo-clip::after {
+  content: "";
+  position: absolute;
+
+  bottom: -18%;
+  right: -8%;
+  width: 42%;
+  height: 40%;
+
+  z-index: -1;
+  pointer-events: none;
+
+  background-color: color-mix(
+    in srgb,
+    var(--neutral-100, #f3f4f6) 90%,
+    var(--neutral-200, #e5e7eb) 10%
+  );
+
+  border-radius: 999px;
+  clip-path: polygon(
+    0% 20%,
+    75% 0%,
+    100% 35%,
+    100% 80%,
+    25% 100%,
+    0% 65%
+  );
+
+  box-shadow: var(--fx-shadow-card, 0 16px 40px rgba(15, 23, 42, 0.16));
+}
+
+/* (선택) 섹션 안의 “구조 설명 블럭” 정렬용 헬퍼 */
+.fx-geo-clip-grid {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .fx-geo-clip-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* 사용예시 모음
+-------------------------------------------------- */
+/*
+<section class="fx-bg-geo-clip py-20 md:py-28">
+  <div class="container mx-auto max-w-6xl px-4">
+    <header class="mb-10 text-center md:text-left">
+      <h2 class="text-2xl md:text-3xl font-bold text-neutral-900">
+        우리 시스템은 이렇게 3개의 구조로 나뉩니다.
+      </h2>
+      <p class="mt-3 text-neutral-700 max-w-2xl">
+        Geometric Soft Clip 패턴은, 그라데이션 없이도
+        섹션 자체에 “구조가 잡혀 있다”는 느낌을 강하게 만들어 줍니다.
+      </p>
+    </header>
+
+    <div class="fx-geo-clip-grid">
+      <article class="card p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">01. 유입 구조</h3>
+        <p class="text-neutral-700 text-sm">
+          어떤 광고 채널에서, 어떤 메시지로 고객이 유입되는지 구조를 보여줍니다.
+        </p>
+      </article>
+      <article class="card p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">02. 랜딩 구조</h3>
+        <p class="text-neutral-700 text-sm">
+          랜딩 각 섹션이 어떤 역할을 담당하는지, 상위 구조를 한눈에 보여줍니다.
+        </p>
+      </article>
+      <article class="card p-6">
+        <h3 class="font-semibold text-neutral-900 mb-2">03. 후속 구조</h3>
+        <p class="text-neutral-700 text-sm">
+          상담·CRM·후속 메시지까지 이어지는 전체 구조를 정리합니다.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+*/
+
+/* =============================================================================================
+   12-9-2) Geometric Soft Clip PRO — fx-bg-geo-clip-pro [ 좌상, 우하 패턴 2개 - 괜춘 ] 
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 쓰는가?
+     - Hero 아래 핵심 메시지 섹션
+     - 시스템 소개 / 철학 소개 / Why Us? / 결과 요약
+     - 고급 SaaS / IT / Data 기반 랜딩
+     - "정보 구조"를 고급스럽게 보여주고 싶을 때
+
+   ✦ 디자인 특징
+     - 2-Layer Soft Clip (서로 다른 도형이 비대칭으로 얹힌 구조)
+     - Edge Soft Shadow로 깊이감 확보 (투머치 없이 미세하게)
+     - Negative Space 중심 설계 (텍스트가 공간 위에서 '떠 보임')
+     - 도형은 전부 무채색 기반 (중립적 + 프리미엄)
+     - 그라데이션·도트·그리드 → 절대 없음
+
+   ✦ 구성
+     - Layer 1: Large Soft Squircle (좌상단)
+     - Layer 2: Asymmetric Capsule Cut (우하단)
+============================================================================================= */
+
+.fx-bg-geo-clip-pro {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--surface, #f9fafb); /* 기본 바탕 */
+}
+
+/* -------------------------------------------------------
+   Layer 1 — Large Soft Squircle (좌상단)
+-------------------------------------------------------- */
+.fx-bg-geo-clip-pro::before {
+  content: "";
+  position: absolute;
+  width: 62%;
+  height: 75%;
+  top: -12%;
+  left: -10%;
+  z-index: -2;
+  pointer-events: none;
+
+  background: var(--neutral-100);
+  border-radius: 38% / 42%; /* squircle 형태 */
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.04),
+    0 8px 22px rgba(0, 0, 0, 0.06); /* edge soft shadow */
+
+  transform: rotate(-4deg);
+}
+
+/* -------------------------------------------------------
+   Layer 2 — Asymmetric Capsule Cut (우하단)
+-------------------------------------------------------- */
+.fx-bg-geo-clip-pro::after {
+  content: "";
+  position: absolute;
+  width: 48%;
+  height: 65%;
+  bottom: -15%;
+  right: -18%;
+  z-index: -1;
+  pointer-events: none;
+
+  background: var(--neutral-100);
+  border-radius: 50% / 26%; /* 길쭉한 캡슐 + 비대칭 */
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    0 6px 18px rgba(0, 0, 0, 0.05);
+
+  transform: rotate(3deg);
+}
+
+/* ============================
+   사용 예시
+============================ */
+/*
+<section class="fx-bg-geo-clip-pro py-24 md:py-32">
+  <div class="container mx-auto max-w-5xl px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-neutral-900">
+      시스템의 구조가 한눈에 보이는<br/>프리미엄 공간 구성
+    </h2>
+    <p class="mt-4 text-neutral-700 leading-relaxed">
+      도형 2개만으로도 섹션 전체 정보 구조의 깊이감이 살아나는 ‘Geometric Soft Clip PRO’ 패턴입니다.
+    </p>
+  </div>
+</section>
+*/
+
+/* =============================================================================================
+   12-10) Thin Line Geometry Field — fx-bg-thin-line-geo // 쓰기 좀 어려움 (하위자식 박스생성)
+   ---------------------------------------------------------------------------------------------
+   ✦ 역할
+     - 1~2px 선만으로 공간을 분할하는 미니멀 지오메트리 배경
+     - "상자 없이 선만으로 구조감을 주는" 하이엔드 패턴 (이제 눈에 확실히 보이게 튜닝)
+
+   ✦ 특징
+     - gradient(), 도트 패턴 없음
+     - 선 굵기 1.5~2px / 색상은 neutral-300~400 사용
+     - 섹션 안쪽까지 라인이 들어오도록 inset 값을 줄여서 존재감 ↑
+============================================================================================= */
+
+.fx-bg-thin-line-geo {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--surface, #f9fafb);
+}
+
+/* 1) 대각 + 세로 구조 라인 (뒤쪽 레이어) */
+.fx-bg-thin-line-geo::before {
+  content: "";
+  position: absolute;
+  inset: -6% 5% 40% -10%;  /* 화면 안쪽까지 라인 끌어오기 */
+  z-index: -2;
+  pointer-events: none;
+
+  border-top: 2px solid var(--neutral-300, #d4d4d8);   /* 상단 대각 라인 */
+  border-left: 2px solid var(--neutral-300, #d4d4d8);  /* 좌측 세로 라인 */
+
+  transform: rotate(-5deg) translate3d(0, 0, 0);
+}
+
+/* 2) 반대 방향 가로 + 세로 라인 (앞쪽 레이어) */
+.fx-bg-thin-line-geo::after {
+  content: "";
+  position: absolute;
+  inset: 35% -10% -6% 35%; /* 중앙~우측 영역에 라인 배치 */
+  z-index: -1;
+  pointer-events: none;
+
+  border-bottom: 1.5px solid var(--neutral-400, #9ca3af); /* 하단 가로 라인 */
+  border-right: 1.5px solid var(--neutral-400, #9ca3af);  /* 우측 세로 라인 */
+
+  transform: rotate(4deg) translate3d(0, 0, 0);
+}
+
+/* (선택) 내부 포인트 라인/노드 유틸 — 섹션 내용과 연동해서 쓰면 좋음 */
+
+/* 짧은 가로 라인 하나 (좌측 상단 쪽) 
+구현 방법: <div></div>로 박스 만들어서 넣어야함 */
+*/
+.fx-geo-line-node {
+  position: absolute;
+  top: 24%;
+  left: 8%;
+  width: 140px;
+  height: 2px;
+  background-color: var(--neutral-300, #d4d4d8);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+/* 작은 원형 노드 (우측 상단 포인트용) 
+구현 방법: <div></div>로 박스 만들어서 넣어야함 */
+.fx-geo-line-dot {
+  position: absolute;
+  top: 18%;
+  right: 10%;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1.5px solid var(--neutral-400, #9ca3af);
+  background-color: var(--surface, #f9fafb);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+  pointer-events: none;
+}
+
+/* =============================
+   사용예시 모음
+============================= */
+/*
+<section class="fx-bg-thin-line-geo py-20 md:py-28">
+  <div class="container relative mx-auto max-w-5xl px-4">
+    <!-- 필요하면 라인 노드/도트 활성화 -->
+    <div class="fx-geo-line-node"></div>
+    <div class="fx-geo-line-dot"></div>
+
+    <header class="max-w-2xl">
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900">
+        얇은 선으로만 구조를 만드는<br/>Thin Line Geometry Field
+      </h2>
+      <p class="mt-4 text-neutral-700">
+        이제는 “적용 안 된 줄 알겠다” 수준이 아니라,
+        확실히 보이지만 과하지 않은 상위 0.1% 라인 패턴입니다.
+      </p>
+    </header>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      <article class="space-y-2">
+        <h3 class="text-sm font-semibold text-neutral-500">STEP 1</h3>
+        <p class="font-medium text-neutral-900">현재 DB 구조 진단</p>
+      </article>
+      <article class="space-y-2">
+        <h3 class="text-sm font-semibold text-neutral-500">STEP 2</h3>
+        <p class="font-medium text-neutral-900">랜딩·광고·응대 프로세스 재설계</p>
+      </article>
+      <article class="space-y-2">
+        <h3 class="text-sm font-semibold text-neutral-500">STEP 3</h3>
+        <p class="font-medium text-neutral-900">운영 자동화 & 지표 모니터링</p>
+      </article>
+    </div>
+  </div>
+</section>
+*/
+
+
+/* =========================================================================================================
+   12-11) Geometric Soft Clip (Large Plane Version) — fx-bg-geo-plane [ Pri, Accen 원 2개, 무채원 1개 ] - 괜춘
+   --------------------------------------------------------------------------------------------------------
+   ✦ 역할
+     - 섹션을 "기하학적 큰 면(Plane)"으로 분절하여 구조적 깊이 부여
+     - 그라데이션 없이 깊이를 주는 최상위 기법 (Linear / Stripe 계열)
+     - 도형이 "섹션 안쪽까지" 명확히 들어와 존재감 확실
+
+   ✦ 특징
+     - clip-path + solid color + opacity ONLY
+     - 도형 2~3개: 라운드 캡슐 / 라운드 스퀘어 / 기하학적 큰 면
+     - 섹션 레이아웃 전체가 기하학으로 재프레임됨
+============================================================================================= */
+
+.fx-bg-geo-plane {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--surface, #ffffff);
+}
+
+/* 1) Left-Top Large Capsule */
+.fx-bg-geo-plane::before {
+  content: "";
+  position: absolute;
+  width: 70vw;
+  height: 70vw;
+  top: -28vw;
+  left: -22vw;
+
+  background-color: color-mix(in srgb, var(--primary) 9%, transparent);
+  opacity: 0.9;
+
+  /* 거대한 라운드 캡슐 형태 */
+  border-radius: 40% / 55%;
+
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* 2) Right-Middle Round Plane */
+.fx-bg-geo-plane::after {
+  content: "";
+  position: absolute;
+  width: 55vw;
+  height: 45vw;
+  top: 22%;
+  right: -18%;
+
+  background-color: color-mix(in srgb, var(--accent) 11%, transparent);
+  opacity: 0.85;
+
+  border-radius: 38% / 48%;
+  transform: rotate(8deg);
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* (옵션) 중앙 하단 서브-Wedge Plane — fx-bg-geo-plane-sub   
+보조 <div class="fx-bg-geo-plane-sub"></div> 형태로 만들어서 넣기
+  */
+.fx-bg-geo-plane-sub {
+  position: absolute;
+  width: 40vw;
+  height: 32vw;
+  bottom: -18%;
+  left: 22%;
+
+  background-color: color-mix(in srgb, var(--neutral-300) 22%, transparent);
+  opacity: 0.4;
+
+  border-radius: 32%;
+  transform: rotate(-6deg);
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* =============================================================================================
+   12-12) Soft Mono Shape Field [ 좌상-우상, 좌하, 우하 ] = 총 4개 패턴 // 굿
+   — fx-bg-mono-shapes:  좌상-우상 2개패턴
+   — fx-bg-mono-shapes-3: 좌하 1개 패턴
+   — fx-bg-mono-shapes-4: 우하 1개 패턴
+   ------------------------------------------------------------------------------------------------
+   ✦ 역할
+     - Stripe / Linear / Apple UI처럼 “고급 비대칭 도형 필드” 생성
+     - 정보 섹션이 밋밋해지는 것을 방지하고, 시각적 리듬을 부여
+     - 그라데이션·노이즈 없이도 존재감 확실한 하이엔드 패턴
+
+   ✦ 특징
+     - 도형 4~6개 (원/타원/라운드 캡슐)
+     - brand.css의 primary / accent / neutral 기반으로만 구성
+     - opacity 0.06 ~ 0.12 사이로 “확실히 보이지만 과하지 않음”
+============================================================================================= */
+
+.fx-bg-mono-shapes {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--surface, #ffffff);
+}
+
+/* ------------------------- */
+/* 1) 좌측 상단 Large Capsule */
+.fx-bg-mono-shapes::before {
+  content: "";
+  position: absolute;
+  width: 42vw;
+  height: 22vw;
+  top: -12%;
+  left: -10%;
+
+  background-color: color-mix(in srgb, var(--primary) 15%, transparent);
+  opacity: 0.5;
+
+  border-radius: 40% / 60%;
+  transform: rotate(-6deg);
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ------------------------- */
+/* 2) 우측 상단 Medium Round */
+.fx-bg-mono-shapes::after {
+  content: "";
+  position: absolute;
+  width: 26vw;
+  height: 26vw;
+  top: -6%;
+  right: -4%;
+
+  background-color: color-mix(in srgb, var(--accent) 15%, transparent);
+  opacity: 0.5;
+
+  border-radius: 50%;
+  transform: rotate(8deg);
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------- */
+/* 3) 좌측 하단 Sub Oval — fx-bg-mono-shapes-3 
+구현 방법: fx-bg-mono-shapes의 하위 자식 위치에 <div></div>로 박스 만들어서 넣어야함 */
+
+.fx-bg-mono-shapes-3 {
+  position: absolute;
+  width: 32vw;
+  height: 18vw;
+  bottom: -14%;
+  left: 12%;
+
+  background-color: color-mix(in srgb, var(--neutral-400) 20%, transparent);
+  opacity: 0.5;
+
+  border-radius: 45% / 60%;
+  transform: rotate(4deg);
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------- */
+/* 4) 우측 하단 Long Capsule — fx-bg-mono-shapes-4
+구현 방법: fx-bg-mono-shapes의 하위 자식 위치에 <div></div>로 박스 만들어서 넣어야함 */
+.fx-bg-mono-shapes-4 {
+  position: absolute;
+  width: 50vw;
+  height: 20vw;
+  bottom: -22%;
+  right: -8%;
+
+  background-color: color-mix(in srgb, var(--primary) 15%, transparent);
+  opacity: 0.5;
+
+  border-radius: 50% / 35%;
+  transform: rotate(-12deg);
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* =====================================================================
+   12-13) Multi-Clip Mask Planes  // 굿
+   — fx-bg-multi-clip: 좌상(primary), 우하(accent) 잘린면 패턴 2개
+   — fx-bg-multi-clip-center: 중단(neutral) 잘린면 패턴 1개 // 섹션 하위 <div class=""> 별도생성후 삽입
+   ---------------------------------------------------------------------
+   ✦ 역할
+     - 섹션을 2~3개의 ‘잘려 나간 면(Plane)’으로 나눠주는 고급 기하학 패턴
+     - 정보 섹션 / 비교 섹션 / Before-After 섹션에 구조감을 줌
+     - 그라데이션, 도트 없이도 레이아웃 자체가 고급스럽게 보이게 설계
+
+   ✦ 특징
+     - 모든 면은 solid color + clip-path polygon만 사용 (퍼포먼스 친화적)
+     - brand.css의 --primary / --accent / --neutral-* 색만 사용
+     - base 섹션 2면(좌상, 우하) + 선택형 중앙 Plane 1개 (총 3장 구조)
+   ==================================================================== */
+
+.fx-bg-multi-clip {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--surface, #ffffff);
+}
+
+/* 1) Left-Top Plane (Primary 기반) */
+.fx-bg-multi-clip::before {
+  content: "";
+  position: absolute;
+  inset: -12% 45% 58% -18%; /* top/right/bottom/left */
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  opacity: 0.9;
+
+  /* 살짝 잘려나간 비대칭 사다리꼴 */
+  clip-path: polygon(
+    0% 0%,
+    100% 8%,
+    90% 100%,
+    0% 82%
+  );
+
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* 2) Right-Bottom Plane (Accent 기반) */
+.fx-bg-multi-clip::after {
+  content: "";
+  position: absolute;
+  inset: 40% -22% -18% 40%;
+  background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+  opacity: 0.9;
+
+  clip-path: polygon(
+    10% 0%,
+    100% 10%,
+    100% 100%,
+    0% 90%
+  );
+
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* 3) 중앙 대각 Plane (선택적 사용) — fx-bg-multi-clip-center
+   섹션 안쪽에 하위박스로 <div class="fx-bg-multi-clip-center"></div>를 하나 넣어서 사용
+*/
+.fx-bg-multi-clip-center {
+  position: absolute;
+  inset: 18% 6% 42% 10%; /* top/right/bottom/left */
+  background-color: color-mix(in srgb, var(--neutral-200, #e5e7eb) 55%, transparent);
+  opacity: 0.9;
+
+  clip-path: polygon(
+    0% 0%,
+    100% 12%,
+    100% 100%,
+    8% 92%
+  );
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* =====================================================================
+   12-15) Offset Parallel Lines Field — fx-bg-offset-lines [ 느낌 좋음 ] 
+   ---------------------------------------------------------------------
+   ✦ 역할
+     - 사선으로 살짝 기울어진 "평행 라인 그룹"으로 섹션에 리듬/방향감 부여
+     - 데이터/성과/타임라인/프로세스 설명 섹션에 잘 어울림
+     - 상위 0.1% 사이트에서 자주 쓰는, 미니멀하지만 존재감 확실한 라인 패턴
+
+   ✦ 특징
+     - 그라데이션/도트 없음 — 순수 solid color + box-shadow + transform만 사용
+     - 좌상(Primary계열 라인 4개) + 우하(Accent계열 라인 4개) 기본 구성
+     - 필요 시 중앙 라인 블록을 <div class="fx-offset-lines-center">로 추가 가능
+   ==================================================================== */
+
+.fx-bg-offset-lines {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--surface, #ffffff);
+}
+
+/* 1) Left-Top Parallel Lines (Primary 톤) */
+.fx-bg-offset-lines::before {
+  content: "";
+  position: absolute;
+  top: 8%;
+  left: -15%;
+  width: 140%;
+  height: 1px; /* 기본 라인 두께 */
+
+  background-color: color-mix(in srgb, var(--primary) 22%, transparent);
+  opacity: 0.55;
+
+  /* 같은 색상을 box-shadow로 여러 줄 복제 → 평행 라인 4개 */
+  box-shadow:
+    0 10px 0 currentColor,
+    0 20px 0 currentColor,
+    0 30px 0 currentColor,
+    0 40px 0 currentColor;
+
+  transform: rotate(-10deg);
+  transform-origin: left center;
+
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* 2) Right-Bottom Parallel Lines (Accent 톤) */
+.fx-bg-offset-lines::after {
+  content: "";
+  position: absolute;
+
+  /* 👉 좀 더 위·왼쪽으로 끌어올림 */
+  bottom: 5%;      /* -4% → 5% : 섹션 안쪽으로 이동 */
+  right: -10%;       /* -18% → -8% : 너무 바깥으로 안 나가게 */
+
+  width: 130%;      /* 150% → 130% : 과하게 길지 않게 */
+  height: 1px;    /* 1px: 기본두께 */
+
+  /* 👉 accent가 없을 때도 primary로 fallback */
+  background-color: color-mix(
+    in srgb,
+    var(--accent) 22%,  /* 20% → 22% : 채도/명도 강화 */
+    transparent
+  );
+  opacity: 0.55;   
+
+  box-shadow:
+    0 -10px 0 currentColor,
+    0 -20px 0 currentColor,
+    0 -30px 0 currentColor,
+    0 -40px 0 currentColor;
+
+  transform: rotate(-4deg);  /* -6deg → -4deg : 각도도 약간 완화 */
+  transform-origin: right center;
+
+  z-index: -2;
+  pointer-events: none;
+}
+/* 3) (옵션) 중앙 라인 블록 — fx-offset-lines-center
+   섹션 안에서 <div class="fx-offset-lines-center"></div> 추가해서 사용
+   - 예: 카드/그래프 위쪽에 살짝 지나가는 라인 포인트 */
+.fx-offset-lines-center {
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  width: 120%;
+  height: 1px;
+
+  background-color: color-mix(in srgb, var(--neutral-400, #9ca3af) 60%, transparent);
+  opacity: 0.45;
+
+  box-shadow:
+    0 8px 0 currentColor,
+    0 -8px 0 currentColor;
+
+  transform: rotate(2deg);
+  transform-origin: center;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* ================================================================
+   12-16. Contour Line Field [ 너무좋다 ] 
+   - 복잡한 문제 지형, 뿌리 깊은 원인 구조를 ‘지형도/등고선’처럼 표현
+   - Pain-point Box / Solution Box 뒤 레이어에 깔아주면
+     “표면 문제 위에, 보이지 않던 문제의 지형이 깔려 있다”는 느낌 제공
+   - Offset Parallel Lines보다 더 유기적인 곡선 / 흐름 강조
+   ----------------------------------------------------------------
+   [설계 원칙]
+   1) 완전 배경 레이어: 텍스트·카드와는 항상 z-index로 분리
+   2) 투명도 낮게: 실질적인 대비는 낮추고, ‘느낌’만 남긴다.
+   3) 선 색:
+      - 기본선: var(--border-subtle) / var(--neutral-200)
+      - 강조선: var(--primary-border) 또는 var(--accent-border)
+   4) 사용 위치:
+      - 섹션 전체 배경, 특히 “문제 분석 / 인사이트 / 리포트” 섹션
+      - Pain-point Box, 진단 카드, 차트/그래프 뒤쪽 레이어
+   5) Tailwind와의 역할 분리:
+      - Tailwind: 레이아웃(패딩/그리드/정렬) 전용
+      - contour 클래스: 배경 효과 전용
+   ================================================================ */
+
+.contour-field {
+  position: relative;
+  overflow: hidden;
+  background: var(--section-bg); /* 기본 섹션 라이트 배경 */
+}
+
+/* 컨투어 라인 공통 변수 (선 색·투명도) */
+.contour-field {
+  --contour-stroke: var(--border-subtle);      /* 기본 등고선 색 (중립) */
+  --contour-stroke-strong: var(--primary-border); /* 강한 등고선 (문제 축, 중심 축) */
+  --contour-opacity: 0.55;                     /* 전체 레이어 투명도 */
+}
+
+/* 실제 등고선 레이어: section/container 안에 한 겹 깔리는 배경 */
+.contour-field::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  opacity: var(--contour-opacity);
+  mix-blend-mode: multiply;
+
+  /* 
+    여러 개의 곡선/지형 레이어를 중첩해서 
+    “지형도/등고선” 같은 느낌을 만드는 패턴.
+    - circle at X% Y% : 중심 위치
+    - color stop으로 얇은 라인만 남기고 양쪽은 투명 처리
+  */
+  background-image:
+    radial-gradient(
+      circle at 10% 20%,
+      transparent 60%,
+      var(--contour-stroke) 61%,
+      transparent 63%
+    ),
+    radial-gradient(
+      circle at 80% 10%,
+      transparent 55%,
+      var(--contour-stroke) 56%,
+      transparent 58%
+    ),
+    radial-gradient(
+      circle at 20% 85%,
+      transparent 52%,
+      var(--contour-stroke-strong) 53%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 90% 70%,
+      transparent 65%,
+      var(--contour-stroke) 66%,
+      transparent 68%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 45%,
+      var(--contour-stroke-strong) 46%,
+      transparent 48%
+    );
+  background-repeat: no-repeat;
+  background-size: 130% 130%;
+  transform: translate3d(0, 0, 0);
+}
+
+/* 필요 시 “조금 더 조용한 컨투어” 버전 */
+.contour-field.is-soft::before {
+  opacity: 0.35;
+}
+
+/* 필요 시 “문제 지점 강조용 컨투어” 버전 (Pain 섹션에 쓰기 좋음) */
+.contour-field.is-pain::before {
+  --contour-stroke: var(--primary-soft);
+  --contour-stroke-strong: var(--primary-border);
+}
+
+/* 필요 시 “해결/인사이트 섹션”에서 감성/긍정톤 컨투어 */
+.contour-field.is-solution::before {
+  --contour-stroke: var(--accent-soft);
+  --contour-stroke-strong: var(--accent-border);
+}
+
+/* =============================================================================================
+   12-17) Border Corner Lines Field — 섹션전용 fx-border-corners [ 소소 / 카드용도 적합할듯 ], 모서리 또한 뾰족해짐
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “문제 → 원인 구조 → 솔루션”을 단계적으로 설명하는 분석/인사이트 섹션
+     - 레포트/진단 카드, Pain-point Box, Solution Box를 담는 컨테이너 섹션
+     - “프리미엄 대시보드 / 리포트 / 컨설팅 결과 요약” 같은 고급 정보형 레이아웃
+
+   ✦ 디자인 특징
+     - 전체 테두리를 다 두르지 않고, 네 귀퉁이에만 ‘ㄴ’ 형태 라인이 들어가는 미니멀 스타일
+     - var(--border-subtle) ~ var(--primary-border) 를 사용해 
+       “깔끔한 구획감 + 살짝 강조된 정보 박스” 느낌을 만듦
+     - hover/focus 상태에서 fx 공통 역할토큰(--fx-duration-*, --fx-ease-soft, --fx-shadow-soft 등)을
+       통해 Corner 라인의 색·강도·그림자만 살짝 증폭
+
+   ✦ 설계 포인트
+     - 색상은 brand.css의 의미토큰/팔레트 토큰만 사용:
+       · 기본선  : var(--border-subtle) / var(--border-default)
+       · 강조선  : var(--primary-border) 또는 var(--accent-border)
+       · 배경톤  : var(--card-bg) 또는 var(--section-bg)
+     - 모션·깊이·글로우는 premium FX 공통 역할토큰만 사용:
+       · 시간/이징 : var(--fx-duration-normal), var(--fx-ease-soft)
+       · 그림자    : var(--fx-shadow-soft)
+       · 글로우    : 필요 시 var(--fx-glow-outline-soft-primary / accent)
+     - Tailwind는 여전히 단순 레이아웃(패딩/그리드)만 담당하고,
+       코너 라인/강도/색/애니메이션은 전부 fx-border-corners 계열이 담당
+============================================================================================= */
+/* 기본 Corner Field 래퍼 — 섹션/카드 어떤 곳이든 감쌀 수 있는 공통 래퍼 */
+.fx-border-corners {
+  position: relative;
+  isolation: isolate;                     /* 자식 z-index 분리 */
+  border-radius: inherit;                 /* 부모 radius 상속 */
+  
+  /* Corner 효과용 커스텀 파라미터 (필요 시 오버라이드 가능) */
+  --fx-border-corners-color-base:   var(--border-subtle);
+  --fx-border-corners-color-strong: var(--primary-border);
+  --fx-border-corners-length:       28px; /* 코너 라인 길이 */
+  --fx-border-corners-thickness:    2px;  /* 코너 라인 두께 */
+  --fx-border-corners-inset:        6px;  /* 카드/섹션 모서리에서 안쪽으로 들어오는 거리 */
+
+  --fx-border-corners-opacity:      0.75; /* 기본 코너 라인 가시성 */
+  --fx-border-corners-opacity-hover: 1;   /* hover 시 가시성 */
+
+  transition:
+    box-shadow var(--fx-duration-normal) var(--fx-ease-soft),
+    transform var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* 코너 라인 레이어 (before: 기본선, after: 강조선) */
+.fx-border-corners::before,
+.fx-border-corners::after {
+  content: "";
+  position: absolute;
+  inset: var(--fx-border-corners-inset);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* 기본 Corner 라인 (얇은 neutral 계열) */
+.fx-border-corners::before {
+  opacity: var(--fx-border-corners-opacity);
+  background:
+    /* 좌상단 */
+    linear-gradient(
+      to right,
+      var(--fx-border-corners-color-base) 0,
+      var(--fx-border-corners-color-base) 100%
+    ) top left / var(--fx-border-corners-length) var(--fx-border-corners-thickness) no-repeat,
+    linear-gradient(
+      to bottom,
+      var(--fx-border-corners-color-base) 0,
+      var(--fx-border-corners-color-base) 100%
+    ) top left / var(--fx-border-corners-thickness) var(--fx-border-corners-length) no-repeat,
+
+    /* 우상단 */
+    linear-gradient(
+      to left,
+      var(--fx-border-corners-color-base) 0,
+      var(--fx-border-corners-color-base) 100%
+    ) top right / var(--fx-border-corners-length) var(--fx-border-corners-thickness) no-repeat,
+    linear-gradient(
+      to bottom,
+      var(--fx-border-corners-color-base) 0,
+      var(--fx-border-corners-color-base) 100%
+    ) top right / var(--fx-border-corners-thickness) var(--fx-border-corners-length) no-repeat,
+
+    /* 좌하단 */
+    linear-gradient(
+      to right,
+      var(--fx-border-corners-color-base) 0,
+      var(--fx-border-corners-color-base) 100%
+    ) bottom left / var(--fx-border-corners-length) var(--fx-border-corners-thickness) no-repeat,
+    linear-gradient(
+      to top,
+      var(--fx-border-corners-color-base) 0,
+      var(--fx-border-corners-color-base) 100%
+    ) bottom left / var(--fx-border-corners-thickness) var(--fx-border-corners-length) no-repeat,
+
+    /* 우하단 */
+    linear-gradient(
+      to left,
+      var(--fx-border-corners-color-base) 0,
+      var(--fx-border-corners-color-base) 100%
+    ) bottom right / var(--fx-border-corners-length) var(--fx-border-corners-thickness) no-repeat,
+    linear-gradient(
+      to top,
+      var(--fx-border-corners-color-base) 0,
+      var(--fx-border-corners-color-base) 100%
+    ) bottom right / var(--fx-border-corners-thickness) var(--fx-border-corners-length) no-repeat;
+}
+
+/* 강조 Corner 레이어 (primary / accent 계열로 훨씬 얇게, 살짝 안쪽) */
+.fx-border-corners::after {
+  opacity: 0; /* 기본은 거의 보이지 않다가 hover/focus 시 드러남 */
+  inset: calc(var(--fx-border-corners-inset) + 2px);
+  background:
+    /* 좌상단 */
+    linear-gradient(
+      to right,
+      var(--fx-border-corners-color-strong) 0,
+      transparent 100%
+    ) top left / calc(var(--fx-border-corners-length) * 0.9) 1px no-repeat,
+    linear-gradient(
+      to bottom,
+      var(--fx-border-corners-color-strong) 0,
+      transparent 100%
+    ) top left / 1px calc(var(--fx-border-corners-length) * 0.9) no-repeat,
+
+    /* 우상단 */
+    linear-gradient(
+      to left,
+      var(--fx-border-corners-color-strong) 0,
+      transparent 100%
+    ) top right / calc(var(--fx-border-corners-length) * 0.9) 1px no-repeat,
+    linear-gradient(
+      to bottom,
+      var(--fx-border-corners-color-strong) 0,
+      transparent 100%
+    ) top right / 1px calc(var(--fx-border-corners-length) * 0.9) no-repeat,
+
+    /* 좌하단 */
+    linear-gradient(
+      to right,
+      var(--fx-border-corners-color-strong) 0,
+      transparent 100%
+    ) bottom left / calc(var(--fx-border-corners-length) * 0.9) 1px no-repeat,
+    linear-gradient(
+      to top,
+      var(--fx-border-corners-color-strong) 0,
+      transparent 100%
+    ) bottom left / 1px calc(var(--fx-border-corners-length) * 0.9) no-repeat,
+
+    /* 우하단 */
+    linear-gradient(
+      to left,
+      var(--fx-border-corners-color-strong) 0,
+      transparent 100%
+    ) bottom right / calc(var(--fx-border-corners-length) * 0.9) 1px no-repeat,
+    linear-gradient(
+      to top,
+      var(--fx-border-corners-color-strong) 0,
+      transparent 100%
+    ) bottom right / 1px calc(var(--fx-border-corners-length) * 0.9) no-repeat;
+
+  transition:
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* Hover / 강조 상태 — Corner를 살짝 더 강하게, 그림자 추가 */
+.fx-border-corners:hover,
+.fx-border-corners.is-active,
+.fx-border-corners.is-highlighted {
+  transform: translateY(var(--fx-translate-soft-y));
+  box-shadow: var(--fx-shadow-soft);
+}
+
+.fx-border-corners:hover::before,
+.fx-border-corners.is-active::before,
+.fx-border-corners.is-highlighted::before {
+  opacity: var(--fx-border-corners-opacity-hover);
+}
+
+.fx-border-corners:hover::after,
+.fx-border-corners.is-active::after,
+.fx-border-corners.is-highlighted::after {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------
+   Variants — 의미 기반 Corner 스타일 변형
+   - 기본은 neutral 계열 + primary-border
+   - 아래 변형으로 accent/neutral-only/strong-border 스타일 분리
+
+   사용법 ) 
+   <section class="★fx-border-corners★ ★fx-border-corners--primary-strong★ ">
+   동일한 클래스에 fx-border-corners가 먼저 오고 그 뒤에 와야함
+------------------------------------------------------------------- */
+
+/* 1) Accent Corner 강조 — Solution / Success / Highlight 섹션용 */
+.fx-border-corners--accent {
+  --fx-border-corners-color-base:   var(--border-default);
+  --fx-border-corners-color-strong: var(--accent-border);
+}
+
+/* 2) Neutral-only — 단순 구획(레이아웃) 강조, 브랜드 컬러 최소 사용 */
+.fx-border-corners--subtle {
+  --fx-border-corners-color-base:   var(--border-subtle);
+  --fx-border-corners-color-strong: var(--border-default);
+}
+
+/* 3) Strong Primary — 아주 중요한 분석/레포트 블록에 사용 */
+.fx-border-corners--primary-strong {
+  --fx-border-corners-color-base:   var(--primary-border);
+  --fx-border-corners-color-strong: var(--primary-border);
+  --fx-border-corners-opacity:      0.9;
+}
+
+
+/* =============================================================================================
+   12-18) Ultra Minimal Depth Planes (울트라 미니멀 깊이 플레인) — 섹션전용 fx-depth-planes [ 별로 ]
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “분석 / 인사이트 / 전략 플랜 / 로드맵” 섹션
+     - 장표형(슬라이드 느낌) 카드가 2~3단으로 놓인 레이아웃
+     - ‘과장된 그래픽 없이’ 깊이감과 위계만 깔끔하게 주고 싶을 때
+   ✦ 디자인 특징
+     - section 전체 배경은 var(--section-bg) / var(--section-alt-bg) 같은 뉴트럴 계열
+     - 뒤에는 얇은 평면(plane) 2~3장이 겹쳐져, 레이어 구조와 깊이감을 최소한으로 표현
+     - 각 plane은 brand.css의
+       - var(--card-bg), var(--card-elevated-bg)
+       - var(--overlay-soft)
+       를 섞어서 색을 만들고,
+       그림자는 premium 역할 토큰(--fx-shadow-card / --fx-shadow-layered)을 참조
+   ✦ 설계 포인트
+     - 색상은 전부 brand.css의 neutral/surface 토큰 + primary/overlay를 mix해서 사용
+     - 깊이/그림자/살짝 떠 있는 정도는 FX ROLE TOKENS (shadow / translate / scale) 기반
+     - 실제 콘텐츠 카드는 Tailwind로 레이아웃만 잡고,
+       배경 깊이감은 .fx-depth-planes 클래스가 전담
+============================================================================================= */
+
+/* ------------------------------------------------------------------
+   Base Layout — 섹션 베이스 컨테이너
+------------------------------------------------------------------- */
+.fx-depth-planes {
+  position: relative;
+  isolation: isolate;
+  background: var(--section-bg);
+  padding-block: 4rem;
+  overflow: visible;
+}
+
+.fx-depth-planes-inner {
+  position: relative;
+  z-index: -1; /* plane들보다 항상 위에 오도록 */
+}
+
+/* ------------------------------------------------------------------
+   Depth Plane Tokens — plane용 커스텀 프로퍼티 기본값
+------------------------------------------------------------------- */
+.fx-depth-planes {
+  --fx-depth-plane-radius: 24px;
+  --fx-depth-plane-max-width: 1120px;
+
+  --fx-depth-plane-bg-back:   color-mix(in srgb, var(--card-bg) 80%, var(--overlay-soft) 20%);
+  --fx-depth-plane-bg-front:  color-mix(in srgb, var(--card-elevated-bg) 85%, white 15%);
+
+  --fx-depth-plane-shadow-back:  var(--fx-shadow-soft);
+  --fx-depth-plane-shadow-front: var(--fx-shadow-card);
+
+  --fx-depth-plane-opacity-back:  0.9;
+  --fx-depth-plane-opacity-front: 1;
+
+  --fx-depth-plane-translate-back-y:  24px; /* 뒤 plane Y 오프셋 */
+  --fx-depth-plane-translate-front-y: 8px;  /* 앞 plane Y 오프셋 */
+
+  --fx-depth-plane-offset-x: 4%;            /* 좌/우 살짝 밀어주기 비율 */
+}
+
+/* ------------------------------------------------------------------
+   Pseudo Planes — 실제 평면 2장 (뒤/앞)
+   ⚠️ 이전 버전 inset-inline: 50% 때문에 폭이 0처럼 나오는 문제가 있어서
+      width + left:50% + translateX(-50%) 방식으로 수정
+------------------------------------------------------------------- */
+.fx-depth-planes::before,
+.fx-depth-planes::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: min(100% - 2rem, var(--fx-depth-plane-max-width));
+  height: 35%;
+  border-radius: var(--fx-depth-plane-radius);
+  transform-origin: center;
+  pointer-events: none;
+  z-index: -2;
+}
+
+/* 뒤 plane */
+.fx-depth-planes::before {
+  transform: translate(
+      calc(-50% - var(--fx-depth-plane-offset-x)),
+      var(--fx-depth-plane-translate-back-y)
+    );
+  background: var(--fx-depth-plane-bg-back);
+  box-shadow: var(--fx-depth-plane-shadow-back);
+  opacity: var(--fx-depth-plane-opacity-back);
+}
+
+/* 앞 plane */
+.fx-depth-planes::after {
+  transform: translate(
+      calc(-50% + var(--fx-depth-plane-offset-x)),
+      var(--fx-depth-plane-translate-front-y)
+    );
+  background: var(--fx-depth-plane-bg-front);
+  box-shadow: var(--fx-depth-plane-shadow-front);
+  opacity: var(--fx-depth-plane-opacity-front);
+}
+
+/* ------------------------------------------------------------------
+   Hover / Scroll Reveal 연동 (옵션)
+------------------------------------------------------------------- */
+.fx-depth-planes:hover::before {
+  transform: translate(
+      calc(-50% - var(--fx-depth-plane-offset-x)),
+      calc(var(--fx-depth-plane-translate-back-y) - var(--fx-translate-soft-y))
+    );
+  transition:
+    transform var(--fx-duration-normal) var(--fx-ease-soft),
+    box-shadow var(--fx-duration-normal) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+.fx-depth-planes:hover::after {
+  transform: translate(
+      calc(-50% + var(--fx-depth-plane-offset-x)),
+      calc(var(--fx-depth-plane-translate-front-y) - var(--fx-translate-soft-y))
+    );
+  box-shadow: var(--fx-shadow-raise);
+  transition:
+    transform var(--fx-duration-normal) var(--fx-ease-soft),
+    box-shadow var(--fx-duration-normal) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* ------------------------------------------------------------------
+   Variants — 의미 기반 깊이감 강도 조절
+
+  사용법 ) 
+  <section class="oooo + abc">
+  동일한 클래스에 oooo가 먼저 오고 그 뒤에 abc가 와야함
+------------------------------------------------------------------- */
+
+/* 1) Subtle Depth — 텍스트 위주의 리포트 섹션, 깊이감 최소화 */
+.fx-depth-planes--subtle {
+  --fx-depth-plane-shadow-back:  none;
+  --fx-depth-plane-shadow-front: var(--fx-shadow-soft);
+
+  --fx-depth-plane-opacity-back:  0.7;
+  --fx-depth-plane-opacity-front: 0.96;
+
+  --fx-depth-plane-translate-back-y:  16px;
+  --fx-depth-plane-translate-front-y: 4px;
+}
+
+/* 2) Strong Depth — 메인 인사이트/핵심 전략 플랜 섹션 */
+.fx-depth-planes--strong {
+  --fx-depth-plane-shadow-back:  var(--fx-shadow-card);
+  --fx-depth-plane-shadow-front: var(--fx-shadow-layered);
+
+  --fx-depth-plane-opacity-back:  1;
+  --fx-depth-plane-opacity-front: 1;
+
+  --fx-depth-plane-translate-back-y:  32px;
+  --fx-depth-plane-translate-front-y: 12px;
+}
+
+/* 3) Accent Edge — 앞 plane 테두리에 살짝 브랜드 포인트 라인 */
+.fx-depth-planes--accent-edge::after {
+  outline: 1px solid color-mix(in srgb, var(--primary-border) 60%, transparent 40%);
+  outline-offset: 0;
+}
+
+/* ------------------------------------------------------------------
+   Usage 예시 (HTML 구조 메모)
+------------------------------------------------------------------- */
+/*
+<section class="fx-depth-planes fx-depth-planes--strong">
+  <div class="fx-depth-planes-inner max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- 여기 안에는 Tailwind로 카드/그리드/텍스트만 배치 -->
+  </div>
+</section>
+*/
+
+/* =============================================================================================
+   12-19) Embossed Surface Lines (줄글 스타일) //  [ 쏘쏘, 나중에 몇번쓸수도 ] 
+   fx-emboss-lines  << 얘랑 뒤에 따라오는 애들 같이 쓰는게 좋음 varient ? 무튼 그거
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - 리포트/진단/지표 요약 섹션(표·카드가 많이 나오는 구간)
+     - “깔끔한 종이 위에 살짝 눌러 찍힌 줄” 같은 고급스러운 질감이 필요할 때
+     - Hero 바로 아래의 설명 섹션, 또는 긴 복합 정보 블록의 배경
+
+   ✦ 디자인 특징
+     - 카드/섹션 배경 위에 아주 얕은 ‘엠보스 줄무늬’가 반복되어, 텍스트 가독성은 유지하면서
+       화면이 너무 밋밋해 보이지 않도록 미세한 깊이감만 추가
+     - 상·하 방향으로 밝은 선 + 어두운 선이 1픽셀씩 붙어 있어 실제 종이를 눌러 찍은 것처럼 보임
+     - brand.css의 무채색 보더 토큰(--border-subtle, --border-default)을 기본으로 사용
+
+   ✦ 설계 포인트
+     - 줄 사이 간격, 엠보스 강도(밝기/어둡기)는 FX 역할토큰과 커스텀 프로퍼티로 제어
+     - 실제 컨텐츠는 .fx-emboss-lines-inner 안에 넣어서 선보다 위 레이어(z-index)에서 표시
+     - Tailwind는 레이아웃(패딩/그리드/정렬) 전용, 엠보스 느낌은 fx-emboss-lines가 전담
+============================================================================================= */
+
+/* ------------------------------------------------------------------
+   Base Layout — 섹션 베이스 컨테이너
+------------------------------------------------------------------- */
+.fx-emboss-lines {
+  position: relative;
+  isolation: isolate;
+  background: var(--section-bg);
+  overflow: hidden; /* 섹션 밖으로 나가는 패턴은 잘라줌 */
+}
+
+/* 컨텐츠 래퍼: 항상 엠보스 패턴보다 위에 위치 */
+.fx-emboss-lines-inner {
+  position: relative;
+  z-index: -4;
+}
+
+/* ------------------------------------------------------------------
+   Emboss Tokens — 엠보스 패턴용 커스텀 프로퍼티 기본값
+------------------------------------------------------------------- */
+.fx-emboss-lines {
+  --fx-emboss-line-gap: 18px;              /* 줄 간격 (줄 한 세트 + 여백) */
+  --fx-emboss-line-thickness: 1px;         /* 한 줄 두께 */
+  --fx-emboss-lines-opacity: 0.45;         /* 전체 패턴 투명도 */
+
+  /* 기본 라인 컬러: neutral 계열을 살짝 밝게/어둡게 섞어서 양각 느낌 */
+  --fx-emboss-line-light: color-mix(in srgb, var(--border-subtle) 70%, white 30%);
+  --fx-emboss-line-dark:  color-mix(in srgb, var(--border-default) 80%, black 20%);
+}
+
+/* ------------------------------------------------------------------
+   Pseudo Layer — 실제 엠보스 줄무늬 레이어
+------------------------------------------------------------------- */
+.fx-emboss-lines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+
+  /* 위: 밝은 선 1px, 그 아래: 어두운 선 1px, 그 이후는 투명 → 줄 간격 반복 */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      var(--fx-emboss-line-light),
+      var(--fx-emboss-line-light) var(--fx-emboss-line-thickness),
+      var(--fx-emboss-line-dark)  var(--fx-emboss-line-thickness),
+      var(--fx-emboss-line-dark) calc(var(--fx-emboss-line-thickness) * 2),
+      transparent                calc(var(--fx-emboss-line-thickness) * 2),
+      transparent                var(--fx-emboss-line-gap)
+    );
+
+  opacity: var(--fx-emboss-lines-opacity);
+}
+
+/* ------------------------------------------------------------------
+   Variants — 의미 기반 스타일 변형
+  사용법 ) 
+  <section class="oooo + abc">
+  동일한 클래스에 oooo가 먼저 오고 그 뒤에 abc가 와야함
+------------------------------------------------------------------- */
+
+/* 1) Primary Emphasis — 중요한 분석/전략 섹션
+      → 줄 색을 살짝 Primary 쪽으로 당겨서 브랜드 톤 가미 */
+.fx-emboss-lines--primary {
+  --fx-emboss-line-light: color-mix(
+    in srgb,
+    var(--primary-bg) 60%,
+    white 40%
+  );
+  --fx-emboss-line-dark: color-mix(
+    in srgb,
+    var(--primary-border) 75%,
+    var(--neutral-400) 25%
+  );
+}
+
+/* 2) Accent Emphasis — 혜택/성공사례/전환 강조 섹션
+      → Accent 계열을 섞어서 더 따뜻한 엠보스 느낌 */
+.fx-emboss-lines--accent {
+  --fx-emboss-line-light: color-mix(
+    in srgb,
+    var(--accent-bg) 65%,
+    white 35%
+  );
+  --fx-emboss-line-dark: color-mix(
+    in srgb,
+    var(--accent-border) 70%,
+    var(--neutral-300) 30%
+  );
+}
+
+/* 3) Subtle Minimal — 거의 안 보일 정도로 아주 약한 엠보스 (거의 플랫에 가까움) */
+.fx-emboss-lines--subtle {
+  --fx-emboss-lines-opacity: 0.24;
+  --fx-emboss-line-gap: 22px;
+}
+
+/* 4) Dense Metrics — 데이터/표가 많은 구간에서 촘촘한 그리드 느낌 */
+.fx-emboss-lines--dense {
+  --fx-emboss-line-gap: 12px;
+  --fx-emboss-lines-opacity: 0.5;
+}
+
+
+/* =============================================================================================
+   12-20) Faux 3D Planes (가짜 3D 플레인) — 섹션전용 fx-faux-3d  [ 쏘쏘 - 그냥 그럼 ]
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “우리 시스템 구조 / 로드맵 / 파이프라인” 같은 복잡한 구조를 요약할 때
+     - 제품/서비스를 ‘입체적인 보드 위에 올려둔 느낌’으로 보여주고 싶을 때
+     - 인사이트/전략 요약, Before-After 프로세스, 3~5단계 플로우 설명 섹션
+
+   ✦ 디자인 특징
+     - 섹션 배경 안에 얕게 기울어진 3D 보드(plane)를 깔고, 그 위에 실제 카드/텍스트를 배치
+     - 진짜 3D가 아니라 perspective + rotateX/rotateY만으로 연출하는 ‘Faux 3D’
+     - brand.css의 card-bg / card-elevated-bg + primary/accent-border를 사용해
+       브랜드 정체성은 유지하면서도 고급스러운 입체감만 추가
+
+   ✦ 설계 포인트
+     - .fx-faux-3d는 섹션 전체에 적용, 실제 컨텐츠는 .fx-faux-3d-inner 안에 넣기
+     - 3D 보드(::before)는 항상 텍스트 뒤 z-index에서 깔리도록 설계
+     - 깊이/기울기/그림자 강도는 FX 역할 토큰(--fx-shadow-*, --fx-duration-*, --fx-ease-*) 사용
+============================================================================================= */
+
+/* ------------------------------------------------------------------
+   Base Layout — 섹션 베이스 컨테이너
+------------------------------------------------------------------- */
+.fx-faux-3d {
+  position: relative;
+  isolation: isolate;
+  background: var(--section-bg);
+  perspective: 1400px;                  /* 입체감 원근감 */
+  overflow: visible;                     /* plane·그림자가 섹션 밖으로 약간 나가도 허용 */
+}
+
+/* 실제 컨텐츠 래퍼: 항상 3D plane보다 위에 위치 */
+.fx-faux-3d-inner {
+  position: relative;
+  z-index: -1;
+  transform-style: preserve-3d;
+}
+
+/* ------------------------------------------------------------------
+   Faux 3D Tokens — 3D 보드용 커스텀 프로퍼티 기본값
+------------------------------------------------------------------- */
+.fx-faux-3d {
+  --fx-3d-plane-max-width: 1120px;
+  --fx-3d-plane-height:    360px;
+
+  --fx-3d-plane-radius:    28px;
+
+  --fx-3d-plane-bg:        linear-gradient(
+                             135deg,
+                             color-mix(in srgb, var(--card-bg) 80%, white 20%),
+                             color-mix(in srgb, var(--card-elevated-bg) 80%, white 20%)
+                           );
+  --fx-3d-plane-border:    color-mix(in srgb, var(--primary-border) 60%, transparent 40%);
+  --fx-3d-plane-shadow:    var(--fx-shadow-layered);
+
+  --fx-3d-tilt-x: 18deg;   /* 위/아래 기울기 (X축 회전) */
+  --fx-3d-tilt-y: -10deg;  /* 좌/우 기울기 (Y축 회전) */
+  --fx-3d-translate-y: 36px;
+
+  --fx-3d-shadow-opacity: 0.35;  /* 바닥 그림자 투명도 */
+}
+
+/* ------------------------------------------------------------------
+   Main 3D Plane — tilted board behind content
+------------------------------------------------------------------- */
+.fx-faux-3d::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform-style: preserve-3d;
+  width: min(100% - 2rem, var(--fx-3d-plane-max-width));
+  height: var(--fx-3d-plane-height);
+
+  transform:
+    translate3d(-50%, var(--fx-3d-translate-y), 0)
+    rotateX(var(--fx-3d-tilt-x))
+    rotateY(var(--fx-3d-tilt-y));
+
+  background: var(--fx-3d-plane-bg);
+  border-radius: var(--fx-3d-plane-radius);
+  border: 1px solid var(--fx-3d-plane-border);
+  box-shadow: var(--fx-3d-plane-shadow);
+
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------
+   Ground Shadow — plane 아래 바닥 그림자
+------------------------------------------------------------------- */
+.fx-faux-3d::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: calc(45% + var(--fx-3d-translate-y) + 40px);
+  width: min(100% - 4rem, calc(var(--fx-3d-plane-max-width) * 0.9));
+  height: 140px;
+  transform: translateX(-50%);
+  z-index: -3;
   pointer-events: none;
 
   background:
     radial-gradient(
-      circle at 15% 20%,
-      color-mix(in srgb, var(--primary) 28%, transparent) 0%,
+      ellipse at center,
+      rgba(15, 23, 42, var(--fx-3d-shadow-opacity)) 0%,
+      rgba(15, 23, 42, 0) 70%
+    );
+  filter: blur(8px);
+}
+
+/* ------------------------------------------------------------------
+   Hover Interaction — 살짝 떠오르는 입체감
+------------------------------------------------------------------- */
+.fx-faux-3d:hover::before {
+  transform:
+    translate3d(-50%, calc(var(--fx-3d-translate-y) - 8px), 0)
+    rotateX(calc(var(--fx-3d-tilt-x) - 2deg))
+    rotateY(calc(var(--fx-3d-tilt-y) + 2deg));
+  box-shadow: var(--fx-shadow-raise);
+
+  transition:
+    transform var(--fx-duration-slow) var(--fx-ease-smooth),
+    box-shadow var(--fx-duration-slow) var(--fx-ease-smooth);
+}
+
+.fx-faux-3d:hover::after {
+  opacity: calc(var(--fx-3d-shadow-opacity) * 0.9);
+  filter: blur(10px);
+  transition:
+    opacity var(--fx-duration-normal) var(--fx-ease-soft),
+    filter  var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* ------------------------------------------------------------------
+   Variants — 의미 기반 입체감/브랜드 톤 조절
+------------------------------------------------------------------- */
+
+/* 1) Accent Board — 전환/액션 강조용 3D 보드 */
+.fx-faux-3d--accent {
+  --fx-3d-plane-bg: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent-bg) 70%, white 30%),
+    color-mix(in srgb, var(--card-elevated-bg) 70%, var(--accent-bg) 30%)
+  );
+  --fx-3d-plane-border: color-mix(in srgb, var(--accent-border) 70%, transparent 30%);
+}
+
+/* 2) Primary Strong — 핵심 전략/인사이트 보드 (더 진한 Primary 테두리) */
+.fx-faux-3d--primary-strong {
+  --fx-3d-plane-border: color-mix(in srgb, var(--primary-border) 85%, transparent 15%);
+  --fx-3d-plane-shadow: var(--fx-shadow-layered);
+}
+
+/* 3) Shallow Tilt — 더 얕은 기울기 (텍스트가 많은 섹션용) */
+.fx-faux-3d--shallow {
+  --fx-3d-tilt-x: 10deg;
+  --fx-3d-tilt-y: -6deg;
+  --fx-3d-translate-y: 28px;
+}
+
+
+/* =============================================================================================
+   12-21) Minimal Capsule Scatter (미니멀 캡슐 스캐터) — 섹션전용 fx-capsule-scatter [ 괜춘 ] 
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “핵심 기능 요약 / 혜택 리스트 / 태그 나열” 섹션의 뒤 배경
+     - Keyword Tag, Benefit Pill, Badge들이 실제로 떠 있는 느낌을 보조할 때
+     - Hero 바로 아래, 혹은 Problem → Solution 전환부에 ‘가벼운 활기’만 더하고 싶을 때
+
+   ✦ 디자인 특징
+     - 섹션 배경 위에 아주 연한 캡슐(알약/태그) 모양이 3~5개 정도 흩어져 있는 느낌
+     - 실제 컨텐츠는 평면(card-bg) 위에 있고, 캡슐들은 아주 낮은 불투명도로만 존재
+     - brand.css의 primary / accent / neutral 계열을 섞되, 시각적 소음은 최소화
+
+   ✦ 설계 포인트
+     - .fx-capsule-scatter는 섹션 전체에 적용, 실제 컨텐츠는 .fx-capsule-scatter-inner 안에 배치
+     - 캡슐은 전부 ::before / ::after로만 그림. 텍스트 클릭/스와이프에 전혀 간섭하지 않도록 pointer-events: none
+     - 색/강도는 FX 역할 토큰(--fx-shadow-soft, --fx-duration-*, --fx-ease-soft) + brand 토큰만 사용
+============================================================================================= */
+
+/* ------------------------------------------------------------------
+   Base Layout — 섹션 베이스 컨테이너
+   
+   사용법 )
+   - 섹션에 "fx-capsule-scatter" 넣기
+   - 하위 콘텐츠 "fx-capsule-scatter-inner" 넣기
+  >> 그래야, 콘텐츠들이 패턴 위로 올라감
+------------------------------------------------------------------- */
+.fx-capsule-scatter {
+  position: relative;
+  isolation: isolate;
+  background: var(--section-bg);
+  overflow: hidden; /* 캡슐이 섹션 밖으로 튀어나가지 않게 */
+}
+
+/* 실제 컨텐츠 래퍼: 항상 캡슐 위에 올라가도록 */
+.fx-capsule-scatter-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------------
+   Capsule Tokens — 캡슐 형태/색상 기본값
+------------------------------------------------------------------- */
+.fx-capsule-scatter {
+  --fx-capsule-width:  180px;
+  --fx-capsule-height: 40px;
+  --fx-capsule-radius: 9999px;
+
+  /* 색상 블렌딩: neutral + primary / accent 살짝 섞기 */
+  --fx-capsule-color-primary: color-mix(
+    in srgb,
+    var(--primary-bg) 70%,
+    var(--primary-soft) 30%
+  );
+  --fx-capsule-color-accent: color-mix(
+    in srgb,
+    var(--accent-bg) 70%,
+    var(--accent-soft) 30%
+  );
+  --fx-capsule-color-neutral: color-mix(
+    in srgb,
+    var(--neutral-100) 75%,
+    white 25%
+  );
+
+  --fx-capsule-opacity: 0.9;    /* 전체 투명도 (섹션에 따라 변형 가능) */
+  --fx-capsule-blur:    0px;     /* 필요 시 살짝 블러 줄 수 있는 여유값 */
+
+  --fx-capsule-tilt:    -6deg;   /* 기본 기울기 */
+}
+
+/* ------------------------------------------------------------------
+   Scatter Capsules — 배경 캡슐 군집 (좌측/우측)
+   - 한 개의 캡슐 + box-shadow로 여러 개 복제
+------------------------------------------------------------------- */
+.fx-capsule-scatter::before,
+.fx-capsule-scatter::after {
+  content: "";
+  position: absolute;
+  width: var(--fx-capsule-width);
+  height: var(--fx-capsule-height);
+  border-radius: var(--fx-capsule-radius);
+  transform: rotate(var(--fx-capsule-tilt));
+  filter: blur(var(--fx-capsule-blur));
+  opacity: var(--fx-capsule-opacity);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 좌측 상단 / 중앙 근처 캡슐 군집 */
+.fx-capsule-scatter::before {
+  top: 14%;
+  left: -40px;
+  background: var(--fx-capsule-color-neutral);
+
+  /* box-shadow 여러 개로 캡슐 복제 */
+  box-shadow:
+    260px 40px  0 0 var(--fx-capsule-color-primary),
+    120px 130px 0 0 var(--fx-capsule-color-neutral),
+    330px 140px 0 0 var(--fx-capsule-color-accent);
+}
+
+/* 우측 하단 근처 캡슐 군집 (조금 더 작게) */
+.fx-capsule-scatter::after {
+  bottom: 4%;
+  right: -60px;
+  transform: rotate(calc(var(--fx-capsule-tilt) * -1)) scale(0.8);
+  background: var(--fx-capsule-color-primary);
+
+  box-shadow:
+    -260px -40px 0 0 var(--fx-capsule-color-neutral),
+    -130px -100px 0 0 var(--fx-capsule-color-accent);
+}
+
+/* ------------------------------------------------------------------
+   Hover Interaction — 스크롤/hover 시 미세한 이동감 (선택)
+------------------------------------------------------------------- */
+.fx-capsule-scatter:hover::before {
+  transform: translateY(-4px) rotate(calc(var(--fx-capsule-tilt) - 1deg));
+  transition:
+    transform var(--fx-duration-normal) var(--fx-ease-soft),
+    box-shadow var(--fx-duration-normal) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+.fx-capsule-scatter:hover::after {
+  transform: translateY(-6px)
+             rotate(calc(var(--fx-capsule-tilt) * -1 + 1deg))
+             scale(0.8);
+  transition:
+    transform var(--fx-duration-normal) var(--fx-ease-soft),
+    box-shadow var(--fx-duration-normal) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* ------------------------------------------------------------------
+   Variants — 밀도/톤/브랜드 포커스 조절
+------------------------------------------------------------------- */
+
+/* 1) Subtle (기본보다 더 연한 버전) — 텍스트 위주 리포트 섹션 */
+.fx-capsule-scatter--subtle {
+  --fx-capsule-opacity: 0.26;
+  --fx-capsule-blur: 2px;
+}
+
+/* 2) Accent Focus — 혜택/강조 포인트 섹션, accent 비중↑ */
+.fx-capsule-scatter--accent {
+  --fx-capsule-color-primary: color-mix(
+    in srgb,
+    var(--accent-bg) 70%,
+    var(--accent-soft) 30%
+  );
+  --fx-capsule-color-accent: color-mix(
+    in srgb,
+    var(--primary-bg) 60%,
+    var(--primary-soft) 40%
+  );
+}
+
+/* 3) Dense Scatter — 더 많은 캡슐이 있는 느낌 (조금 더 복잡한 배경) */
+.fx-capsule-scatter--dense::before {
+  box-shadow:
+    260px 40px   0 0 var(--fx-capsule-color-primary),
+    120px 130px  0 0 var(--fx-capsule-color-neutral),
+    330px 140px  0 0 var(--fx-capsule-color-accent),
+    80px  210px  0 0 var(--fx-capsule-color-neutral);
+}
+
+.fx-capsule-scatter--dense::after {
+  box-shadow:
+    -260px -40px  0 0 var(--fx-capsule-color-neutral),
+    -130px -100px 0 0 var(--fx-capsule-color-accent),
+    -320px -10px  0 0 var(--fx-capsule-color-primary);
+}
+
+
+/* =============================================================================================
+   12-22) Origami Fold Planes (오리가미 폴드 플레인) — 섹션전용 fx-origami-fold  [ 아 이쁜데 ]
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “핵심 인사이트 / 요약 정리 / 제안서 하이라이트” 같은 보고서형 섹션
+     - 케이스 스터디 결론부, 리포트의 핵심 요약, 플랜 정리 섹션
+   ✦ 디자인 특징
+     - 섹션 중앙에 한 장의 종이가 접혀 있는 듯한 상·하단 폴드(fold) 효과
+     - 카드 배경은 깔끔하게 유지하면서, 상·하단에만 다이아몬드형 접힌 면이 생김
+   ✦ 설계 포인트
+     - 색상은 brand.css의 --card-bg / --section-alt-bg / --primary-bg / --accent-bg만 사용
+     - 깊이감/그림자는 premium 역할 토큰(--fx-shadow-soft / --fx-shadow-card) 기반
+     - hover 시 살짝 접힌 면이 더 살아나도록 모션은 --fx-duration-* / --fx-ease-soft 사용
+============================================================================================= */
+
+/* ------------------------------------------------------------------
+   Base Layout — 섹션 베이스 컨테이너
+
+   사용방법 )  
+   섹션에 fx-origami-fold 넣기
+   콘텐츠에 fx-origami-fold-inner 넣기 [항상 콘텐츠가 올라감]
+------------------------------------------------------------------- */
+.fx-origami-fold {
+  position: relative;
+  isolation: isolate;
+  background: var(--section-bg);
+  overflow: hidden;
+  padding-block: 4.5rem;
+}
+
+/* 실제 컨텐츠 래퍼: 항상 폴드 플레인 위에 올라가도록 */
+.fx-origami-fold-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------------
+   Origami Tokens — 폴드 형태/색상 기본값
+------------------------------------------------------------------- */
+.fx-origami-fold {
+  --fx-origami-max-width: 1120px;
+  --fx-origami-radius: 24px;
+
+  --fx-origami-height-top:  34%;
+  --fx-origami-height-bot:  32%;
+  --fx-origami-angle:       8deg;   /* 접히는 각도 느낌 */
+
+  /* 메인 패널/폴드 면 색상 (brand 토큰 기반) */
+  --fx-origami-main-bg:    var(--card-bg);
+  --fx-origami-fold-top-bg: color-mix(
+    in srgb,
+    var(--primary-bg) 70%,
+    var(--overlay-soft) 30%
+  );
+  --fx-origami-fold-bot-bg: color-mix(
+    in srgb,
+    var(--accent-bg) 70%,
+    var(--overlay-soft) 30%
+  );
+
+  --fx-origami-border-color: color-mix(
+    in srgb,
+    var(--primary-border) 55%,
+    transparent 45%
+  );
+
+  --fx-origami-shadow-main:  var(--fx-shadow-soft);
+  --fx-origami-shadow-fold:  var(--fx-shadow-card);
+
+  --fx-origami-opacity-top:  0.96;
+  --fx-origami-opacity-bot:  0.96;
+}
+
+/* ------------------------------------------------------------------
+   Main Panel — 가운데 메인 카드 판때기
+------------------------------------------------------------------- */
+.fx-origami-fold::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(100% - 2.5rem, var(--fx-origami-max-width));
+  height: calc(100% - 3.5rem);
+  transform: translate(-50%, -50%);
+  border-radius: var(--fx-origami-radius);
+  background: var(--fx-origami-main-bg);
+  box-shadow: var(--fx-origami-shadow-main);
+  border: 1px solid color-mix(
+    in srgb,
+    var(--soft-border) 70%,
+    transparent 30%
+  );
+  z-index: 1;
+}
+
+/* ------------------------------------------------------------------
+   Fold Planes — 위/아래 접힌 종이 면
+   - clip-path로 다이아몬드/폴드 모양을 만들어서 메인 패널에 겹침
+------------------------------------------------------------------- */
+.fx-origami-fold::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(100% - 2.5rem, var(--fx-origami-max-width));
+  height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+
+  /* 상단/하단 폴드를 한 번에 그리는 복합 그라디언트 */
+  background:
+    /* 상단 폴드 */
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--fx-origami-fold-top-bg) 85%, white 15%),
+      color-mix(in srgb, var(--fx-origami-main-bg) 70%, transparent 30%)
+    ) top / 100% var(--fx-origami-height-top) no-repeat,
+    /* 하단 폴드 */
+    linear-gradient(
+      -135deg,
+      color-mix(in srgb, var(--fx-origami-fold-bot-bg) 85%, white 15%),
+      color-mix(in srgb, var(--fx-origami-main-bg) 70%, transparent 30%)
+    ) bottom / 100% var(--fx-origami-height-bot) no-repeat;
+
+  /* 양 끝이 접힌 것처럼 보이는 다이아몬드 형태의 클리핑 */
+  clip-path: polygon(
+    0% 0%,
+    50% calc(0% + var(--fx-origami-height-top) / 2),
+    100% 0%,
+    100% 100%,
+    50% calc(100% - var(--fx-origami-height-bot) / 2),
+    0% 100%
+  );
+
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  opacity: 1;
+}
+
+/* 얇은 폴드 경계선(위/아래 접힌 면의 날) */
+.fx-origami-fold .fx-origami-fold-edge {
+  position: absolute;
+  left: 50%;
+  width: min(100% - 2.5rem, var(--fx-origami-max-width));
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fx-origami-fold .fx-origami-fold-edge--top {
+  top: calc(50% - var(--fx-origami-height-top) / 2);
+  border-top: 1px solid var(--fx-origami-border-color);
+}
+
+.fx-origami-fold .fx-origami-fold-edge--bottom {
+  bottom: calc(50% - var(--fx-origami-height-bot) / 2);
+  border-bottom: 1px solid var(--fx-origami-border-color);
+}
+
+/* ------------------------------------------------------------------
+   Hover Interaction — 살짝 접힌 면이 더 살아나는 모션
+------------------------------------------------------------------- */
+.fx-origami-fold:hover::before {
+  transform: translate(-50%, -50%) translateY(var(--fx-translate-soft-y));
+  box-shadow: var(--fx-shadow-card);
+  transition:
+    transform var(--fx-duration-normal) var(--fx-ease-soft),
+    box-shadow var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+.fx-origami-fold:hover::after {
+  box-shadow: var(--fx-shadow-layered);
+  transition:
+    box-shadow var(--fx-duration-normal) var(--fx-ease-soft),
+    clip-path var(--fx-duration-normal) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* ------------------------------------------------------------------
+   Variants — 톤/각도/강도 조절
+------------------------------------------------------------------- */
+
+/* 1) Soft Fold — 각도와 그림자를 조금 줄인 부드러운 버전 */
+.fx-origami-fold--soft {
+  --fx-origami-angle: 6deg;
+  --fx-origami-shadow-main: var(--fx-shadow-soft);
+  --fx-origami-shadow-fold: var(--fx-shadow-soft);
+
+  --fx-origami-fold-top-bg: color-mix(
+    in srgb,
+    var(--primary-bg) 80%,
+    var(--overlay-soft) 20%
+  );
+  --fx-origami-fold-bot-bg: color-mix(
+    in srgb,
+    var(--accent-bg) 80%,
+    var(--overlay-soft) 20%
+  );
+}
+
+/* 2) Accent Fold — 제안/혜택 강조용, accent 비중↑ */
+.fx-origami-fold--accent {
+  --fx-origami-fold-top-bg: color-mix(
+    in srgb,
+    var(--accent-bg) 65%,
+    var(--accent-soft) 35%
+  );
+  --fx-origami-fold-bot-bg: color-mix(
+    in srgb,
+    var(--primary-bg) 60%,
+    var(--primary-soft) 40%
+  );
+}
+
+/* 3) Strong Fold — 강하게 접힌 종이 느낌, 그림자/대조 강도↑ */
+.fx-origami-fold--strong {
+  --fx-origami-height-top:  38%;
+  --fx-origami-height-bot:  36%;
+  --fx-origami-shadow-main: var(--fx-shadow-card);
+  --fx-origami-shadow-fold: var(--fx-shadow-layered);
+}
+
+/* =============================================================================================
+   12-24) Geo Brand Pattern Field (기하학 브랜드 패턴 필드) — fx-geo-brand-field [ 좋다 굿, 설정완료 ] 
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “핵심 혜택 요약 / 서비스 구조 / 가격 플랜 / 주요 지표 강조” 섹션
+     - 방문자가 스크롤 내렸을 때 ‘와, 여기 디자인 공들였다’ 느낌을 주고 싶을 때
+   ✦ 디자인 특징
+     - 브랜드 프라이머리 / 액센트 컬러 기반의 큼직한 원형·사각형·사선 블록이 백그라운드에 배치
+     - 섹션 전체가 하나의 시그니처 포스터처럼 보이는 강한 존재감
+   ✦ 설계 포인트
+     - 색상은 brand.css의 --primary / --accent / --neutral-100 / --card-bg 위주로 사용
+     - 모양은 “큰 도형 + 중간 도형 + 라인 패턴” 3단 구조로 설계 (눈에 확! 보이게)
+     - 움직임은 premium FX 토큰(--fx-duration-*, --fx-translate-soft-y, --fx-ease-soft)만 사용
+============================================================================================= */
+
+/* ------------------------------------------------------------------
+   Base Layout — 섹션 베이스 컨테이너
+------------------------------------------------------------------- */
+.fx-geo-brand-field {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--section-bg);
+  padding-block: 4.5rem;
+}
+
+/* 실제 콘텐츠 래퍼: 패턴 위에 올라가는 영역 */
+.fx-geo-brand-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------------
+   Geo Tokens — 기하학 패턴 기본값
+------------------------------------------------------------------- */
+.fx-geo-brand-field {
+  --fx-geo-max-width: 1200px;
+
+  /* 도형 컬러 (브랜드 컬러 + 뉴트럴 블렌드) */
+  --fx-geo-primary-strong: color-mix(
+    in srgb,
+    var(--primary) 70%,
+    var(--neutral-50) 30%
+  );
+  --fx-geo-primary-soft: color-mix(
+    in srgb,
+    var(--primary-bg) 85%,
+    white 15%
+  );
+  --fx-geo-accent-strong: color-mix(
+    in srgb,
+    var(--accent) 72%,
+    var(--neutral-50) 28%
+  );
+  --fx-geo-accent-soft: color-mix(
+    in srgb,
+    var(--accent-bg) 85%,
+    white 15%
+  );
+  --fx-geo-neutral-block: color-mix(
+    in srgb,
+    var(--card-bg) 90%,
+    var(--neutral-100) 10%
+  );
+
+  /* 라인/그리드 */
+  --fx-geo-line-soft: color-mix(
+    in srgb,
+    var(--border-default) 55%,
+    transparent 45%
+  );
+  --fx-geo-line-strong: color-mix(
+    in srgb,
+    var(--primary-border) 70%,
+    transparent 30%
+  );
+
+  /* 전체 강도/투명도 (▶ 기본을 약간 줄인 상태) */
+  --fx-geo-opacity: 0.82;
+}
+
+/* ------------------------------------------------------------------
+   Background Geometry — 좌측 원형+사각형 / 우측 사선+원형
+------------------------------------------------------------------- */
+.fx-geo-brand-field::before,
+.fx-geo-brand-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--fx-geo-opacity);
+  z-index: 1;
+}
+
+/* 좌측: 큰 원 + 세로 블록 + 라인 그리드 */
+.fx-geo-brand-field::before {
+  background:
+
+    /* 1) 좌상단 큰 원형 크기 / 위치 */
+    radial-gradient(
+      circle at -14% -10%,   /* ← 원의 중심 위치 (X%, Y%) */
+      var(--fx-geo-primary-strong) 0,
+      var(--fx-geo-primary-strong) 24%, /* ← 원의 반지름(%) 조절 */
+      transparent 30%
+    ),
+
+    /* 2) 좌측 세로 블록 크기 (안함) - wpr */
+    /* linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--fx-geo-neutral-block) 80%, transparent 20%), 
+      color-mix(in srgb, var(--fx-geo-primary-soft) 82%, transparent 18%)
+    )
+    left 0 top 30% /          ← 블록의 시작 위치(top %)
+    min(500px, 20vw) 60%      ← (가로폭, 세로높이)
+    no-repeat, */
+
+    /* 3) 세로 라인 굵기 / 간격 */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 32px,        /* ← 라인 사이 간격 */
+      var(--fx-geo-line-soft) 34px,
+      var(--fx-geo-line-soft) 34px  /* ← 라인 굵기(px) */
+    );
+}
+
+
+/* 우측: 대각 블록 + 포인트 원 + 얇은 사선 스트라이프 */
+
+.fx-geo-brand-field::after {
+  background:
+
+    /* 1) 우측 대각 블록 크기 / 영역 범위 */
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 40%,         /* ← 대각 블록이 시작되는 지점 */
+      color-mix(in srgb, var(--fx-geo-accent-soft) 80%, transparent 20%) 32%,  /* ← 블록 두께1 */
+      color-mix(in srgb, var(--fx-geo-accent-soft) 88%, transparent 12%) 58%,  /* ← 블록 두께2 */
+      transparent 64%
+    ),
+
+    /* 2) 우측 하단 포인트 원 (사이즈/위치) */
+    radial-gradient(
+      circle at 110% 115%,     /* ← 원의 중심 위치(X,Y) */
+      var(--fx-geo-accent-strong) 0,
+      var(--fx-geo-accent-strong) 22%,   /* ← 원 크기(반지름) */
+      transparent 28%  /* 끝지점(투명도)-원*/
+    ),
+
+    /* 3) 사선 스트라이프 (굵기/간격) */
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 22px,        /* ← 스트라이프 간격 */
+      color-mix(in srgb, var(--fx-geo-line-soft) 75%, transparent 25%) 24px,
+      color-mix(in srgb, var(--fx-geo-line-soft) 75%, transparent 25%) 24px  /* ← 스트라이프 굵기 */
+    );
+}
+
+
+/* ------------------------------------------------------------------
+   Hover Motion — 섹션 over 시 패턴 전체가 아주 살짝 움직이는 효과
+------------------------------------------------------------------- */
+.fx-geo-brand-field:hover::before {
+  transform: translateY(var(--fx-translate-soft-y));
+  transition:
+    transform var(--fx-duration-slow) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+.fx-geo-brand-field:hover::after {
+  transform: translateY(calc(var(--fx-translate-soft-y) * -1));
+  transition:
+    transform var(--fx-duration-slow) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* ------------------------------------------------------------------
+   Variants — 강도 / 방향 / 컬러 포커스 조절
+------------------------------------------------------------------- */
+
+/* 1) Strong Poster — 진짜 포스터처럼 쎄게 쓰고 싶을 때 */
+.fx-geo-brand-field--strong {
+  --fx-geo-primary-strong: color-mix(
+    in srgb,
+    var(--primary) 82%,
+    var(--neutral-50) 18%
+  );
+  --fx-geo-accent-strong: color-mix(
+    in srgb,
+    var(--accent) 82%,
+    var(--neutral-50) 18%
+  );
+  --fx-geo-opacity: 1;
+}
+
+/* 2) Primary Focus — Primary 중심 */
+.fx-geo-brand-field--primary {
+  --fx-geo-accent-soft: color-mix(
+    in srgb,
+    var(--primary-bg) 82%,
+    white 18%
+  );
+  --fx-geo-accent-strong: color-mix(
+    in srgb,
+    var(--primary) 78%,
+    var(--neutral-50) 22%
+  );
+}
+
+/* 3) Accent Focus — Accent 중심 */
+.fx-geo-brand-field--accent {
+  --fx-geo-primary-soft: color-mix(
+    in srgb,
+    var(--accent-bg) 80%,
+    white 20%
+  );
+  --fx-geo-primary-strong: color-mix(
+    in srgb,
+    var(--accent) 80%,
+    var(--neutral-50) 20%
+  );
+}
+
+/* 4) Light Minimal — 아주 살짝만 패턴 주고 싶을 때 */
+.fx-geo-brand-field--light {
+  --fx-geo-opacity: 0.6;
+  --fx-geo-line-soft: color-mix(
+    in srgb,
+    var(--border-subtle) 55%,
+    transparent 45%
+  );
+}
+
+
+/* =============================================================================================
+   12-25) Soft Gradient Shape Field    [ 쏘쏘 - 좌상, 우상 메인 컬러 2개 옅게 퍼진느낌 ]
+   (Mesh / Blob / Fluid Field)  — fx-soft-gradient-field 
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “핵심 혜택 / 한 줄 가치 제안 / 서비스 요약 카드”가 들어가는 메인 섹션
+     - 포스터 느낌의 부드러운 그라디언트 + 유기적인 Blob / Mesh 분위기를 내고 싶을 때
+   ✦ 디자인 특징
+     - Primary / Accent 기반의 부드러운 그라디언트 덩어리(Blob)들이 양쪽에 배치
+     - 위에는 살짝 Mesh 느낌의 그라디언트 레이어가 겹쳐져, 고급스러운 추상 배경 형성
+   ✦ 설계 포인트
+     - 색상은 brand.css의 --primary / --accent / --gradient-primary / --section-bg만 사용
+     - 도형은 “좌측 Blob + 우측 Blob + 중앙 Mesh Highlight” 3단 구조
+     - 움직임은 FX 공통 토큰(--fx-duration-*, --fx-translate-soft-y, --fx-ease-soft)만 사용
+============================================================================================= */
+
+/* ------------------------------------------------------------------
+   Base Layout — 섹션 베이스 컨테이너
+   사용방법 )
+
+   <section class="fx-soft-gradient-field">
+     <div class="fx-soft-gradient-inner">
+       <!-- 실제 콘텐츠 -->
+     </div>
+   </section>
+
+   또는 Tailwind와 함께:
+
+   <section class="section fx-soft-gradient-field">
+     <div class="container mx-auto px-4 fx-soft-gradient-inner">
+       ...
+     </div>
+   </section>
+------------------------------------------------------------------- */
+.fx-soft-gradient-field {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--section-bg);
+  padding-block: 4.5rem;
+}
+
+/* 실제 콘텐츠 래퍼: 패턴 위에 올라가는 영역 */
+.fx-soft-gradient-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------------
+   Soft Gradient Tokens — 소프트 그라디언트 기본값
+------------------------------------------------------------------- */
+.fx-soft-gradient-field {
+  /* 색감 / 강도 토큰 */
+  --fx-soft-primary-core: color-mix(
+    in srgb,
+    var(--primary) 72%,
+    white 28%
+  );
+  --fx-soft-primary-soft: color-mix(
+    in srgb,
+    var(--primary-bg) 88%,
+    white 12%
+  );
+  --fx-soft-accent-core: color-mix(
+    in srgb,
+    var(--accent) 74%,
+    white 26%
+  );
+  --fx-soft-accent-soft: color-mix(
+    in srgb,
+    var(--accent-bg) 88%,
+    white 12%
+  );
+
+  --fx-soft-mesh-base: color-mix(
+    in srgb,
+    var(--primary-bg) 70%,
+    var(--accent-bg) 30%
+  );
+
+  /* 전체 패턴 투명도 (디자인 강도 조절) */
+  --fx-soft-opacity: 0.9;
+
+  /* Blob 크기/범위 (상대 비율) */
+  --fx-soft-blob-size-lg: 48%;
+  --fx-soft-blob-size-md: 34%;
+  --fx-soft-blob-size-sm: 22%;
+}
+
+/* ------------------------------------------------------------------
+   Background Layers — 좌/우 Blob + 중앙 Mesh Highlight
+------------------------------------------------------------------- */
+.fx-soft-gradient-field::before,
+.fx-soft-gradient-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--fx-soft-opacity);
+}
+
+/* ::before — 양쪽 Blob + 하단 그라디언트 베이스 */
+.fx-soft-gradient-field::before {
+  background:
+    /* 1) 좌측 상단 Primary Blob */
+    radial-gradient(
+      circle at -8% 0%,
+      color-mix(in srgb, var(--fx-soft-primary-core) 100%, transparent 0%),
+      color-mix(in srgb, var(--fx-soft-primary-core) 85%, transparent 15%) 24%,
+      transparent var(--fx-soft-blob-size-lg)
+    ),
+
+    /* 2) 좌측 하단 Accent Soft Blob */
+    radial-gradient(
+      circle at 0% 110%,
+      color-mix(in srgb, var(--fx-soft-accent-soft) 100%, transparent 0%),
+      color-mix(in srgb, var(--fx-soft-accent-soft) 80%, transparent 20%) 26%,
+      transparent var(--fx-soft-blob-size-md)
+    ),
+
+    /* 3) 우측 상단 Accent Core Blob */
+    radial-gradient(
+      circle at 110% -10%,
+      color-mix(in srgb, var(--fx-soft-accent-core) 100%, transparent 0%),
+      color-mix(in srgb, var(--fx-soft-accent-core) 85%, transparent 15%) 22%,
+      transparent var(--fx-soft-blob-size-md)
+    ),
+
+    /* 4) 섹션 전체를 살짝 감싸는 아주 옅은 라이트 그라디언트 */
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--fx-soft-mesh-base) 40%, transparent 60%) 0%,
+      transparent 42%,
+      color-mix(in srgb, var(--fx-soft-mesh-base) 32%, transparent 68%) 100%
+    );
+}
+
+/* ::after — 중앙 Mesh / Fluid Highlight + 얇은 라인 패턴 */
+.fx-soft-gradient-field::after {
+  background:
+    /* 1) 중앙 Mesh / Fluid Highlight (gradient-primary 활용) */
+    radial-gradient(
+      circle at 50% 20%,
+      color-mix(in srgb, var(--fx-soft-primary-soft) 20%, transparent 80%) 0%,
+      transparent 52%
+    ),
+    radial-gradient(
+      circle at 68% 80%,
+      color-mix(in srgb, var(--fx-soft-accent-soft) 24%, transparent 76%) 0%,
+      transparent 58%
+    ),
+
+    /* 2) Diagonal Mesh-like 흐름 (gradient-primary 기반) */
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--primary-bg) 75%, transparent 25%) 0%,
+      transparent 42%,
+      color-mix(in srgb, var(--accent-bg) 70%, transparent 30%) 78%,
+      transparent 100%
+    ),
+
+    /* 3) 아주 얇은 라인 패턴 (Mesh 느낌 강조) */
+    repeating-linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 18px,
+      color-mix(in srgb, var(--border-subtle) 55%, transparent 45%) 19px,
+      color-mix(in srgb, var(--border-subtle) 55%, transparent 45%) 20px
+    );
+  mix-blend-mode: normal;
+}
+
+/* ------------------------------------------------------------------
+   Hover Motion — 섹션 hover 시 부드러운 패턴 이동
+------------------------------------------------------------------- */
+.fx-soft-gradient-field:hover::before {
+  transform: translateY(var(--fx-translate-soft-y));
+  transition:
+    transform var(--fx-duration-slow) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+.fx-soft-gradient-field:hover::after {
+  transform: translateY(calc(var(--fx-translate-soft-y) * -1));
+  transition:
+    transform var(--fx-duration-slow) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* ------------------------------------------------------------------
+   Variants — 강도 / 색 포커스 / 패턴 밀도 조절
+------------------------------------------------------------------- */
+
+/* 1) Mesh Focus — Mesh 느낌을 더 강조하고 싶을 때 */
+.fx-soft-gradient-field--mesh {
+  --fx-soft-opacity: 0.95;
+  --fx-soft-mesh-base: color-mix(
+    in srgb,
+    var(--primary-bg) 60%,
+    var(--accent-bg) 40%
+  );
+}
+
+/* 2) Blob Focus — 덩어리(Blob) 형태를 더 눈에 띄게 */
+.fx-soft-gradient-field--blob {
+  --fx-soft-blob-size-lg: 52%;
+  --fx-soft-blob-size-md: 38%;
+  --fx-soft-blob-size-sm: 26%;
+  --fx-soft-opacity: 1;
+}
+
+/* 3) Primary Focus — Primary 위주 느낌 */
+.fx-soft-gradient-field--primary {
+  --fx-soft-primary-core: color-mix(
+    in srgb,
+    var(--primary) 80%,
+    white 20%
+  );
+  --fx-soft-accent-soft: color-mix(
+    in srgb,
+    var(--primary-bg) 86%,
+    white 14%
+  );
+}
+
+/* 4) Accent Focus — Accent 위주 느낌 */
+.fx-soft-gradient-field--accent {
+  --fx-soft-accent-core: color-mix(
+    in srgb,
+    var(--accent) 82%,
+    white 18%
+  );
+  --fx-soft-primary-soft: color-mix(
+    in srgb,
+    var(--accent-bg) 86%,
+    white 14%
+  );
+}
+
+/* 5) Light Minimal — 배경은 고급스럽게, 콘텐츠를 더 강조하고 싶을 때 */
+.fx-soft-gradient-field--light {
+  --fx-soft-opacity: 0.62;
+}
+
+
+/* =============================================================================================
+   12-26) Micro Motif Pattern Field (브랜드 모티브 반복 패턴) — fx-micro-motif-field  [ 버리기 - 어려움 ] 
+   ---------------------------------------------------------------------------------------------
+   ✦ 언제 잘 어울리나?
+     - “브랜드 아이덴티티 / 철학 / 차별 포인트” 섹션
+     - 로고 조각, 다이아, 플러스, 삼각형 등 작은 모티브로 브랜드 느낌을 주고 싶을 때
+   ✦ 디자인 특징
+     - 좌측: 세로 시그니처 밴드 + 작은 모티브 패턴
+     - 우측: 대각 필드 + 모티브 패턴 + 사선 스트라이프 → 포스터 같은 구도
+   ✦ 설계 포인트
+     - 색상: brand.css의 --primary / --accent / --card-bg / --neutral-* 위주
+     - 구조: “모티브 패턴 + 밴드 + 대각 필드” 3단 구성
+     - 모양: 실제 모티브는 전부 SVG로 관리, CSS에서는 “어느 번호를 쓸지만” 선택
+============================================================================================= */
+
+
+/* ============================================================================================
+   (0) MOTIF SVG REGISTRY — SVG 모양 10개 슬롯 (여기 경로만 한 번 맞춰주면 됨)
+   --------------------------------------------------------------------------------------------
+   ⚙ 사용법
+   - motif-1 ~ motif-10 각각을 원하는 SVG 파일로 연결
+   - 예시 경로: /assets/motifs/motif-1-dot.svg 이런 식으로
+   - 나중에 아이콘 모양을 바꾸고 싶으면 “파일 내용만 바꾸면 됨” (CSS는 그대로)
+============================================================================================ */
+:root {
+  --fx-motif-svg-1: url("/css/svg/motif-dot.svg");        /* ● 기본 도트 */
+  --fx-motif-svg-2: url("/css/svg/motif-diamond.svg");    /* ◆ 다이아 */
+  --fx-motif-svg-3: url("/css/svg/motif-plus.svg");       /* + 플러스 */
+  --fx-motif-svg-4: url("/css/svg/motif-triangle.svg");   /* ▲ 삼각형 */
+  --fx-motif-svg-5: url("/css/svg/");     /* ■ 정사각형 */
+  --fx-motif-svg-6: url("/css/");      /* ✕ 크로스 */
+  --fx-motif-svg-7: url("/css/svg/motif-star4.svg");       /* ★ 별 */
+  --fx-motif-svg-8: url("/css/svg/motif-pill.svg");       /* ─ 캡슐/필 */
+  --fx-motif-svg-9: url("");    /* ◼ 둥근 사각 */
+  --fx-motif-svg-10: url("/css/svg/motif-ring.svg");     /* ◎ 링(동그라미 테두리) */
+}
+
+
+/* ============================================================================================
+   (1) BASE FIELD — 섹션 베이스 & 공통 토큰
+============================================================================================ */
+
+/* 섹션 베이스 컨테이너 */
+.fx-micro-motif-field {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--section-bg);
+  padding-block: 4.5rem;
+
+  /* ------------------------------------------
+     A. 기본 패턴 강도 / 밀도
+  ------------------------------------------ */
+  --fx-motif-opacity: 0.9;   /* 전체 패턴 투명도 (0.0 ~ 1.0) */
+  --fx-motif-gap: 28px;      /* 패턴 타일 크기(간격) */
+  --fx-motif-tile-size: var(--fx-motif-gap);
+
+  /* ------------------------------------------
+     B. 기본 컬러 블렌드
+  ------------------------------------------ */
+  --fx-motif-color-primary: color-mix(
+    in srgb,
+    var(--primary) 78%,
+    var(--neutral-50) 22%
+  );
+  --fx-motif-color-accent: color-mix(
+    in srgb,
+    var(--accent) 78%,
+    var(--neutral-50) 22%
+  );
+
+  --fx-motif-band-bg: color-mix(
+    in srgb,
+    var(--card-bg) 90%,
+    var(--neutral-100) 10%
+  );
+  --fx-motif-field-bg: color-mix(
+    in srgb,
+    var(--card-elevated-bg) 88%,
+    var(--primary-soft) 12%
+  );
+
+  /* ------------------------------------------
+     C. 실제 사용하는 SVG 이미지 슬롯
+     - 기본값: Primary = #2, Accent = #3
+     - 아래 프리셋 클래스(fx-motif-primary-*)로 쉽게 교체 가능
+  ------------------------------------------ */
+  --fx-motif-image-primary: var(--fx-motif-svg-2);  /* ◆ 다이아 */
+  --fx-motif-image-accent: var(--fx-motif-svg-3);   /* + 플러스 */
+}
+
+/* 실제 콘텐츠 래퍼: 패턴 위에 올라가는 영역 */
+.fx-micro-motif-inner {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ============================================================================================
+   (2) LEFT BAND LAYER — 세로 시그니처 밴드 + SVG 모티브
+============================================================================================ */
+/*
+  구조 요약
+  - ::before 의 background에 3개 레이어 사용
+    1) SVG Primary 모티브 (반복 패턴)
+    2) SVG Accent 모티브 (살짝 오프셋)
+    3) 세로 밴드 베이스(단색)
+*/
+
+.fx-micro-motif-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--fx-motif-opacity);
+
+  background-image:
+    var(--fx-motif-image-primary),
+    var(--fx-motif-image-accent),
+    linear-gradient(
+      to bottom,
+      var(--fx-motif-band-bg) 0%,
+      var(--fx-motif-band-bg) 100%
+    );
+
+  background-size:
+    var(--fx-motif-tile-size) var(--fx-motif-tile-size), /* Primary 패턴 밀도 */
+    var(--fx-motif-tile-size) var(--fx-motif-tile-size), /* Accent 패턴 밀도 */
+    30% 140%;                                           /* 세로 밴드 폭/높이 */
+
+  background-position:
+    0 0,                                               /* Primary 시작 위치 */
+    calc(var(--fx-motif-tile-size) / 2) calc(var(--fx-motif-tile-size) / 2),
+    0% -20%;
+
+  background-repeat:
+    repeat,
+    repeat,
+    no-repeat;
+
+  /* 왼쪽 32% 정도만 보이게 마스킹 → 세로 시그니처 밴드 느낌 */
+  mask-image: linear-gradient(to right, black 0%, black 32%, transparent 42%);
+  mask-repeat: no-repeat;
+}
+
+/* ============================================================================================
+   (3) RIGHT DIAGONAL FIELD — 우측 대각 필드 + SVG 모티브 + 스트라이프
+============================================================================================ */
+/*
+  구조 요약
+  - ::after 의 background에 4개 레이어 사용
+    1) SVG Primary 모티브
+    2) SVG Accent 모티브
+    3) 대각 필드(그라데이션 블록)
+    4) 얇은 사선 스트라이프
+*/
+
+.fx-micro-motif-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--fx-motif-opacity);
+
+  background-image:
+    var(--fx-motif-image-primary),
+    var(--fx-motif-image-accent),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 40%,
+      color-mix(in srgb, var(--fx-motif-field-bg) 100%, transparent 0%) 60%,
+      color-mix(in srgb, var(--fx-motif-field-bg) 100%, transparent 0%) 90%,
+      transparent 100%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 18px,
+      color-mix(in srgb, var(--border-subtle) 65%, transparent 35%) 19px,
+      color-mix(in srgb, var(--border-subtle) 65%, transparent 35%) 20px
+    );
+
+  background-size:
+    var(--fx-motif-tile-size) var(--fx-motif-tile-size),  /* Primary 패턴 밀도 */
+    var(--fx-motif-tile-size) var(--fx-motif-tile-size),  /* Accent 패턴 밀도 */
+    70% 120%,                                             /* 대각 필드 */
+    auto;                                                 /* 스트라이프 */
+
+  background-position:
+    100% 0,                                               /* Primary: 오른쪽 위 기준 */
+    calc(100% - var(--fx-motif-tile-size) / 2) calc(var(--fx-motif-tile-size) / 2),
+    100% -10%,                                            /* 대각 필드: 우하단으로 치우치게 */
+    100% 0;
+
+  background-repeat:
+    repeat,
+    repeat,
+    no-repeat,
+    repeat;
+
+  /* 우측 아래 중심에서 퍼지는 필드 느낌 */
+  mask-image: radial-gradient(
+    circle at 110% 110%,
+    black 0%,
+    black 70%,
+    transparent 100%
+  );
+  mask-repeat: no-repeat;
+}
+
+
+/* ============================================================================================
+   (4) PRESET VARIANTS — 밀도 / 강도 / 컬러 / 모양 선택 프리셋
+   --------------------------------------------------------------------------------------------
+   ✅ 여기부터가 "아주 쉽게 설정하는 구간"
+   - HTML에서 클래스만 붙여서 SVG 모양 / 밀도 / 강도 조절
+============================================================================================ */
+
+/* 5-1) 밀도/강도 프리셋 -------------------------------------------------------- */
+
+/* 더 또렷하게, 패턴 더 빽빽하게 */
+.fx-micro-motif-field--dense {
+  --fx-motif-opacity: 1;
+  --fx-motif-gap: 22px;
+  --fx-motif-tile-size: var(--fx-motif-gap);
+}
+
+/* 더 은은하게, 패턴 간격 넓게 */
+.fx-micro-motif-field--light {
+  --fx-motif-opacity: 0.55;
+  --fx-motif-gap: 34px;
+  --fx-motif-tile-size: var(--fx-motif-gap);
+}
+
+/* Accent 쪽 컬러 비중을 더 주고 싶을 때 */
+.fx-micro-motif-field--accent {
+  --fx-motif-color-primary: color-mix(
+    in srgb,
+    var(--accent) 80%,
+    var(--neutral-50) 20%
+  );
+}
+
+
+/* 5-2) PRIMARY 모양 선택 프리셋 (왼쪽/오른쪽 메인 모티브) ----------------------- */
+/*
+  사용 예시:
+  <section class="section fx-micro-motif-field fx-motif-primary-2 fx-motif-accent-7">
+*/
+
+.fx-motif-primary-1 { --fx-motif-image-primary: var(--fx-motif-svg-1); }
+.fx-motif-primary-2 { --fx-motif-image-primary: var(--fx-motif-svg-2); }
+.fx-motif-primary-3 { --fx-motif-image-primary: var(--fx-motif-svg-3); }
+.fx-motif-primary-4 { --fx-motif-image-primary: var(--fx-motif-svg-4); }
+.fx-motif-primary-5 { --fx-motif-image-primary: var(--fx-motif-svg-5); }
+.fx-motif-primary-6 { --fx-motif-image-primary: var(--fx-motif-svg-6); }
+.fx-motif-primary-7 { --fx-motif-image-primary: var(--fx-motif-svg-7); }
+.fx-motif-primary-8 { --fx-motif-image-primary: var(--fx-motif-svg-8); }
+.fx-motif-primary-9 { --fx-motif-image-primary: var(--fx-motif-svg-9); }
+.fx-motif-primary-10 { --fx-motif-image-primary: var(--fx-motif-svg-10); }
+
+/* 5-3) ACCENT 모양 선택 프리셋 (보조 모티브) ----------------------------------- */
+
+.fx-motif-accent-1 { --fx-motif-image-accent: var(--fx-motif-svg-1); }
+.fx-motif-accent-2 { --fx-motif-image-accent: var(--fx-motif-svg-2); }
+.fx-motif-accent-3 { --fx-motif-image-accent: var(--fx-motif-svg-3); }
+.fx-motif-accent-4 { --fx-motif-image-accent: var(--fx-motif-svg-4); }
+.fx-motif-accent-5 { --fx-motif-image-accent: var(--fx-motif-svg-5); }
+.fx-motif-accent-6 { --fx-motif-image-accent: var(--fx-motif-svg-6); }
+.fx-motif-accent-7 { --fx-motif-image-accent: var(--fx-motif-svg-7); }
+.fx-motif-accent-8 { --fx-motif-image-accent: var(--fx-motif-svg-8); }
+.fx-motif-accent-9 { --fx-motif-image-accent: var(--fx-motif-svg-9); }
+.fx-motif-accent-10 { --fx-motif-image-accent: var(--fx-motif-svg-10); }
+
+/* [ 우측하단에만 메인컬러 1개, 그라데이션] [좋음]  */
+
+/* =============================================================================================
+   12-27) Stripe Field (사선/세로 라인 패턴)  [ 존나짱, primary, secondray, accent 3가지 컬러 다됨 ]
+   ---------------------------------------------------------------------------------------------
+   사용 가능한 베이스 클래스
+   - fx-stripe-primary-field
+   - fx-stripe-secondary-field
+   - fx-stripe-accent-field
+
+   ✦ 언제 잘 어울리나?
+     - “핵심 혜택 요약 / 서비스 구조 / 가격 플랜 / 주요 지표 강조” 섹션
+     - Hero 바로 아래, 혹은 전환 직전 섹션에 ‘고급 포스터 느낌’ 주고 싶을 때
+   ✦ 디자인 특징
+     - 부드러운 사선/세로 스트라이프 패턴 + 우측/좌측 강조 필드 조합
+     - 배경은 시그니처 포스터처럼 보이지만, 콘텐츠 가독성은 그대로 유지
+   ✦ 설계 포인트
+     - 색상은 brand.css의 --primary / --secondary / --accent / --neutral-* / --card-bg만 사용
+     - 스트라이프 간격/굵기/각도를 토큰(--fx-stripe-*) 몇 개만 수정해서 제어
+     - 움직임은 FX 역할 토큰(--fx-duration-*, --fx-translate-soft-y, --fx-ease-soft)만 사용
+
+   ✔ 사용 예시
+     <section class="fx-stripe-primary-field fx-stripe-primary-field--light">
+       <div class="fx-stripe-inner container mx-auto px-4">
+         <!-- 실제 콘텐츠 -->
+       </div>
+     </section>
+============================================================================================= */
+
+
+/* =============================================================================
+   A) Base Layout + 공통 Stripe 토큰
+   - primary / secondary / accent 세 가지가 전부 이 뼈대를 공유
+============================================================================= */
+
+.fx-stripe-primary-field,
+.fx-stripe-secondary-field,
+.fx-stripe-accent-field {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--section-bg);
+  padding-block: 4.5rem;
+
+  /* 🔧 공통 스트라이프 토큰 (왕초보는 여기만 만져도 됨) */
+  --fx-stripe-opacity: 0.7;        /* 전체 패턴 투명도(0~1) */
+
+  --fx-stripe-angle-base: 135deg;  /* 기본 각도: 135deg(사선), 90deg(수직), 0deg(수평) */
+
+  --fx-stripe-clear: 22px;         /* 줄과 줄 사이 간격 */
+  --fx-stripe-width: 1.5px;          /* 실제 줄 두께(px) */
+
+  --fx-stripe-accent-width: 100%;  /* 강조 필드 가로폭(%) */
+  --fx-stripe-accent-height: 100%; /* 강조 필드 세로높이(%) */
+
+  /* 아래 색상 4개는 각 버전(primary/secondary/accent)에서 재정의 */
+  --fx-stripe-color-soft:   color-mix(in srgb, var(--border-subtle) 70%, transparent 30%);
+  --fx-stripe-color-strong: color-mix(in srgb, var(--border-default) 88%, transparent 12%);
+  --fx-stripe-accent-bg:    color-mix(in srgb, var(--card-bg) 92%, white 8%);
+  --fx-stripe-accent-edge:  color-mix(in srgb, var(--border-strong) 65%, transparent 35%);
+}
+
+/* 실제 콘텐츠 래퍼 (스트라이프 위에 올라가는 레이어) */
+.fx-stripe-inner {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =============================================================================
+   B) Global Stripe Layer — 전체 배경에 깔리는 스트라이프
+   - 섹션 전체에 깔리는 “기본 줄무늬” 한 겹만 담당
+============================================================================= */
+
+.fx-stripe-primary-field::before,
+.fx-stripe-secondary-field::before,
+.fx-stripe-accent-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--fx-stripe-opacity);
+
+  /* 줄 간격/굵기 설명
+     0 ~ clear                 : 비어있는 구간
+     clear ~ clear + width     : 실제 줄이 보이는 구간
+  */
+  background-image:
+    repeating-linear-gradient(
+      var(--fx-stripe-angle-base),
+      transparent 0,
+      transparent var(--fx-stripe-clear),
+      var(--fx-stripe-color-soft) var(--fx-stripe-clear),
+      var(--fx-stripe-color-soft) calc(var(--fx-stripe-clear) + var(--fx-stripe-width))
+    );
+
+  background-repeat: repeat;
+}
+
+
+/* =============================================================================
+   C) Accent Stripe Block — 우측 강조 필드
+   - 오른쪽 영역은 “색상/그라데이션만” 추가하고
+   - 줄무늬는 ::before 한 겹만 보이도록 수정 (줄 겹침 제거)
+============================================================================= */
+
+.fx-stripe-primary-field::after,
+.fx-stripe-secondary-field::after,
+.fx-stripe-accent-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--fx-stripe-opacity);
+
+  background-image:
+    /* 1) 강조 필드 전체를 덮는 부드러운 그라데이션 (색/톤만 담당) */
+    linear-gradient(
+      135deg,
+      var(--fx-stripe-accent-bg) 0%,
+      var(--fx-stripe-accent-bg) 70%,
+      transparent 100%
+    ),
+    /* 2) 우측 끝 엣지 라인을 살짝 더 진하게 (테두리 느낌) */
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 72%,
+      var(--fx-stripe-accent-edge) 100%
+    );
+
+  /* 줄 패턴은 ::before에서만 나오고,
+     여기서는 색상/엣지 두 레이어만 사용 */
+  background-repeat:
+    no-repeat,
+    no-repeat;
+
+  background-size:
+    var(--fx-stripe-accent-width) var(--fx-stripe-accent-height),
+    var(--fx-stripe-accent-width) var(--fx-stripe-accent-height);
+
+  background-position:
+    100% -16%,  /* 오른쪽 위로 살짝 튕겨나간 느낌 */
+    100% -16%;
+
+  /* 우측 아래 중심으로 점차 사라지는 마스크 */
+  mask-image: radial-gradient(circle at 110% 110%, black 0%, black 70%, transparent 100%);
+  mask-repeat: no-repeat;
+}
+
+
+/* =============================================================================
+   D) COLOR VARIANTS — primary / secondary / accent 색상 전환
+   🔧 “메인 컬러만 바꾸고 싶을 때” 여기 4줄씩만 수정하면 된다.
+============================================================================= */
+
+/* 1) PRIMARY Stripe Field */
+.fx-stripe-primary-field {
+  --fx-stripe-color-soft:   color-mix(in srgb, var(--primary-border) 70%, transparent 30%);
+  --fx-stripe-color-strong: color-mix(in srgb, var(--primary-text) 88%, transparent 12%);
+  --fx-stripe-accent-bg:    color-mix(in srgb, var(--primary-bg) 92%, white 8%);
+  --fx-stripe-accent-edge:  color-mix(in srgb, var(--primary) 65%, transparent 35%);
+}
+
+/* 2) SECONDARY Stripe Field */
+.fx-stripe-secondary-field {
+  --fx-stripe-color-soft:   color-mix(in srgb, var(--secondary-border) 70%, transparent 30%);
+  --fx-stripe-color-strong: color-mix(in srgb, var(--secondary-text) 88%, transparent 12%);
+  --fx-stripe-accent-bg:    color-mix(in srgb, var(--secondary-bg) 92%, white 8%);
+  --fx-stripe-accent-edge:  color-mix(in srgb, var(--secondary) 65%, transparent 35%);
+}
+
+/* 3) ACCENT Stripe Field */
+.fx-stripe-accent-field {
+  --fx-stripe-color-soft:   color-mix(in srgb, var(--accent-border) 70%, transparent 30%);
+  --fx-stripe-color-strong: color-mix(in srgb, var(--accent-text) 88%, transparent 12%);
+  --fx-stripe-accent-bg:    color-mix(in srgb, var(--accent-bg) 92%, white 8%);
+  --fx-stripe-accent-edge:  color-mix(in srgb, var(--accent) 65%, transparent 35%);
+}
+
+
+/* =============================================================================
+   F) VARIANTS — 강도 / 방향 / 위치 프리셋
+   - 동일 이름을 세 버전 모두에 공통으로 쓸 수 있게 그룹 선택자 사용
+   - 예) <section class="fx-stripe-primary-field fx-stripe-primary-field--light">
+============================================================================= */
+
+/* 1) Strong Poster — 스트라이프/강조 필드 모두 강하게 */
+.fx-stripe-primary-field--strong,
+.fx-stripe-secondary-field--strong,
+.fx-stripe-accent-field--strong {
+  --fx-stripe-opacity: 0.95;
+  --fx-stripe-clear: 18px;
+  --fx-stripe-width: 3px;
+}
+
+/* 2) Light Minimal — 배경 느낌만 살짝 (Hero 아래, 텍스트 많을 때) */
+.fx-stripe-primary-field--light,
+.fx-stripe-secondary-field--light,
+.fx-stripe-accent-field--light {
+  --fx-stripe-opacity: 0.45;
+  --fx-stripe-clear: 26px;
+  --fx-stripe-width: 1px;
+  --fx-stripe-accent-width: 36%;
+}
+
+/* 3) Vertical Lines — 수직 스트라이프(데이터/표/지표 섹션용) */
+.fx-stripe-primary-field--vertical,
+.fx-stripe-secondary-field--vertical,
+.fx-stripe-accent-field--vertical {
+  --fx-stripe-angle-base: 90deg; /* 수직 라인 */
+}
+
+/* 4) Horizontal Lines — 수평 스트라이프(가로 흐름 강조) */
+.fx-stripe-primary-field--horizontal,
+.fx-stripe-secondary-field--horizontal,
+.fx-stripe-accent-field--horizontal {
+  --fx-stripe-angle-base: 0deg; /* 수평 라인 */
+}
+
+/* 5) Left Accent — 강조 필드를 왼쪽으로 보내고 싶을 때 */
+.fx-stripe-primary-field--left-accent::after,
+.fx-stripe-secondary-field--left-accent::after,
+.fx-stripe-accent-field--left-accent::after {
+  background-position:
+    0% -16%,
+    0% -16%,
+    0% -16%;
+  mask-image: radial-gradient(circle at -10% 110%, black 0%, black 70%, transparent 100%);
+}
+
+/* 6) Base Only — 강조 필드 없이, 전체 스트라이프만 사용하고 싶을 때 */
+.fx-stripe-primary-field--base-only::after,
+.fx-stripe-secondary-field--base-only::after,
+.fx-stripe-accent-field--base-only::after {
+  display: none;
+}
+
+
+/* =============================================================================================
+   12-28) Hybrid Signature Field (Geo + Mesh + Line 조합)
+   ---------------------------------------------------------------------------------------------
+   클래스
+     - fx-hybrid-signature-field                : 기본 하이브리드 패턴 섹션
+     - fx-hybrid-signature-field--primary-heavy : Primary 비중 높은 강한 포스터 느낌
+     - fx-hybrid-signature-field--accent-soft   : Accent 위주, 부드러운 분위기
+     - fx-hybrid-signature-field--left-geo      : 큰 기하학 블록을 왼쪽으로 이동
+
+     - fx-hybrid-signature-field--geo-circle    : 기하학 패널을 원형 버블로
+     - fx-hybrid-signature-field--geo-diamond   : 기하학 패널을 다이아 형태로
+     - fx-hybrid-signature-field--geo-pill      : 기하학 패널을 가로 필(알약) 형태로
+
+   ✦ 언제 잘 어울리나?
+     - “서비스 전체 구조 / 시스템 다이어그램 / Before-After 비교” 같은 핵심 설명 섹션
+     - 랜딩 중간에 한 번, “브랜드 시그니처 포스터”처럼 정체성을 확 보여주고 싶을 때
+   ✦ 디자인 특징
+     - 한쪽에는 큰 기하학 블록(사각/원/다이아/필) + 그 위의 Mesh Gradient + 사선 스트라이프
+     - 배경 자체가 하나의 포스터처럼 보이지만, 중앙 콘텐츠 가독성은 방해하지 않음
+   ✦ 설계 포인트
+     - 색상은 brand.css의 --primary / --secondary / --accent / --neutral-* 만 사용
+     - 숫자 토큰 4~5개(--fx-hybrid-*)만 바꿔도 분위기를 쉽게 조절 가능
+     - 모션은 FX 역할 토큰(--fx-duration-*, --fx-translate-soft-y, --fx-ease-soft)만 사용
+============================================================================================ */
+
+/* ---------------------------------------------------------------------------------------------
+   A) Base Layout — 섹션 베이스 컨테이너
+--------------------------------------------------------------------------------------------- */
+
+.fx-hybrid-signature-field {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--section-bg);
+  padding-block: 4.5rem;
+}
+
+/* 실제 카드/텍스트가 올라가는 레이어 */
+.fx-hybrid-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------------------------------------------------------------------------------------------
+   B) Hybrid Tokens — 왕초보용 설정값 (여기 값만 몇 개 바꿔도 전체 분위기 변경)
+--------------------------------------------------------------------------------------------- */
+
+.fx-hybrid-signature-field {
+  /* 1) 전체 배경 강도 (0.0 ~ 1.0) */
+  --fx-hybrid-opacity: 0.9;
+
+  /* 2) 스트라이프 각도 & 밀도 */
+  --fx-hybrid-stripe-angle: 135deg; /* 135deg = 오른쪽 위↘왼쪽 아래↗ 사선 */
+  --fx-hybrid-stripe-clear: 26px;   /* 줄과 줄 사이 간격 */
+  --fx-hybrid-stripe-width: 1px;    /* 줄 두께 */
+
+  /* 3) 큰 기하학 블록(Geo Block)의 위치/크기 (기본: 오른쪽에 큰 패널) */
+  --fx-hybrid-geo-width: 60%;    /* 가로 폭 (섹션 대비 %) */
+  --fx-hybrid-geo-height: 100%;  /* 세로 높이 (섹션 대비 %) */
+  --fx-hybrid-geo-offset-x: -50%;/* 음수 = 오른쪽 밖에서 살짝 들어오게 */
+  --fx-hybrid-geo-offset-y: -10%;
+
+  /* 4) 색상 세트 (brand.css 토큰 기반) */
+  --fx-hybrid-geo-main: color-mix(
+    in srgb,
+    var(--primary-bg) 92%,
+    white 8%
+  ); /* 큰 기하학 패널 기본 색 */
+
+  --fx-hybrid-geo-edge: color-mix(
+    in srgb,
+    var(--primary-border) 80%,
+    transparent 20%
+  ); /* 기하학 패널 가장자리 그라데이션 */
+
+  --fx-hybrid-mesh-a: color-mix(
+    in srgb,
+    var(--primary) 40%,
+    transparent 60%
+  );
+  --fx-hybrid-mesh-b: color-mix(
+    in srgb,
+    var(--accent) 28%,
+    transparent 72%
+  );
+  --fx-hybrid-mesh-c: color-mix(
+    in srgb,
+    var(--secondary) 32%,
+    transparent 68%
+  );
+
+  --fx-hybrid-stripe-soft: color-mix(
+    in srgb,
+    var(--border-subtle) 70%,
+    transparent 30%
+  );
+  --fx-hybrid-stripe-strong: color-mix(
+    in srgb,
+    var(--primary-border) 90%,
+    transparent 10%
+  );
+}
+
+/* ---------------------------------------------------------------------------------------------
+   C) Base Mesh + Stripe Layer — 전체에 깔리는 Mesh + 얇은 스트라이프
+--------------------------------------------------------------------------------------------- */
+
+.fx-hybrid-signature-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--fx-hybrid-opacity);
+
+  background-image:
+    /* 1) Mesh 느낌의 부드러운 컬러 흐름 (radial + linear 조합) */
+    radial-gradient(
+      circle at 10% 0%,
+      var(--fx-hybrid-mesh-a) 0%,
       transparent 55%
     ),
     radial-gradient(
-      circle at 85% 75%,
-      color-mix(in srgb, var(--accent) 22%, transparent) 0%,
-      transparent 65%
+      circle at 90% 100%,
+      var(--fx-hybrid-mesh-b) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--surface) 80%, white 20%) 0%,
+      color-mix(in srgb, var(--surface-alt) 90%, white 10%) 40%,
+      color-mix(in srgb, var(--primary-bg) 96%, white 4%) 100%
+    ),
+
+    /* 2) 전역 얇은 스트라이프 (한 겹만) */
+    repeating-linear-gradient(
+      var(--fx-hybrid-stripe-angle),
+      transparent 0,
+      transparent var(--fx-hybrid-stripe-clear),
+      var(--fx-hybrid-stripe-soft) var(--fx-hybrid-stripe-clear),
+      var(--fx-hybrid-stripe-soft) calc(var(--fx-hybrid-stripe-clear) + var(--fx-hybrid-stripe-width))
     );
 
-  opacity: 0.55;        /* 0.85 → 0.55 : GPU 負担↓ */
-  /* blur 제거: 계산량 급감 */
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    repeat;
+
+  background-size:
+    120% 120%,
+    120% 120%,
+    100% 100%,
+    auto;
+}
+
+/* ---------------------------------------------------------------------------------------------
+   D) Geo + Strong Stripe Block — 한 쪽에 모여 있는 큰 기하학 패널 + 진한 줄
+--------------------------------------------------------------------------------------------- */
+
+.fx-hybrid-signature-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--fx-hybrid-opacity);
+
+  background-image:
+    /* 1) 둥근 모서리 기하학 패널(큰 사각형) */
+    linear-gradient(
+      135deg,
+      var(--fx-hybrid-geo-main) 0%,
+      color-mix(in srgb, var(--fx-hybrid-geo-main) 70%, white 30%) 45%,
+      color-mix(in srgb, var(--fx-hybrid-geo-main) 40%, transparent 60%) 100%
+    ),
+
+    /* 2) 패널 안쪽의 진한 스트라이프 (라인 포스터 느낌) */
+    repeating-linear-gradient(
+      var(--fx-hybrid-stripe-angle),
+      transparent 0,
+      transparent calc(var(--fx-hybrid-stripe-clear) - 4px),
+      var(--fx-hybrid-stripe-strong) calc(var(--fx-hybrid-stripe-clear) - 4px),
+      var(--fx-hybrid-stripe-strong) calc(var(--fx-hybrid-stripe-clear) - 4px + var(--fx-hybrid-stripe-width))
+    ),
+
+    /* 3) 패널 가장자리 Edge 하이라이트 */
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 60%,
+      var(--fx-hybrid-geo-edge) 100%
+    );
+
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat;
+
+  background-size:
+    var(--fx-hybrid-geo-width) var(--fx-hybrid-geo-height),
+    var(--fx-hybrid-geo-width) var(--fx-hybrid-geo-height),
+    var(--fx-hybrid-geo-width) var(--fx-hybrid-geo-height);
+
+  background-position:
+    calc(100% + var(--fx-hybrid-geo-offset-x)) var(--fx-hybrid-geo-offset-y),
+    calc(100% + var(--fx-hybrid-geo-offset-x)) var(--fx-hybrid-geo-offset-y),
+    calc(100% + var(--fx-hybrid-geo-offset-x)) var(--fx-hybrid-geo-offset-y);
+
+  /* 기본: 오른쪽 위에서 들어오는 사각 패널 느낌 */
+  mask-image: radial-gradient(
+    120% 160% at 100% 10%,
+    black 0%,
+    black 65%,
+    transparent 100%
+  );
+  mask-repeat: no-repeat;
+
+  border-radius: 0 0 0 48px; /* 살짝 둥근 모서리 */
+}
+
+/* ---------------------------------------------------------------------------------------------
+   E) Hover Motion — Mesh/Stripe가 아주 살짝 움직이는 효과
+--------------------------------------------------------------------------------------------- */
+
+.fx-hybrid-signature-field:hover::before {
+  transform: translateY(var(--fx-translate-soft-y));
+  transition:
+    transform var(--fx-duration-slow) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+.fx-hybrid-signature-field:hover::after {
+  transform: translateY(calc(var(--fx-translate-soft-y) * -1));
+  transition:
+    transform var(--fx-duration-slow) var(--fx-ease-soft),
+    opacity var(--fx-duration-normal) var(--fx-ease-soft);
+}
+
+/* ---------------------------------------------------------------------------------------------
+   F) Intensity / Color Variants — 강도 & 색 비중 프리셋
+--------------------------------------------------------------------------------------------- */
+
+/* 1) Primary Heavy — Primary 비중을 높이고, 스트라이프/패널을 조금 더 강하게 */
+.fx-hybrid-signature-field--primary-heavy {
+  --fx-hybrid-opacity: 0.96;
+  --fx-hybrid-mesh-a: color-mix(in srgb, var(--primary) 52%, transparent 48%);
+  --fx-hybrid-mesh-b: color-mix(in srgb, var(--accent) 28%, transparent 72%);
+  --fx-hybrid-mesh-c: color-mix(in srgb, var(--secondary) 26%, transparent 74%);
+  --fx-hybrid-stripe-soft: color-mix(in srgb, var(--primary-border) 85%, transparent 15%);
+  --fx-hybrid-stripe-strong: color-mix(in srgb, var(--primary-border) 96%, transparent 4%);
+}
+
+/* 2) Accent Soft — Accent 위주로 부드러운 느낌, 텍스트 많은 섹션용 */
+.fx-hybrid-signature-field--accent-soft {
+  --fx-hybrid-opacity: 0.82;
+  --fx-hybrid-mesh-a: color-mix(in srgb, var(--accent) 36%, transparent 64%);
+  --fx-hybrid-mesh-b: color-mix(in srgb, var(--primary) 22%, transparent 78%);
+  --fx-hybrid-mesh-c: color-mix(in srgb, var(--secondary) 18%, transparent 82%);
+  --fx-hybrid-stripe-clear: 30px;
+  --fx-hybrid-stripe-width: 1px;
+  --fx-hybrid-stripe-soft: color-mix(in srgb, var(--border-subtle) 65%, transparent 35%);
+  --fx-hybrid-stripe-strong: color-mix(in srgb, var(--accent-border) 88%, transparent 12%);
+}
+
+/* 3) Left Geo — 기하학 패널을 왼쪽으로 보낼 때 */
+.fx-hybrid-signature-field--left-geo {
+  --fx-hybrid-geo-offset-x: 10%;   /* 왼쪽으로 살짝 나가게 (좌측 기준) */
+  --fx-hybrid-geo-offset-y: -10%;
+
+  background-position:
+    left top;
+}
+
+/* 왼쪽 버전용 마스크: 왼쪽 위에서 들어오는 패널 느낌 */
+.fx-hybrid-signature-field--left-geo::after {
+  background-position:
+    calc(0% - var(--fx-hybrid-geo-offset-x)) var(--fx-hybrid-geo-offset-y),
+    calc(0% - var(--fx-hybrid-geo-offset-x)) var(--fx-hybrid-geo-offset-y),
+    calc(0% - var(--fx-hybrid-geo-offset-x)) var(--fx-hybrid-geo-offset-y);
+
+  mask-image: radial-gradient(
+    120% 160% at 0% 10%,
+    black 0%,
+    black 65%,
+    transparent 100%
+  );
+
+  border-radius: 0 0 48px 0;
+}
+
+/* ---------------------------------------------------------------------------------------------
+   G) Shape Variants — 원형 / 다이아 / 필 형태로 기하학 블록 변경
+--------------------------------------------------------------------------------------------- */
+
+/* 1) Circle Bubble — 오른쪽 위에서 살짝 들어오는 원형 버블 */
+.fx-hybrid-signature-field--geo-circle::after {
+  /* 사각형 마스크 대신 원형 마스크 사용 */
+  mask-image: radial-gradient(
+    circle at 110% 5%,
+    black 0%,
+    black 55%,
+    transparent 82%
+  );
+  border-radius: 0;
+
+  /* 원형 버블 사이즈/위치 */
+  --fx-hybrid-geo-width: 80%;
+  --fx-hybrid-geo-height: 150%;
+  --fx-hybrid-geo-offset-x: -10%;
+  --fx-hybrid-geo-offset-y: -18%;
+}
+
+/* 2) Diamond Plate — 다이아(◇) 형태의 기하학 패널 */
+.fx-hybrid-signature-field--geo-diamond::after {
+  /* radial 마스크 제거하고 clip-path로 다이아 모양 자르기 */
+  mask-image: none;
+  clip-path: polygon(
+    70% 0%,   /* 위 */
+    100% 40%, /* 오른쪽 */
+    70% 100%, /* 아래 */
+    35% 60%   /* 왼쪽 */
+  );
+
+  --fx-hybrid-geo-width: 60%;
+  --fx-hybrid-geo-height: 160%;
+  --fx-hybrid-geo-offset-x: -8%;
+  --fx-hybrid-geo-offset-y: -20%;
+}
+
+/* 3) Horizontal Pill — 오른쪽에서 밀려 들어오는 알약 모양 패널 */
+.fx-hybrid-signature-field--geo-pill::after {
+  mask-image: none;
+  clip-path: none;
+  border-radius: 999px 0 0 999px; /* 오른쪽이 둥근 긴 필 형태 */
+
+  --fx-hybrid-geo-width: 80%;
+  --fx-hybrid-geo-height: 80%;
+  --fx-hybrid-geo-offset-x: -5%;
+  --fx-hybrid-geo-offset-y: -8%;
 }

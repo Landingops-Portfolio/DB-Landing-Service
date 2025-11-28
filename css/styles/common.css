@@ -1660,7 +1660,7 @@ body {
 }
 
 /* 서브 CTA 버튼 - 마우스 호버 */
-.btn-cta-main:hover {
+.btn-cta-sub:hover {
   background: var(--color-cta-sub-hover); 
 }
 
