@@ -873,8 +873,8 @@ body {
 
 /* CTA 전용 surface */
 .surface-cta {
-  background: color-mix(in srgb, var(--cta) 6%, white);
-  border: var(--border-1) solid var(--cta);
+  background: var(--card-bg);
+  border: var(--border-1) solid var(--border-default);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
 }
