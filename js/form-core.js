@@ -229,7 +229,7 @@ function closeModal() {
 
   // ESC 키로 닫기
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
       closeModal();
     }
   });

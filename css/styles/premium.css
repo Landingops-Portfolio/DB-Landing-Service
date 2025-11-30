@@ -1542,8 +1542,8 @@ Privacy Modal (Layer / Lightbox / Overlay)  개인정보처리 방침 모달
   z-index: 1; /* 오버레이보다 위 */
   width: min(100% - 2rem, 720px); /* 모바일 여백 확보 + 최대 너비 */
   max-height: min(80vh, 720px);
-  background: var(--surface-elevated, #020617); /* 브랜드 토큰 없으면 기본 진한 배경 */
-  color: var(--neutral-50, #f9fafb);
+  background: var(--neutral-100); /* 브랜드 토큰 없으면 기본 진한 배경 */
+  color: var(--neutral-700);
   border-radius: var(--radius-xl, 18px);
   box-shadow: var(--shadow-xl, 0 24px 80px rgba(15, 23, 42, 0.9));
   display: flex;
@@ -1559,14 +1559,15 @@ Privacy Modal (Layer / Lightbox / Overlay)  개인정보처리 방침 모달
   padding: 1rem 1.25rem;
   border-bottom: 1px solid rgba(148, 163, 184, 0.25);
   background: radial-gradient(circle at top left,
-    rgba(56, 189, 248, 0.15),
-    transparent 55%);
+    var(--primary-text),     /*<< 메인 primary색으로 임시 지정*/
+    transparent 78%);
 }
 
 /* 제목 텍스트 */
 .privacy-modal__title {
   font-size: 0.95rem;
   font-weight: 600;
+  color:#ffffff;
   letter-spacing: 0.02em;
 }
 
@@ -1594,7 +1595,8 @@ Privacy Modal (Layer / Lightbox / Overlay)  개인정보처리 방침 모달
   padding: 1rem 1.25rem 1.25rem;
   overflow-y: auto;
   font-size: 0.82rem;
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 /* 모바일에서 스크롤 시 안쪽 여백 확보 */
@@ -1638,15 +1640,15 @@ Privacy Modal (Layer / Lightbox / Overlay)  개인정보처리 방침 모달
 
 .privacy-modal__body th,
 .privacy-modal__body td {
-  border: 1px solid rgba(148, 163, 184, 0.6);
+  border: 1.5px solid var(--neutral-400);
   padding: 0.35rem 0.5rem;
   text-align: left;
   vertical-align: top;
 }
 
 .privacy-modal__body th {
-  background: rgba(15, 23, 42, 0.85);
-  font-weight: 600;
+  background: var(--neutral-100);
+  font-weight: 400;
 }
 
 /* 링크 색상 */
