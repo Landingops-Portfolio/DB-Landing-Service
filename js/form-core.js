@@ -1,184 +1,340 @@
-// validation-row.js — Vanilla JS 버전 (+ hoa 포함)
+// ================================
+// form-core.js — 리코 랜딩 전용 폼 모듈 (Vanilla JS)
+// - data-form / data-field 기반
+// - Google Forms entry.* name 매핑 (HTML 수정 없이 JS에서 처리)
+// - 실시간 폼 검증 + 버튼 활성/비활성 + 버튼 색상 제어
+// - 구글폼 "제출 완료" 화면 안 보이게 하고 바로 땡큐페이지로 이동
+// ================================
+(function () {
+  // ─────────────────────────────
+  // 1. 기본 설정 (Google Form / Thank-you URL)
+  // ─────────────────────────────
+  var GOOGLE_FORM_ACTION =
+    'https://docs.google.com/forms/d/e/1FAIpQLSdnayRSJu0CdjdqFLh676JL7qr8BWrE33WVgqvk2e4qy6SDCw/formResponse';
 
-window.addEventListener('load', function () {
-  var form      = document.getElementById('form_e11');
-  var submitBtn = document.getElementById('send_message');
+  var THANKYOU_URL = 'https://kbizconsult.com/result';
 
-  // 이 페이지에 폼이 없으면 아무 것도 안 함
-  if (!form || !submitBtn) return;
+  // 버튼 컬러(활성/비활성) – 필요하면 여기서만 수정하면 됨
+  var BTN_ACTIVE_BG   = '#1f5fae'; // 기본 파란색
+  var BTN_ACTIVE_TEXT = '#ffffff';
+  var BTN_DISABLED_BG = '#7b8a97'; // 비활성 회색
+  var BTN_DISABLED_TX = '#ffffff';
 
-  var nameInput    = document.getElementById('name');
-  var phoneInput   = document.getElementById('phone');
-  var biznameInput = document.getElementById('bizname');
-  var industrySel  = document.getElementById('industry');
-  var regionSel    = document.getElementById('region');
-  var revenueSel   = document.getElementById('revenue');
-  var fundSel      = document.getElementById('fund');
-  var arrearsSel   = document.getElementById('arrears');
-  var agreeInput   = document.getElementById('agree11');
+  // ─────────────────────────────
+  // 2. DOM 로드 후 초기화
+  // ─────────────────────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    // (1) 폼과 버튼 찾기
+    var form = document.querySelector('[data-form]');
+    if (!form) return;
 
-  var nameRegex  = /^[가-힣]+$/;
-  var phoneRegex = /^[0-9]+$/;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    if (!submitBtn) return;
 
-  // 실제 유효성 검사 로직
-  function validateForm() {
-    var name    = nameInput.value.trim();
-    var phone   = phoneInput.value.trim();
-    var bizname = biznameInput.value.trim();
-    var industry = industrySel.value;
-    var region   = regionSel.value;
-    var revenue  = revenueSel.value;
-    var fund     = fundSel.value;
-    var arrears  = arrearsSel.value;
-    var agree    = agreeInput.checked;
+    // 버튼 기본 문구 (초기 텍스트를 그대로 가져옴)
+    var CTA_DEFAULT_TEXT = submitBtn.textContent || '1:1 무료상담 신청하기';
 
-    // 이전 에러 스타일 제거
-    [
-      nameInput, phoneInput, biznameInput,
-      industrySel, regionSel, revenueSel, fundSel, arrearsSel,
-      agreeInput
-    ].forEach(function (el) {
-      if (el) el.classList.remove('error_input');
+    // 사용자가 한 번이라도 입력/선택을 했는지 여부
+    var hasInteracted = false;
+
+    // (2) 필드 설정
+    // 광고주/폼 항목이 바뀌면 "여기 FIELD_CONFIG만" 수정하면 됨
+    var FIELD_CONFIG = [
+      {
+        key: 'name',
+        selector: '[data-field="name"]',
+        entryName: 'entry.1237659122',       // Google Form entry
+        type: 'text',                        // text / phone / textarea / select / checkbox
+        minLength: 2,
+        message: '이름을 입력해주세요.'
+      },
+      {
+        key: 'phone',
+        selector: '[data-field="phone"]',
+        entryName: 'entry.1192404920',
+        type: 'phone',
+        message: '핸드폰 번호를 입력해주세요.'
+      },
+      {
+        key: 'industry',
+        selector: '[data-field="industry"]',
+        entryName: 'entry.1418567288',
+        type: 'text',
+        minLength: 2,
+        message: '업종을 입력해주세요.'
+      },
+      {
+        key: 'dbcount',
+        selector: '[data-field="dbcount"]',
+        entryName: 'entry.1091907877',
+        type: 'select',
+        message: '하루에 필요한 DB 갯수를 선택해주세요.'
+      },
+      {
+        key: 'message',
+        selector: '[data-field="message"]',
+        entryName: 'entry.1896749595',
+        type: 'textarea',
+        minLength: 2,
+        message: '문의사항을 입력해주세요.'
+      },
+      {
+        key: 'agree_privacy',
+        selector: '[data-field="agree_privacy"]',
+        type: 'checkbox',
+        message: '개인정보 수집 및 이용에 동의해주세요.'
+      }
+    ];
+
+    // (3) DOM 요소 캐시 + Google entry 매핑
+    var fieldElements = {};
+
+    FIELD_CONFIG.forEach(function (cfg) {
+      var el = form.querySelector(cfg.selector);
+      fieldElements[cfg.key] = el || null;
+
+      // Google Forms entry.* 값으로 name 치환 (HTML은 건드리지 않음)
+      if (el && cfg.entryName) {
+        el.setAttribute('name', cfg.entryName);
+      }
     });
 
-    // 이름
-    if (!nameRegex.test(name) || name.length < 2) {
-      nameInput.classList.add('error_input');
-      return { ok: false, message: '성함 입력을 확인하세요.' };
+    // ─────────────────────────────
+    // 3-A. 전화번호 입력 마스킹 (숫자만 + 최대 11자리)
+    //      - HTML에 maxlength 없어도 JS에서 강제 제한
+    // ─────────────────────────────
+    var phoneEl = fieldElements['phone'];
+    if (phoneEl) {
+      phoneEl.addEventListener('input', function () {
+        var digits = phoneEl.value.replace(/\D/g, ''); // 숫자만 남기기
+        if (digits.length > 11) {
+          digits = digits.slice(0, 11);               // 최대 11자리로 잘라냄
+        }
+        phoneEl.value = digits;
+      });
     }
 
-    // 전화번호
-    if (phone.length === 0) {
-      phoneInput.classList.add('error_input');
-      return { ok: false, message: '전화번호를 입력하세요.' };
-    }
-    if (!(phone.substr(0, 3) === '010' && phone.length === 11 && phoneRegex.test(phone))) {
-      phoneInput.classList.add('error_input');
-      return { ok: false, message: '전화번호 입력을 확인하세요.' };
-    }
-
-    // 상호
-    if (bizname.length === 0) {
-      biznameInput.classList.add('error_input');
-      return { ok: false, message: '상호명을 입력하세요.' };
+    // ─────────────────────────────
+    // 3-B. 에러 스타일 초기화
+    // ─────────────────────────────
+    function clearErrors() {
+      FIELD_CONFIG.forEach(function (cfg) {
+        var el = fieldElements[cfg.key];
+        if (el) el.classList.remove('is-error');
+      });
     }
 
-    // 셀렉트들
-    if (!industry) {
-      industrySel.classList.add('error_input');
-      return { ok: false, message: '업종을 선택하세요.' };
+    // ─────────────────────────────
+    // 4. 단일 필드 검증
+    //    - 모든 필드는 "입력 필수"
+    //    - 타입별 추가 검증(phone, select, checkbox 등)
+    // ─────────────────────────────
+    function validateField(cfg) {
+      var el = fieldElements[cfg.key];
+      if (!el) {
+        return { ok: false, message: '필드 설정 오류입니다.' };
+      }
+
+      // 체크박스
+      if (cfg.type === 'checkbox') {
+        if (!el.checked) {
+          el.classList.add('is-error');
+          return { ok: false, message: cfg.message };
+        }
+        return { ok: true };
+      }
+
+      var value = (el.value || '').trim();
+
+      // 공백이나 미입력 → 무조건 실패
+      if (!value) {
+        el.classList.add('is-error');
+        return { ok: false, message: cfg.message };
+      }
+
+      // ----------------------------------------
+      // 🔥 1) "이름" 강화 검증
+      // ----------------------------------------
+      if (cfg.key === 'name') {
+        var nameRegex = /^[가-힣]+$/;       // 한글만 허용
+        if (!nameRegex.test(value) || value.length < 2) {
+          el.classList.add('is-error');
+          return { ok: false, message: '이름을 정확히 확인해주세요.' };
+        }
+      }
+
+      // ----------------------------------------
+      // 🔥 2) "핸드폰" 강화 검증
+      // ----------------------------------------
+      if (cfg.key === 'phone') {
+        // 숫자만 추출
+        var digits = value.replace(/\D/g, '');
+        var phoneRegex = /^[0-9]+$/;
+
+        // 010으로 시작 + 11자리 + 숫자만
+        if (!(digits.startsWith('010') && digits.length === 11 && phoneRegex.test(digits))) {
+          el.classList.add('is-error');
+          return { ok: false, message: '핸드폰 번호를 정확히 입력해주세요.' };
+        }
+
+        // 실제 제출 값은 숫자만 저장
+        el.value = digits;
+      }
+
+      // ----------------------------------------
+      // 기존 기본 검증(텍스트 / 텍스트에어리어 minLength)
+      // ----------------------------------------
+      if ((cfg.type === 'text' || cfg.type === 'textarea') && cfg.minLength) {
+        if (value.length < cfg.minLength) {
+          el.classList.add('is-error');
+          return { ok: false, message: cfg.message };
+        }
+      }
+
+      // select 검증
+      if (cfg.type === 'select') {
+        if (!value) {
+          el.classList.add('is-error');
+          return { ok: false, message: cfg.message };
+        }
+      }
+
+      return { ok: true };
     }
 
-    if (!region) {
-      regionSel.classList.add('error_input');
-      return { ok: false, message: '지역을 선택하세요.' };
+    // ─────────────────────────────
+    // 5. 전체 폼 검증
+    //    - FIELD_CONFIG에 등록된 항목 전부 검증
+    //    - 하나라도 실패하면 그 메시지를 그대로 반환
+    // ─────────────────────────────
+    function validateForm() {
+      clearErrors();
+
+      for (var i = 0; i < FIELD_CONFIG.length; i++) {
+        var cfg = FIELD_CONFIG[i];
+        var result = validateField(cfg);
+
+        if (!result.ok) {
+          return result; // 첫 번째 에러를 그대로 사용
+        }
+      }
+
+      return { ok: true, message: '' };
     }
 
-    if (!revenue) {
-      revenueSel.classList.add('error_input');
-      return { ok: false, message: '연매출을 선택하세요.' };
+    // ─────────────────────────────
+    // 6. 버튼 활성/비활성 상태 + 색상 업데이트
+    // ─────────────────────────────
+    function updateSubmitButtonState() {
+      // 아직 사용자가 아무 입력도 안 했으면 버튼 상태를 건드리지 않음
+      if (!hasInteracted) return;
+
+      var result = validateForm();
+
+      if (result.ok) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = CTA_DEFAULT_TEXT;
+        submitBtn.style.backgroundColor = BTN_ACTIVE_BG;
+        submitBtn.style.color = BTN_ACTIVE_TEXT;
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.textContent = result.message;
+        submitBtn.style.backgroundColor = BTN_DISABLED_BG;
+        submitBtn.style.color = BTN_DISABLED_TX;
+      }
     }
 
-    if (!fund) {
-      fundSel.classList.add('error_input');
-      return { ok: false, message: '필요 자금을 선택하세요.' };
-    }
+    // ─────────────────────────────
+    // 7. 필드 변화 감지 → 버튼 상태 실시간 업데이트
+    // ─────────────────────────────
+    FIELD_CONFIG.forEach(function (cfg) {
+      var el = fieldElements[cfg.key];
+      if (!el) return;
 
-    if (!arrears) {
-      arrearsSel.classList.add('error_input');
-      return { ok: false, message: '연체·국세 체납여부를 선택하세요.' };
-    }
+      // 입력 중이면 input, 선택/체크이면 change로 감시
+      var mainEvent = (cfg.type === 'checkbox' || cfg.type === 'select') ? 'change' : 'input';
 
-    // 동의 체크
-    if (!agree) {
-      agreeInput.classList.add('error_input');
-      return { ok: false, message: '개인정보 동의를 해주세요.' };
-    }
+      var handler = function () {
+        if (!hasInteracted) hasInteracted = true;
+        updateSubmitButtonState();
+      };
 
-    return { ok: true, message: '' };
-  }
+      el.addEventListener(mainEvent, handler);
 
-  // 입력 변화에 따라 버튼 상태/문구 업데이트
-  function updateSubmitButtonState() {
-    var result = validateForm();
+      // select/checkbox도 input 이벤트에서 예외가 있을 수 있으니 change를 한 번 더 걸어둠
+      if (mainEvent !== 'change') {
+        el.addEventListener('change', handler);
+      }
+    });
 
-    if (result.ok) {
-      submitBtn.disabled = false;
-      submitBtn.textContent = '무료상담 신청하기';
-      submitBtn.style.background = '#0e3b64';
-      submitBtn.style.cursor = 'pointer';
-    } else {
-      submitBtn.disabled = true;
-      submitBtn.textContent = result.message;
-      submitBtn.style.background = '#595959';
-      submitBtn.style.cursor = 'default';
-    }
-  }
+    // ─────────────────────────────
+    // 8. 초기 상태 설정
+    //    - 아직 입력 전: 기본 CTA + 파란색 + 활성화
+    //    - hasInteracted=false 이므로 updateSubmitButtonState는 버튼을 건드리지 않음
+    // ─────────────────────────────
+    submitBtn.disabled = false;
+    submitBtn.textContent = CTA_DEFAULT_TEXT;
+    submitBtn.style.backgroundColor = BTN_ACTIVE_BG;
+    submitBtn.style.color = BTN_ACTIVE_TEXT;
 
-  // 감시할 요소들
-  var inputsToWatch = [
-    nameInput, phoneInput, biznameInput,
-    industrySel, regionSel, revenueSel, fundSel, arrearsSel,
-    agreeInput
-  ];
-
-  inputsToWatch.forEach(function (el) {
-    if (!el) return;
-    el.addEventListener('input',  updateSubmitButtonState);
-    el.addEventListener('change', updateSubmitButtonState);
-  });
-
-  // 초기 상태 한 번 세팅
-  updateSubmitButtonState();
-
-  // 최종 클릭 시 처리
-  submitBtn.addEventListener('click', function (e) {
-    var result = validateForm();
-
-    // 다시 한 번 체크해서 문제 있으면 경고 후 막기
-    if (!result.ok) {
+    // ─────────────────────────────
+    // 9. 최종 submit 처리 (AJAX 방식)
+    //    - Google Form에 백그라운드로 전송
+    //    - 화면 전환은 JS로 통제 → Google 화면 절대 안 보임
+    // ─────────────────────────────
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      alert(result.message);
-      return;
+
+      var result = validateForm();
+      if (!result.ok) {
+        alert(result.message);
+        return;
+      }
+
+      // 버튼 상태 → 비활성 + 메시지 변경
+      submitBtn.disabled = true;
+      submitBtn.textContent = '전송 중입니다';
+      submitBtn.setAttribute('data-state', 'submitting');
+      submitBtn.style.backgroundColor = BTN_DISABLED_BG;
+      submitBtn.style.color = BTN_DISABLED_TX;
+
+      // 폼 데이터를 FormData 형태로 수집
+      var formData = new FormData(form);
+
+      // AJAX 방식으로 Google Form에 전송
+      fetch(GOOGLE_FORM_ACTION, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      })
+        .then(function () {
+          // 실제 Google 응답은 확인할 수 없으므로 바로 땡큐페이지 이동 처리
+          hoa();
+        })
+        .catch(function () {
+          // 혹시 실패해도 사용자 경험은 동일하게 유지
+          hoa();
+        });
+    });
+
+    // ─────────────────────────────
+    // 10. 전송 후 후처리 함수 (hoa)
+    //     - 알림 → 상단 스크롤 → 땡큐페이지 이동
+    // ─────────────────────────────
+    function hoa() {
+      alert('신청이 완료되었습니다.');
+
+      // 상단으로 부드럽게 스크롤
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // 랜덤 토큰 생성 (단순 추적용)
+      var tx = Math.random().toString(36).substr(2) + Date.now().toString(36);
+
+      // 땡큐페이지로 이동
+      window.location.href = THANKYOU_URL + '?tx=' + tx;
     }
-
-    // ✅ 최종 통과 → action 설정 + 버튼 상태 변경 + 전송 + 땡큐페이지 예약
-    form.setAttribute(
-      'action',
-      'https://docs.google.com/forms/d/e/1FAIpQLSceC-tDXVpVn3kit6Pky0_35rr4ZuBEYmD5IMsP7PkxhoXgLw/formResponse'
-    );
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = '전송 중입니다';
-    submitBtn.style.background = '#595959';
-    submitBtn.style.cursor = 'default';
-
-    // 실제 폼 전송
-    form.submit();
-
-    // 1.5초 뒤 땡큐페이지 이동
-    setTimeout(hoa, 700);
   });
-});
-/**
- * 폼 전송 후 호출되는 함수
- * - 알림
- * - 상단으로 스크롤
- * - 땡큐페이지로 이동
- */
-function hoa() {
-  alert('신청이 완료되었습니다.');
-
-  // 상단으로 부드럽게 스크롤
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // 랜덤 토큰 생성
-  var tx = Math.random().toString(36).substr(2) + Date.now().toString(36);
-
-  // 땡큐페이지로 이동
-  window.location.href = 'https://kbizconsult.com/result?tx=' + tx;
-}
-
+})();
 
 // ====================================================
 // 개인정보 처리방침 모달 제어 (data-* 기반)
