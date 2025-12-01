@@ -6,15 +6,16 @@
     <style>
       .lo-navy { fill:#002B5C; }
       .lo-blue { fill:#1F8BFF; }
-      .lo-text {
+      .lo-text { 
         font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         font-weight: 700;
         letter-spacing: 0.01em;
+        fill:#ffffff;
       }
     </style>
   </defs>
 
-  <!-- 아이콘 -->
+  <!-- ICON -->
   <g transform="translate(8,0)">
     <polygon points="0,12 0,32 16,40 16,20"
              fill="#ffffff" stroke="#002B5C" stroke-width="2" stroke-linejoin="round"/>
@@ -26,8 +27,8 @@
              class="lo-blue"/>
   </g>
 
-  <!-- 텍스트 -->
-  <text x="52" y="34" font-size="24" class="lo-text lo-navy">
+  <!-- TEXT -->
+  <text x="52" y="34" font-size="24" class="lo-text">
     LandingOps
   </text>
 </svg>
