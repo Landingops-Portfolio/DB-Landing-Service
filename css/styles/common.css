@@ -121,7 +121,7 @@ body.is-modal-open {
 4) UI COMPONENTS (인터랙션·상태·조작 중심) - 47개
 
 5) FORM COMPONENTS (입력 UI & 폼 카드) - 24개
-6) NAVIGATION / FOOTER (상단 메뉴바/하단 푸터 구조) - 4개  -무채색,질감,모양토큰만 맵핑 (25.12.01)
+6) NAVIGATION / FOOTER (상단 메뉴바/하단 푸터 구조) - 헤더&푸터 2개다 - 무채색,질감,모양토큰만 맵핑 (25.12.02)
 7) EFFECT UTILS (표면·보더·그림자 유틸) - 34개
 8) ICON / MEDIA (아이콘·아바타·미디어 프레임) - 31개
 ======================================================================================================
@@ -2686,18 +2686,24 @@ box-shadow: var(--shadow-none);
 }
 
 /* ====================================================================
-   [6-D] FOOTER BLOCKS   / 7개
+   [6-D] FOOTER BLOCKS   / 7개  (토큰 리맵핑 버전) - 25.12.02
    ==================================================================== */
 
-/* 전체 풋터 래퍼 (사이트/랜딩 하단) */
+/* 전체 풋터 래퍼 (사이트/랜딩 하단)
+   - 섹션 교대 배경: section-alt-bg
+   - 외곽 경계선: border-default
+*/
 .footer {
   background: var(--section-alt-bg);
-  border: var(--border-1) solid var(--border-default);
+  border-top: var(--border-1) solid var(--border-default);
   border-radius: var(--radius-none);
   box-shadow: var(--shadow-none);
 }
 
-/* 풋터 상단 (링크/메뉴/카테고리) */
+/* 풋터 상단 (링크/메뉴/카테고리)
+   - 기본 섹션 배경: section-bg
+   - 하단 구분선: border-default
+*/
 .footer-top {
   background: var(--section-bg);
   border-bottom: var(--border-1) solid var(--border-default);
@@ -2705,7 +2711,10 @@ box-shadow: var(--shadow-none);
   box-shadow: var(--shadow-none);
 }
 
-/* 풋터 하단 (저작권/사업자정보) */
+/* 풋터 하단 (저작권/사업자정보)
+   - 기본 섹션 배경: section-bg
+   - 상단 구분선: border-subtle
+*/
 .footer-bottom {
   background: var(--section-bg);
   border-top: var(--border-1) solid var(--border-subtle);
@@ -2713,7 +2722,7 @@ box-shadow: var(--shadow-none);
   box-shadow: var(--shadow-none);
 }
 
-/* 풋터 내 메뉴 리스트 */
+/* 풋터 내 메뉴 리스트 래퍼 */
 .footer-nav {
   background: transparent;
   border: var(--border-0) solid transparent;
@@ -2721,29 +2730,38 @@ box-shadow: var(--shadow-none);
   box-shadow: var(--shadow-none);
 }
 
-/* 풋터 개별 메뉴 */
+/* 풋터 개별 메뉴
+   - hover 시 배경/테두리 입힐 때 사용할 베이스
+*/
 .footer-nav-item {
   background: transparent;
   border: var(--border-0) solid transparent;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-sm);      /* radius 토큰 사용 */
   box-shadow: var(--shadow-none);
 }
 
-/* 사업자정보/정책/문구 영역 surface */
+/* 사업자정보/정책/문구 영역 surface
+   - 살짝 떠 있는 카드 느낌: card-elevated-bg + shadow-sm
+   - 일반 보더: border-default
+*/
 .footer-meta {
-  background: var(--neutral-100);
+  background: var(--card-elevated-bg);
   border: var(--border-1) solid var(--border-default);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--shadow-sm);
 }
 
-/* 보안배지/인증/결제마크 영역(선택) */
+/* 보안배지/인증/결제마크 영역(선택)
+   - 기본 카드 배경: card-bg
+   - 아주 연한 보더: border-subtle
+*/
 .footer-badge-bar {
-  background: var(--neutral-50);
+  background: var(--card-bg);
   border: var(--border-1) solid var(--border-subtle);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-none);
 }
+
 
 /* =======================================================================================
 [7] EFFECT UTILS (표면·보더·그림자 유틸)  - [v] 34개확인
