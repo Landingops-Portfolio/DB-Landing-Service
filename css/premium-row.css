@@ -3356,7 +3356,6 @@ JS 예시 (카운트 변경 시)
 
 /* 짧은 가로 라인 하나 (좌측 상단 쪽) 
 구현 방법: <div></div>로 박스 만들어서 넣어야함 */
-*/
 .fx-geo-line-node {
   position: absolute;
   top: 24%;
