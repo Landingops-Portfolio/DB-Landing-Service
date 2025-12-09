@@ -230,19 +230,23 @@
 
     .cta-wrap {
       position: relative;
-      background-image: url("https://picsum.photos/1200/800?blur=3");
+      aspect-ratio: 16/9;           /* 🔥 CTA 배경 비율 고정 */
+      background-image: url("./img/hs-cta-001.png");
       background-size: cover;
       background-position: center;
-      padding: 70px 24px;
       border-radius: 22px;
       overflow: hidden;
       box-shadow: 0 18px 50px rgba(0,0,0,0.7);
+      display: flex;                /* 내부 텍스트 정렬 위해 */
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;           /* 모바일을 위해 줄임 */
     }
 
     .cta-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.85); /* 좀 더 어둡게 */
+      background: rgba(0,0,0,0.75); /* 좀 더 어둡게 */
       backdrop-filter: blur(2px);
     }
 
@@ -332,6 +336,12 @@
       }
     }
 
+    @media (min-width: 768px) {
+    .cta-wrap {
+      aspect-ratio: 16/7;         /* 🔥 태블릿/PC에서는 조금 더 와이드 */
+      padding: 70px 24px;
+    }
+  }
   </style>
 </head>
 <body>
@@ -383,7 +393,7 @@
       <p>
         다음과 같은 의문 한 번쯤 품어보셨을 겁니다.<br class="hidden md:block" />
         '왜 자꾸 다른 CPA 회사의 DB를 사용해봐도
-        <span class="highlight-italic">항상 같은 문제가 반복되는걸까?</span> ' 하고 말입니다.
+        <span class="highlight-italic">항상 같은 문제가 반복되는걸까?</span> ' 하고 말이죠.
       </p>
     </div>
 
@@ -418,7 +428,7 @@
 
     <!-- 중간 이미지 -->
     <div class="middle-img reveal-target">
-    <img src="./img/hs-hero-001.png">
+    <img src="./img/hs-middel-001.jpg">
     </div>
 
     <!-- 질문 박스 -->
