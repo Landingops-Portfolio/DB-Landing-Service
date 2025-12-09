@@ -253,7 +253,7 @@ Note뜻: 참고사항/주의문/추가설명
 .highlight-underline {
   text-decoration: underline;                                  /* 기본 밑줄을 켬 */
   text-decoration-color: var(--color-highlight-underline);   
-  text-decoration-thickness: 16px;                          /* 밑줄 두께 설정 */
+  text-decoration-thickness: 12px;                          /* 밑줄 두께 설정 */
   text-underline-offset: -4px;                                /* 글자와 밑줄 간격, 마이너스(-)로 하면 밑줄이 글 밑으로감 야쓰! */
 }
 
