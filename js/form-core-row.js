@@ -40,6 +40,7 @@
     // (2) 필드 설정
     // 광고주/폼 항목이 바뀌면 "여기 FIELD_CONFIG만" 수정하면 됨
     var FIELD_CONFIG = [
+      // 
       {
         key: 'name',
         selector: '[data-field="name"]',
@@ -83,6 +84,13 @@
         selector: '[data-field="agree_privacy"]',
         type: 'checkbox',
         message: '개인정보 수집 및 이용에 동의해주세요.'
+      },
+      {
+        key: 'source',
+        selector: '[data-field="source"]',  //  유입매체&타겟정보
+        entryName: 'entry.299243927',  // ← 구글 폼에서 실제 매체 필드 entry.* 값으로 맞춰줘야 함
+        type: 'hidden',
+        message: '유입 경로 정보가 없습니다.'
       }
     ];
 
@@ -98,6 +106,41 @@
         el.setAttribute('name', cfg.entryName);
       }
     });
+
+    // ─────────────────────────────
+    // 3-1. 유입매체/타겟 hidden 필드 자동 세팅
+    //      우선순위:
+    //      1) window.LANDING_SOURCE
+    //      2) <body data-source="...">
+    //      3) URL ?src= 또는 ?ch=
+    //      4) 기본값: '인덱스'
+    // ─────────────────────────────
+    var sourceEl = fieldElements['source'];
+    if (sourceEl) {
+      var srcLabel = (function () {
+        // 1) 전역 변수 (가장 우선)
+        if (typeof window.LANDING_SOURCE === 'string' && window.LANDING_SOURCE.trim()) {
+          return window.LANDING_SOURCE.trim();
+        }
+
+        // 2) body data-source
+        var bodySource = document.body.getAttribute('data-source');
+        if (bodySource && bodySource.trim()) {
+          return bodySource.trim();
+        }
+
+        // 3) URL 파라미터 (?src= / ?ch=)
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('src')) return params.get('src');
+        if (params.get('ch')) return params.get('ch');
+
+        // 4) 기본값
+        return '인덱스';
+      })();
+
+      // 실제 hidden input 값에 저장
+      sourceEl.value = srcLabel;
+    }
 
     // ─────────────────────────────
     // 3-A. 전화번호 입력 마스킹 (숫자만 + 최대 11자리)

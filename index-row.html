@@ -918,6 +918,11 @@
                 placeholder="자유롭게 적어주세요"
               ></textarea>
             </div>
+            <!-- 📌 (시작) 유입매체/타겟 저장용 hidden 필드 -->
+           <div>
+            <input type="hidden" data-field="source" value="" />
+            </div>
+            <!-- 📌 (끝) 유입매체/타겟 저장용 hidden 필드 -->
             <button type="submit" class="btn-cta-main btn-text w-full py-4 fx-btn-soft-glow">
               1:1 무료상담 신청하기
             </button>
@@ -1148,5 +1153,10 @@
       lucide.createIcons();
     </script>
     <script src="./js/form-core.js"></script>
+    
+    <script> 
+      window.LANDING_SOURCE = '인덱스';  //📌 어떤 매체 유입인지 라벨링
+    </script> 
+
   </body>
 </html>
