@@ -262,7 +262,7 @@
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.78);
-      backdrop-filter: blur(2px);
+      /* backdrop-filter: blur(2px); */
       z-index: 1;
     }
 
@@ -567,7 +567,14 @@
   <div class="cta-wrap reveal-target">
 
     <!-- 배경 이미지 -->
-    <img src="./img/hs-cta-001.png" alt="" class="cta-bg" />
+    <img
+    src="./img/hs-cta-001.webp"
+    alt=""
+    class="cta-bg"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    />
 
     <!-- 어둡게 오버레이 -->
     <div class="cta-overlay"></div>
