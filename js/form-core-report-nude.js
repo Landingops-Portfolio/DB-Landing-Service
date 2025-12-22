@@ -12,7 +12,7 @@
   var GOOGLE_FORM_ACTION =
     'https://docs.google.com/forms/d/e/1FAIpQLSeghb2WNBhayGg0oYEKfYt_dNCNYFOXh4OlQBOIo2Gr3B42-w/formResponse';
 
-  var THANKYOU_URL = 'https://landingops.com/result';
+  var THANKYOU_URL = 'https://landingops.com/result-report';
 
   // 버튼 컬러(활성/비활성) – 필요하면 여기서만 수정하면 됨
   var BTN_ACTIVE_BG   = '#1f5fae'; // 기본 파란색
