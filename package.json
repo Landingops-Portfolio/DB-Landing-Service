@@ -12,7 +12,7 @@
 
   "build:css": "echo [CSS] common-nude.css → common.css && cleancss -O2 -o css/common.css css/common-nude.css && echo [CSS] brand-nude.css → brand.css && cleancss -O2 -o css/brand.css css/brand-nude.css && echo [CSS] typography-nude.css → typography.css && cleancss -O2 -o css/typography.css css/typography-nude.css && echo [CSS] premium-nude.css → premium.css && cleancss -O2 -o css/premium.css css/premium-nude.css",
 
-  "obfuscate:core": "echo [JS] form-core-nude.js → form-core.js && javascript-obfuscator js/form-core-nude.js --output js/form-core.js --compact true --self-defending true --string-array true --string-array-threshold 1 --string-array-encoding base64 --control-flow-flattening true --control-flow-flattening-threshold 0.8 --dead-code-injection true --dead-code-injection-threshold 0.2 --numbers-to-expressions true --identifier-names-generator mangled --split-strings true --split-strings-chunk-length 5",
+  "obfuscate:core": "node obfuscate-form.js",
 
   "build:html": "node build-html.js",
 
