@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>개인회생·파산 | LandingOps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ============================
+      파비콘 & 터치 아이콘
+  ============================ -->
+  <link rel="icon" href="./svg/landingops-icon.svg" />
+  <link rel="apple-touch-icon" href="./svg/landingops-icon.svg" />
+
+    <!-- Tailwind CDN (초기 제작용) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/brand.css" />
+    <link rel="stylesheet" href="./css/premium.css" />
+
+
+  <style>
+    :root {
+      --brand-main: #003e8f;
+      --brand-main-soft: rgb(5, 62, 138);
+      --brand-strong: #0077ff;
+      --brand-underline: #2563eb;
+      --brand-italic: hsl(211, 100%, 80%);
+      --brand-cta: #0077ff;
+    }
+
+    /* ========================================================================
+       🟦 CONTENT 본문 텍스트 전역 강조레벨 시스템
+    ======================================================================== */
+
+    /* Lv1: 약한 텍스트 강조 (연한 블루 텍스트) */
+    .highlight-text {
+      color: #dbeafe;
+      font-weight: 500;
+    }
+
+    /* Lv2: 소프트 형광펜 (밑부분 은은한 블루) */
+    .highlight-bg {
+      background: var(--brand-main-soft);
+      border-radius: 6px;
+      display: inline;
+      line-height: normal;
+      padding: 0 3px;
+    }
+
+    /* Lv3: 메인 원색 텍스트 강조 */
+    .highlight-strong-text {
+      color: var(--brand-strong);
+      font-weight: 700;
+    }
+
+    /* Lv4: 언더라인 강조 */
+    .highlight-underline {
+      border-bottom: 10px solid var(--brand-underline);
+      padding-bottom: 0;
+    }
+
+    /* Lv5: 강한 리버스 형광펜 (히어로 한 줄 정도만) */
+    .highlight-rivers-bg {
+      position: relative;
+      display: inline-block;
+      padding: 0 6px;
+      color: #0b1120;
+      font-weight: 700;
+    }
+    .highlight-rivers-bg::before {
+      content: "";
+      position: absolute;
+      inset: 35% -4px -4px -4px;
+      background: #bfdbfe;
+      border-radius: 8px;
+      z-index: -1;
+    }
+
+    /* Italic: 뉘앙스 강조 */
+    .highlight-italic {
+      font-style: italic;
+      color: var(--brand-italic);
+    }
+
+    /* ===========================
+        기본 스타일
+    ============================ */
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #0b1220;
+      color: #e5e7eb;
+      text-align: left; /* 기본(모바일) = 좌측 정렬 */
+    }
+
+    .page-wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    /* ===========================
+        폰트 사이즈 규칙
+    ============================ */
+
+    /* HERO */
+    .hero-title {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 20px;
+      text-align: center; /* ✅ 섹션1 모바일에서도 가운데 정렬 */
+    }
+
+    .hero-sub {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: center; /* ✅ 섹션1 모바일에서도 가운데 정렬 */
+    }
+
+    /* STORY */
+    .story-box p {
+      font-size: 18px;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .question-box p {
+      font-size: 18px;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    /* CTA */
+    .cta-title {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .cta-desc {
+      font-size: 20px;
+      line-height: 1.7;
+      margin-top: 10px;
+    }
+
+    .cta-btn {
+      font-size: 18px;
+    }
+
+    /* ===========================
+        이미지 & 박스 스타일
+    ============================ */
+
+    .hero-img,
+    .middle-img {
+      width: 100%;
+      max-width: 880px;
+      border-radius: 18px;
+      margin: 22px auto 34px;
+
+      overflow: hidden;              /* 둥근 모서리 유지 */
+    }
+
+    /* hero-img는 이제 background-image 안 씀 */
+    .hero-img img {
+      display: block;
+      width: 100%;
+      height: auto;                  /* ✅ 화면 줄어들면 같이 줄어듦 */
+    }
+
+    /* middle-img도 같은 방식으로 쓸 거면: */
+    .middle-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+
+    /* 스토리 박스 & 질문 박스 (섹션2) */
+    .story-box,
+    .question-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 20px 18px;
+      margin-bottom: 32px;
+      text-align: left;  /* ✅ 섹션2는 모바일에서 계속 좌측 정렬 */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      transition: box-shadow 0.2s ease-out, transform 0.2s ease-out, background 0.2s ease-out;
+    }
+
+    .story-box:hover,
+    .question-box:hover {
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* 카톡 이미지 2개 grid */
+    .kakao-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)); /* PC/MO 둘 다 2개 한 줄 */
+      gap: 16px;
+      margin: 34px 0;
+    }
+
+    .kakao-img {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    /* 실제 이미지 스타일 */
+    .kakao-img img {
+      display: block;
+      width: 100%;
+      height: auto;           /* 🔥 비율 유지, 잘림 없음 */
+      object-fit: contain;    /* 여백 조금 생겨도 전체 보이게 */
+    }
+
+    .kakao-img:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.65);
+    }
+
+    /* ===========================
+        CTA 섹션 (섹션3)
+    =========================== */
+
+    .cta-wrap {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.7);
+      background: #020617; /* 혹시 이미지 못 불러올 때 대비 */
+    }
+
+    /* 배경 이미지: 섹션 크기에 맞게 꽉 채우되, 텍스트와는 분리 */
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;   /* 잘리더라도 비율 유지하며 꽉 채우기 */
+      z-index: 0;
+    }
+
+    /* 어둡게 오버레이 */
+    .cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      /* backdrop-filter: blur(2px); */
+      z-index: 1;
+    }
+
+    /* 텍스트+버튼 박스 (여기가 절대 줄어들지 않는 레이아웃) */
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 20px 40px;
+      text-align: center;
+    }
+
+    /* 모바일/PC 공통 텍스트 크기 */
+    .cta-title {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .cta-desc {
+      font-size: 20px;
+      line-height: 1.7;
+      margin-top: 10px;
+    }
+
+    /* 버튼 */
+    .cta-btn {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: var(--brand-main);
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.7);
+      transition: transform 0.18s ease-out,
+                  box-shadow 0.18s ease-out,
+                  background 0.18s ease-out;
+    }
+
+    .cta-btn:hover {
+      background: #1d4f96;
+      transform: translateY(-2px);
+      box-shadow: 0 20px 46px rgba(0,0,0,0.85);
+    }
+
+    .cta-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+    }
+
+    /* PC에서만 약간 여유 있게 */
+    @media (min-width: 768px) {
+      .cta-content {
+        padding: 44px 32px 50px;
+      }
+      .cta-title {
+        font-size: 26px;
+      }
+    }
+
+    /* ===========================
+        Scroll Reveal (공통)
+    ============================ */
+
+    .reveal-target {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .reveal-target.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===========================
+        PC(데스크톱) 정렬 재설정
+        - 768px 이상에서만 텍스트 중앙 정렬
+    ============================ */
+    @media (min-width: 768px) {
+
+      body {
+        text-align: center;
+      }
+
+      .hero-title,
+      .hero-sub {
+        text-align: center;
+      }
+
+      .story-box,
+      .question-box {
+        text-align: center;
+      }
+
+      .story-box p,
+      .question-box p {
+        text-align: center;
+      }
+
+      .cta-content {
+        text-align: center;
+      }
+
+      .cta-title,
+      .cta-desc {
+        text-align: center;
+      }
+    }
+
+    /* report-meta-nude 전용: 개인정보 모달 좌측 정렬 */
+    .privacy-modal__content,
+    .privacy-modal__body {
+      text-align: left;
+    }
+
+    .privacy-modal__body p,
+    .privacy-modal__body ul,
+    .privacy-modal__body ol,
+    .privacy-modal__body li,
+    .privacy-modal__body table,
+    .privacy-modal__body th,
+    .privacy-modal__body td {
+      text-align: left;
+    }
+
+
+    /* =========================
+      CTA 폼 중앙 정렬 (report-meta-nude 전용)
+    ========================= */
+
+    /* 라벨 텍스트 중앙 */
+    #cta .form-card .label {
+      display: block;
+      text-align: left;
+    }
+
+    /* input / select / textarea 입력값 중앙 */
+    #cta .form-card .input,
+    #cta .form-card .textarea,
+    #cta .form-card select {
+      text-align: left;
+    }
+
+    /* placeholder도 중앙 */
+    #cta .form-card input::placeholder,
+    #cta .form-card textarea::placeholder {
+      text-align: left;
+    }
+
+    /* select 화살표 때문에 밀리는 경우 대비 */
+    #cta .form-card select {
+      text-align-last: left;   /* 크롬/엣지 */
+    }
+
+    /* ===============================
+      폼의 input / select 스타일 통일
+    =============================== */
+
+    /* 공통 입력 필드 베이스 */
+    .form-card input.input,
+    .form-card select.input {
+      width: 100%;
+      height: 56px;                 /* input과 동일 */
+      padding: 0 16px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #9ca3af;               /* 텍스트 색 통일 */
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;    /* gray-200 */
+      border-radius: 8px;
+      box-shadow: none;
+      appearance: none;             /* 브라우저 기본 제거 */
+    }
+
+    /* placeholder 느낌 통일 */
+    .form-card input::placeholder {
+      color: #9ca3af;               /* gray-400 */
+      font-weight: 400;
+    }
+
+    /* select 기본 텍스트 (선택 전/후) */
+    .form-card select.input {
+      color: #9ca3af;
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    /* select placeholder 옵션 */
+    .form-card select option[disabled] {
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
+    /* select 실제 옵션 */
+    .form-card select option {
+      color: #171c27;
+      font-weight: 400;
+      background-color: #ffffff;
+    }
+
+    /* 포커스 시 (input / select 동일) */
+    .form-card input.input:focus,
+    .form-card select.input:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25); /* soft glow */
+    }
+
+    /* select 화살표 위치 보정 (input과 시각적 균형) */
+    .form-card select.input {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 8L10 12L14 8' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 18px;
+      padding-right: 44px;          /* 화살표 공간 */
+    }
+
+  </style>
+
+  <!--전환 스크립트 -->
+  <!-- Danggeun Market Code -->
+  <script src="https://karrot-pixel.business.daangn.com/karrot-pixel.js"></script>
+  <script>
+    window.karrotPixel.init('1765339718944413001');
+    window.karrotPixel.track('ViewPage');   // 당근, 1차, 얘는 단지  브릿지페이지 방문자 조회
+  </script>
+  <!-- End Danggeun Market Code -->
+
+  
+  <!-- 카카오톡 픽셀 (시작) -->
+  <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/kas/static/kp.js"></script>
+  <script type="text/javascript">
+        kakaoPixel('8282134825207378258').pageView();
+  </script>
+  <!-- 카카오톡 픽셀 (끝) -->
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '733576705979991');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=733576705979991&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<main class="page-wrap">
+
+  <!-- ===========================
+        섹션 1 - HERO
+  ============================ -->
+  <section class="section" id="hero">
+    <h1 class="hero-title reveal-target">
+      2026년 매출을 끌어올리는<br>
+      <span class="highlight-strong-text">개인회생·파산</span><br>
+      <span class=" highlight-bg">DB마케팅 전략 보고서</span><br>
+      <span class="highlight-underline">무료제공 특별이벤트</span>
+    </h1>
+
+    <div class="hero-img reveal-target">
+    <img src="./img/hs-cover-001.png">
+    </div>
+
+  </section>
+
+  <!-- ===========================
+        섹션 2 - STORY
+  ============================ -->
+  <section class="section" id="story">
+
+    <!-- story box 1 -->
+    <div class="story-box reveal-target">
+      <p>
+        갈수록 치열해지는 개인회생·파산 시장의 해법을 담은<br class="hidden md:block" />
+        <span class="highlight-italic">"2026 매출 극대화 개인회생·파산 DB마케팅 전략 보고서"</span> 를 100% 무료로 배포합니다.<br><br>
+        본 보고서는 개인회생·파산을 주력으로 하는 법률사무소·법무법인·법무사 사무소 <br class="hidden md:block" /><span class="highlight-bg">20곳 이상과 함께하며 실제 현장에서 얻은 인사이트와 성과사례를 바탕으로 정리한 자료입니다.</span><br><br>
+        해당 보고서를 통해 개인회생 마케팅 구조를 점검하고, <br class="hidden md:block" /><span class="highlight-strong-text">사무소 매출과 수임 효율을 개선하는 데 실질적인 도움이 되기를 진심으로 바랍니다.</span><br class="hidden md:block" />
+      </p>
+    </div>
+  </section>
+<!-- ===========================
+      섹션 3 - CTA
+=========================== -->
+<section class="section" id="cta">
+  <div class="cta-wrap reveal-target">
+
+    <!-- 배경 이미지 -->
+    <img
+    src="./img/hs-cta-001.webp"
+    alt=""
+    class="cta-bg"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    />
+
+    <!-- 어둡게 오버레이 -->
+    <div class="cta-overlay"></div>
+
+    <!-- 텍스트 + 폼 -->
+    <div class="cta-content">
+      <p class="cta-title">
+        2026년 매출을 끌어올리는<br>
+        <span class="highlight-strong-text">개인회생·파산</span><br>
+        DB마케팅 전략 보고서<br>
+        <span class="highlight-underline">
+          무료 신청하기
+        </span>
+      </p>
+      <p class="cta-desc">
+        ※사무소의 업무 이메일이 아닌<br>
+        <span style="color: red;">개인 이메일의 경우 보고서가 발송되지 않습니다.</span>
+      </p>
+
+      <!-- ✅ 폼 래퍼: 기존 CTA 버튼 대신 폼을 넣음 -->
+      <div class="mt-6 w-full max-w-[520px] mx-auto">
+        <form
+          data-form
+          class="form-card space-y-4 p-4"
+          method="post"
+          data-evt="form_submit"
+        >
+          <div>
+            <label class="label" for="name">이름</label>
+            <input
+              data-field="name"
+              name="name"
+              type="text"
+              class="input w-full px-4 py-3"
+              placeholder="홍길동"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="label" for="officename">사무소명</label>
+            <input
+              data-field="officename"
+              name="officename"
+              type="text"
+              class="input w-full px-4 py-3"
+              placeholder="예: 법률사무소AA, BB법무사"
+            />
+          </div>
+          <div>
+            <label class="label" for="officelevel">직책</label>
+            <select
+              data-field="officelevel"
+              name="officelevel"
+              type="number"
+              class="input w-full px-4 py-3"
+            >
+              <option value="" disabled selected>직책을 선택하세요</option>
+              <option value="변호사">변호사</option>
+              <option value="법무사">법무사</option>
+              <option value="사무장">사무장</option>
+              <option value="마케팅 담당자">마케팅 담당자</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="email">이메일</label>
+            <input
+              data-field="email"
+              name="email"
+              type="text"
+              class="input w-full px-4 py-3"
+              placeholder="사무소 업무 이메일을 입력해주세요"
+            />
+          </div>
+          <!-- 📌 유입매체/타겟 저장용 hidden 필드 -->
+          <input type="hidden" data-field="source" value="" />
+
+          <button
+            type="submit"
+            class="btn-cta-main btn-text w-full py-4 fx-btn-soft-glow"
+          >
+            무료 보고서 신청하기
+          </button>
+
+            <!-- 개인정보수집 동의 영역 -->
+            <div class="form-privacy p-3 mt-3 text-sm flex items-start gap-2">
+              <input 
+                type="checkbox" 
+                id="agreePrivacy" 
+                data-field="agree_privacy" 
+                class="mt-1"
+                required
+                checked 
+              />
+              <label for="agreePrivacy" class="leading-tight">
+                개인정보 수집 및 이용에 동의합니다.
+                <button 
+                  type="button"
+                  class="underline text-[var(--brand)] ml-1"
+                  data-evt="open_privacy"
+                >
+                  보기
+                </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<!-- ================= 푸터 ================= -->
+<footer class="footer">
+  <div class="footer-top">
+    <div
+      class="max-w-6xl mx-auto px-10 md:px-24 py-4
+             flex flex-col md:flex-row
+             md:items-center md:justify-between
+             gap-6"
+    >
+
+      <!-- LEFT: 로고 + 서비스 소개 -->
+      <div class="flex flex-col md:flex-row items-start md:items-left">
+        <a href="#top" class="footer-nav-item inline-flex shrink-0">
+          <img
+            src="./svg/landingops-logo-white.svg"
+            alt="LandingOps 로고"
+            class="h-10 md:h-10 w-auto"
+          />
+        </a>
+      </div>
+
+      <!-- RIGHT: 사업자 정보 -->
+      <div class="text-xs text-[var(--neutral-700)] leading-relaxed
+                  md:text-right md:mt-0 mt-2">
+        <p>리코 코퍼레이션 | 366-03-03344</p>
+        <p>서울특별시 서울 마포구 서교동 347-21 3</p>
+        <p class="mt-1">©2025 ricco-corporation. All rights reserved.</p>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- ================= 개인정보 처리방침 모달 ================= -->
+<div 
+  class="privacy-modal" 
+  data-modal="privacy" 
+  aria-hidden="true"
+>
+  <!-- 배경 영역 (클릭 시 닫기) -->
+  <div class="privacy-modal__overlay" data-evt="close_privacy"></div>
+
+  <!-- 모달 박스 -->
+  <div 
+    class="privacy-modal__content" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="privacyModalTitle"
+  >
+    <header class="privacy-modal__header">
+      <span id="privacyModalTitle" class="privacy-modal__title">
+        개인정보취급방침
+      </span>
+      <button
+        type="button"
+        class="privacy-modal__close"
+        data-evt="close_privacy"
+        aria-label="개인정보취급방침 닫기"
+      >
+        ✕
+      </button>
+    </header>
+
+    <div class="privacy-modal__body">
+      <p class="privacy-modal__section-title">개인정보의 수집 및 이용 동의(필수)</p><br>
+      <p>
+      1. 수집하는 개인정보의 항목 및 수집 목적<br><br>
+
+      (1) 개인정보 수집목적<br><br>
+      
+      리코코퍼레이션은 이용자의 개인정보를 다음과 같은 목적으로 수집∙이용합니다.<br>
+      가. 회원으로 가입한 이용자를 식별하고 가입의사 및 나이 확인, 불량회원의 부정한 이용을 방지하기 위하여 사용합니다.<br>
+      나. 이용자에게 리코코퍼레이션의 다양한 서비스를 제공하고 서비스 이용 과정에서 이용자의 문의사항이나 불만을 처리하고 공지사항 등을 전달하기 위해 사용합니다.<br>
+      다. 이용자와 약속한 서비스를 제공하고 유료 서비스 구매 및 이용이 이루어지는 경우 이에 따른 요금 정산을 위해 사용됩니다.<br>
+      라. 신규 서비스가 개발되거나 이벤트 행사 시 참여기회를 알리기 위한 정보 전달 및 마케팅 및 광고 등에도 사용됩니다.<br>
+      마. 이용자의 서비스 이용 기록과 접속 빈도 분석 및 서비스 이용에 대한 통계, 이를 통한 맞춤형 서비스 제공과 서비스 개선에도 사용됩니다.<br>
+      바. 회사에 마케팅을 의뢰한 제3자의 광고, 상품소개 등 관련 광고문자 발송, 이벤트 행사 및 경품/쿠폰 관련 고객문의 응대에도 사용됩니다.<br><br>
+
+      (2) 수집하는 개인정보의 항목<br><br>
+      
+      회사는 회원(또는 서비스) 가입, 원활한 고객상담, 각종 서비스의 제공 등을 위해 아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.<br>
+      가. 개인회원 가입시<br>
+      휴대전화번호, 이름, 이메일 주소가 수집될 수 있습니다.<br>
+      나. 광고서비스 제공 시<br>
+      이름, 휴대폰 전화번호, 이메일이 수집될 수 있습니다.<br>
+      다. 상담 서비스 이용 시<br>
+      서비스 품질 확인 및 개선을 위해 연락처 정보(발/수신 전화번호), 서비스 이용 기록(통화시간, 통화 내용 등)이 수집될 수 있습니다.<br>
+      라. 기타<br>
+      서비스 이용과정에서 아래와 같은 정보들이 자동으로 생성되어 수집될 수 있습니다.<br>
+      IP Address, 쿠키, 방문 일시, 서비스 이용 기록, 불량 이용 기록, 기기정보<br><br>
+
+      2. 개인정보 수집방법<br>
+      - 회사는 다음과 같은 방법으로 개인정보를 수집합니다.<br>
+      - 서비스 내 관련 페이지, 서면 양식, 팩스, 전화, 상담 게시판, 이메일, 이벤트 응모<br>
+      - 협력회사 및 수탁자로부터의 제공<br>
+      - 회사의 이벤트 안내 팝업 내 이용자가 직접 입력한 정보 수집<br><br>
+
+      3. 개인정보의 보유 및 이용기간<br>
+      리코코퍼레이션은 이용자의 개인정보를 회원가입을 하는 시점부터 서비스를 제공하는 기간 동안에만 제한적으로 이용하고 있습니다.<br>
+      이용자가 회원탈퇴를 요청하거나 제공한 개인정보의 수집 및 이용에 대한 동의를 철회하는 경우, 또는 수집 및 이용목적이 달성되거나 보유 및 이용기간이 종료한 경우 해당 이용자의 개인정보는 지체 없이 파기되며 다음 정보에 대해서는 아래의 사유로 일정기간 동안 저장됩니다.<br>
+      전자상거래 등에서의 소비자보호에 관한 법률, 통신비밀보호법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 관계법령에 따라 보존할 필요가 있는 경우 회사는 관계법령에서 정한 기간 동안 고객의 개인정보를 보유하며, 그 기간은 다음과 같습니다.<br><br>
+      </p>
+      <table class="privacy-table">
+        <tr>
+          <th>보존근거</th>
+          <th>보존대상</th>
+          <th>보존기간</th>
+        </tr>
+        <tr>
+          <th>전자상거래 등에서의소비자 보호에 관한 법률</th>
+          <th>대금결제 및 재화 등의 공급에 관한 기록</th>
+          <th>5년</th>
+        </tr>
+        <tr>
+          <th>전자상거래 등에서의소비자 보호에 관한 법률</th>
+          <th>소비자의 불만 또는 분쟁처리에 관한 기록</th>
+          <th>3년</th>
+        </tr>
+        <tr>
+          <th>전자상거래 등에서의소비자 보호에 관한 법률</th>
+          <th>표시, 광고에 관한 기록</th>
+          <th>6개월</th>
+        </tr>
+        <tr>
+          <th>전자금융거래법</th>
+          <th>전자금융 거래에 관한 기록</th>
+          <th>5년</th>
+        </tr>
+        <tr>
+          <th>통신비밀보호법</th>
+          <th>서비스 방문기록, 접속로그,접속 아이피</th>
+          <th>3개월</th>
+        </tr>
+        <tr>
+          <th>정보통신망 이용촉진 및 정보보호 등에 관한 법률</th>
+          <th>본인 확인에 관한 기록</th>
+          <th>6개월</th>
+        </tr>
+      </table>
+
+      <br><br>개인정보의 제3자 제공 및 위탁 동의(필수)<br>
+      1. 회사는 이용자의 개인정보를 제 1조(수집하는 개인정보의 항목 및 수집방법)에서 명시한 범위 내에서 처리하며, 이용자의 동의, 법률의 특별한 규정 등 개인정보보호법 제17조 및 제 18조에 해당하는 경우에만 개인정보를 제3자에게 제공합니다.<br><br>
+
+      2. 회사는 다음과 같이 개인정보를 제3자에게 제공하고 있습니다.<br><br>
+
+      제3자 : 리코 코퍼레이션<br>
+      제공하는 개인정보항목 : 이름,사무소명,직책,이메일 등<br>
+      제공받는자의 이용목적 : 맞춤형 서비스 제공, 운영 업무 대행<br>
+      제공받는자의 보유 및 이용기간 : 참여일로부터 12개월<br><br>
+
+      3. 회사는 이용자에게 다양한 서비스를 제공하는 데에 반드시 필요한 업무 중 일부를 외부 업체로 하여금 수행하도록 개인정보의 취급 업무를 위탁합니다. 개인정보 위탁처리 기관 및 위탁업무의 내용은 다음과 같습니다.<br><br>
+
+      수탁자(업체) : 리코 코퍼레이션<br>
+      위탁업무 내용 : 개인정보 수집 및 제공<br>
+      위탁처리 정보 : 이름,사무소명,직책,이메일 등<br>
+      개인정보 이용기간 : 개인정보 제공을 완료한 시점까지만<br><br>
+
+      4. 이용자는 서비스 제공 및 이용 이외의 목적으로 제3자에게 본인의 개인정보를 제공하는 것에 동의하지 않을 수 있습니다.<br>
+      5. 회사는 개인정보 제공업체에 변경이 생길 수 있습니다. 이에 대한 변경사항은 회사 인터넷 사이트를 통해 제공받는자, 이용목적, 제공하는 개인정보항목, 보유 및 이용기간에 대해 공지하고 별도의 고객동의를 득하여 업체에게 제공됩니다.<br>
+      6. 이용자는 이미 동의한 개인정보 제3자 제공에 대한 철회를 요청할 수 있으며, 요청하는 창구는 다음과 같습니다.<br><br>
+
+      <p class="privacy-modal__section-title">개인정보관리책임자</p><br>
+      <p>
+      이름 : 김선재<br>
+      소속/직위:개인정보관리책임자<br>
+      이메일 : ricco-corporation@naver.com<br><br>
+      </p>
+      <p class="privacy-modal__section-title">기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.<br></p>
+      <p>
+      1.개인분쟁조정위원회 (https://www.1336.or.kr/1336)<br>
+      2.정보보호마크인증위원회 (https://www.eprivacy.or.kr/02-580-0533~4)<br>
+      3.대검찰청 인터넷범죄수사센터 (02-3480-3600)<br>
+      4.경찰청 사이버테러대응센터 (https://www.ctrc.go.kr/02-392-0330)<br>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ==========================
+  // Scroll Reveal
+  // ==========================
+  const targets = document.querySelectorAll('.reveal-target');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.18
+    }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+
+  // ==========================
+  // 기본 CTA 클릭 로깅 (추후 GA/픽셀로 교체)
+  // ==========================
+  const bridgeCta = document.querySelector('[data-evt="click_bridge_cta"]');
+  if (bridgeCta) {
+    bridgeCta.addEventListener('click', function () {
+      console.log('[브릿지 CTA 클릭] click_bridge_cta');
+      // 추후 여기서 gtag / fbq / kakao 픽셀 연동하면 됨
+    });
+  }
+</script>
+  <!-- 자바스크립트 -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="./js/form-core-report.js"></script>
+    
+    <script> 
+      window.LANDING_SOURCE = '당근';  //📌 어떤 매체 유입인지 라벨링
+    </script> 
+
+</body>
+
+
+</html>
