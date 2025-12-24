@@ -41,27 +41,27 @@
     // 광고주/폼 항목이 바뀌면 "여기 FIELD_CONFIG만" 수정하면 됨
     var FIELD_CONFIG = [
       // 
-      {
-        key: 'name',
-        selector: '[data-field="name"]',
-        entryName: 'entry.592781556',       // Google Form entry
-        type: 'text',                        // text / phone / textarea / select / checkbox
-        minLength: 2,
-        message: '이름을 입력해주세요.'
-      },
-      {
-        key: 'officename',
-        selector: '[data-field="officename"]',
-        entryName: 'entry.1168411784',       
-        type: 'text',                        
-        minLength: 2,
-        message: '사무소명을 입력해주세요.'
-      },
+      // {
+      //   key: 'name',
+      //   selector: '[data-field="name"]',
+      //   entryName: 'entry.592781556',       
+      //   type: 'text',                      
+      //   minLength: 2,
+      //   message: '이름을 입력해주세요.'
+      // },
+      // {
+      //   key: 'officename',
+      //   selector: '[data-field="officename"]',
+      //   entryName: 'entry.1168411784',       
+      //   type: 'text',                        
+      //   minLength: 2,
+      //   message: '사무소명을 입력해주세요.'
+      // },
       {
         key: 'officelevel',
         selector: '[data-field="officelevel"]',
-        entryName: 'entry.1754803235',       
-        type: 'select',                        
+        entryName: 'entry.1754803235',       // Google Form entry
+        type: 'select',                        // text / phone / textarea / select / checkbox
         message: '직책을 선택해주세요.'
       },
       {
