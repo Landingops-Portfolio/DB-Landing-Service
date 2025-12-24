@@ -49,14 +49,13 @@
       //   minLength: 2,
       //   message: '이름을 입력해주세요.'
       // },
-      // {
-      //   key: 'officename',
-      //   selector: '[data-field="officename"]',
-      //   entryName: 'entry.1168411784',       
-      //   type: 'text',                        
-      //   minLength: 2,
-      //   message: '사무소명을 입력해주세요.'
-      // },
+      {
+        key: 'officechoice',
+        selector: '[data-field="officechoice"]',
+        entryName: 'entry.1168411784',       
+        type: 'select',                         
+        message: '사무소를 선택해주세요.'
+      },
       {
         key: 'officelevel',
         selector: '[data-field="officelevel"]',
